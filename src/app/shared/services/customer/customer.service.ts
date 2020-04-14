@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
+import { Customer} from 'src/app/shared/interfaces/customer'
 import { HttpClient } from '@angular/common/http'
-
-export interface Customer {
-  name: string;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +11,8 @@ export class CustomerService {
   constructor(private http: HttpClient) {}
 
   getAllCustomers(): Observable<Customer[]> {
-    return this.http.get<Customer[]>('http://localhost:8000/api/customers')
+    var customers = this.http.get<Customer[]>('http://localhost:8000/api/customers');
+    return customers;
   }
 
   getCustomer(name: string): Observable<Customer> {
