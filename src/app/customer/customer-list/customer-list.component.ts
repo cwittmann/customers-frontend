@@ -4,11 +4,11 @@ import { CustomerService } from 'src/app/shared/services/customer/customer.servi
 import { Observable } from 'rxjs/Observable'
 
 @Component({
-  selector: 'app-customer',
-  templateUrl: './customer.component.html',
-  styleUrls: ['./customer.component.scss']
+  selector: 'app-customer-list',
+  templateUrl: './customer-list.component.html',
+  styleUrls: ['./customer-list.component.scss']
 })
-export class CustomerComponent implements OnInit {
+export class CustomerListComponent implements OnInit {
 
   customers: Customer[];
 
