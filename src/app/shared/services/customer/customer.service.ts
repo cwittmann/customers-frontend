@@ -15,8 +15,8 @@ export class CustomerService {
     return customers;
   }
 
-  getCustomer(name: string) {
-    return this.http.get('http://localhost:8000/api/customers/' + name);
+  getCustomer(id: string) {
+    return this.http.get('http://localhost:8000/api/customers/' + id);
   }
 
   insertCustomer(Customer: Customer) {
@@ -25,12 +25,12 @@ export class CustomerService {
 
   updateCustomer(Customer: Customer) {
     return this.http.put(
-      'http://localhost:8000/api/customers/' + Customer.name,
+      'http://localhost:8000/api/customers/' + Customer.id,
       Customer
     );
   }
 
-  deleteCustomer(name: string) {
-    return this.http.delete('http://localhost:8000/api/customers/' + name)
+  deleteCustomer(id: string) {
+    return this.http.delete('http://localhost:8000/api/customers/' + id)
   }
 }
