@@ -1,8 +1,8 @@
-<div class="container-fluid">
+<div class="container-fluid">    
     <h1>Customers</h1>  
     
     <div class="row customer-row" *ngFor="let customer of customers" [routerLink]="['/details', customer.id]">
-        <img class="icon-circle" src="../../../assets/icons/user-male.png">
+        <img class="icon-user" src="../../../assets/icons/user-male.png">
         <div class="col customer-name-col">
             <h2>{{customer.lastName}}, {{customer.firstName}}</h2>
             <p><img class="icon" src="../../../assets/icons/birth.png">{{customer.birthDate | date:'longDate'}}</p>
