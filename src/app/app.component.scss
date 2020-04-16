@@ -1,5 +1,14 @@
 nav {    
-    background: black;
+    background: #070d14;
+    box-shadow: 2vw 2vw 5vw black;
+    opacity: 0.8;
+}
+
+h1 {
+  display: inline;
+  color: white;
+  font-size: calc(8px + 1vw);
+  vertical-align: middle;
 }
 
 .logo {  

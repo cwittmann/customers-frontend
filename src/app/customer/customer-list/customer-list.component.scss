@@ -1,20 +1,17 @@
 h1 {
     margin: 2vw 2vw 2vw 0;
     font-size: calc(12px + 1vw);
-    font-family: Roboto, sans-serif; 
     color: #d9eef5;    
 }
 
 h2 {
     margin: 0;
     font-size: calc(12px + 1vw);
-    font-family: Roboto, sans-serif;  
 }
 
 p {
     margin: 0;
     font-size: calc(8px + 0.5vw);   
-    font-family: Roboto, sans-serif; 
     font-weight: 400;
 }
 
@@ -32,26 +29,32 @@ p {
 .customer-row {
     margin: 0 0 1vw 0;
     border: 0.2vw solid #b5dce9;     
-    background: white;      
+    background: white; 
+    opacity: 0.95;     
 }
 
 .customer-name-col {                
-    margin: 0.5vw;
-    padding: 0.5vw;
-    opacity: 0.9;           
+    margin: 0;
+    padding: 1vw; 
+}
+
+.customer-data-col {                
+    margin: 0;
+    padding: 0.5vw;     
+    border-left: 1px solid #b5dce9;        
 }
 
 .customer-row:nth-child(odd){
     margin: 1vw 0 1vw 1vw;    
     box-shadow: 2vw 2vw 5vw black;
     
-    .customer-name-col {
-        margin: 0;
+    .customer-data-col {
+        margin: 0 0 0 -0.5vw;        
     }
 }
 
 .customer-row:nth-child(even){
-    margin: 0;    
+    margin: 1vw 0 1vw 0; 
     box-shadow: 2vw 2vw 5vw black;
 }
 

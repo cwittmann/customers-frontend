@@ -1,21 +1,18 @@
 h1 {
     margin: 2vw 2vw 2vw 0;
-    font-size: calc(12px + 1vw);
-    font-family: Roboto, sans-serif; 
+    font-size: calc(12px + 1vw);   
     color: #d9eef5;    
 }
 
 h2 {
     margin: 0 0 0 0.5vw;
-    font-size: calc(12px + 1vw);
-    font-family: Roboto, sans-serif;  
+    font-size: calc(12px + 1vw);   
 }
 
 .data-column {
     margin: 0;  
     padding: 1vw;  
-    font-size: calc(8px + 0.5vw);   
-    font-family: Roboto, sans-serif; 
+    font-size: calc(8px + 0.5vw);      
     font-weight: 400;
 }
 
@@ -39,6 +36,7 @@ span {
     margin: 0 0 1vw 0;
     border: 0.2vw solid #b35e8f;
     background: white;
+    opacity: 0.95;
 }
 
 button {
