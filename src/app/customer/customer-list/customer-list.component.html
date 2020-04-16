@@ -1,6 +1,11 @@
 <div class="container-fluid">    
     <h1>Customers</h1>  
     
+    <form class="form-inline" action="#" (submit)="filter(filterString.value)">
+        <input type="text" class="form-control" #filterString placeholder="Name">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>    
+
     <div class="row customer-row" *ngFor="let customer of customers" [routerLink]="['/details', customer.id]">
         <img class="icon-user" src="../../../assets/icons/user-male.png">
         <div class="col customer-name-col">

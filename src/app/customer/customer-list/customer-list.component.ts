@@ -10,11 +10,23 @@ import { Observable } from 'rxjs/Observable'
 })
 export class CustomerListComponent implements OnInit {
 
-  customers: Customer[];
+  allCustomers: Customer[];
+  customers: Customer[];    
 
-  constructor(private customerService: CustomerService) { }
+  constructor(private customerService: CustomerService) { }  
+
+  filter(filterStringInput: string){
+    const filterString = filterStringInput;
+    this.customers = this.allCustomers.filter(function(elem) {
+      const name = elem.firstName + " " + elem.lastName;
+      return name.toUpperCase().includes(filterString.toUpperCase());
+    });
+  }
 
   ngOnInit() {
-    this.customerService.getAllCustomers().subscribe((data: Customer[]) => {this.customers = data; });
+    this.customerService.getAllCustomers().subscribe((data: Customer[]) => {
+      this.allCustomers = data; 
+      this.customers = this.allCustomers;
+    });
   }
 }

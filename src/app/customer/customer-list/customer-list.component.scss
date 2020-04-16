@@ -44,7 +44,7 @@ p {
     border-left: 1px solid #b5dce9;        
 }
 
-.customer-row:nth-child(odd){
+.customer-row:nth-child(even){
     margin: 1vw 0 1vw 1vw;    
     box-shadow: 2vw 2vw 5vw black;
     
@@ -53,7 +53,7 @@ p {
     }
 }
 
-.customer-row:nth-child(even){
+.customer-row:nth-child(odd){
     margin: 1vw 0 1vw 0; 
     box-shadow: 2vw 2vw 5vw black;
 }
@@ -65,4 +65,18 @@ p {
     margin: 0.5vw;
     padding: 0.5vw;
     opacity: 0.9;
+}
+
+.form-control, button {
+    font-size: calc(8px + 0.5vw);
+}
+
+button {
+    border: 0;
+    background: #b35e8f; 
+     
+}
+
+button:hover{
+    background: black;  
 }
