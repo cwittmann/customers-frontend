@@ -1,19 +1,19 @@
 h1 {
     margin: 2vw 2vw 2vw 0;
-    font-size: 1.6vw;
+    font-size: calc(12px + 1vw);
     font-family: Roboto, sans-serif; 
     color: #d9eef5;    
 }
 
 h2 {
     margin: 0;
-    font-size: 1.6vw;
+    font-size: calc(12px + 1vw);
     font-family: Roboto, sans-serif;  
 }
 
 p {
     margin: 0;
-    font-size: 0.8vw;   
+    font-size: calc(8px + 0.5vw);   
     font-family: Roboto, sans-serif; 
     font-weight: 400;
 }
@@ -45,6 +45,10 @@ p {
 .customer-row:nth-child(odd){
     margin: 1vw 0 1vw 1vw;    
     box-shadow: 2vw 2vw 5vw black;
+    
+    .customer-name-col {
+        margin: 0;
+    }
 }
 
 .customer-row:nth-child(even){

@@ -2,14 +2,25 @@
     <h1>{{customer.firstName}} {{customer.lastName}}</h1> 
     
     <div class="row customer">        
-        <p>
+        
+        <div class="col data-column">
+            <h2>User Data</h2>           
             <span><img class="icon" src="../../../assets/icons/birth.png">{{customer.birthDate | date:'longDate'}}</span>            
             <span><img class="icon" src="../../../assets/icons/map.png">{{customer.street}}, {{customer.postalCode}} {{customer.city}} ({{customer.country}})</span>                        
             <span><img class="icon" src="../../../assets/icons/phone.png">{{customer.phone}}</span>
-            <span><img class="icon" src="../../../assets/icons/mail.png">{{customer.eMail}}</span>      
-            <span><img class="icon" src="../../../assets/icons/order.png">No orders</span>          
+            <span><img class="icon" src="../../../assets/icons/mail.png">{{customer.eMail}}</span>  
+        </div>
+        <div class="w-100 d-block d-md-none"></div>
+        <div class="col data-column">
+            <h2>Orders</h2>                         
+            <span><img class="icon" src="../../../assets/icons/order.png">No orders</span> 
+        </div>
+        <div class="w-100 d-block d-lg-none"></div>
+        <div class="col data-column">
+            <h2>Issues</h2>      
             <span><img class="icon" src="../../../assets/icons/issue.png">No issues</span>        
-        </p>
+        </div>
+        
     </div>
    
     <button type="button" class="btn btn-primary btn-lg btn-block" routerLink="">Back to Customer List</button>
