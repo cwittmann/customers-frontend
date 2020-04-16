@@ -1,9 +1,62 @@
-.icon-large {
-    width: 32px;
-    height: 32px;
+h1 {
+    margin: 2vw 2vw 2vw 0;
+    font-size: 1.6vw;
+    font-family: Roboto, sans-serif; 
+    color: #d9eef5;    
 }
 
-.icon-small {
-    width: 16px;
-    height: 16px;
+h2 {
+    margin: 0;
+    font-size: 1.6vw;
+    font-family: Roboto, sans-serif;  
+}
+
+p {
+    margin: 0;
+    font-size: 0.8vw;   
+    font-family: Roboto, sans-serif; 
+    font-weight: 400;
+}
+
+.icon-circle {
+  height: 7vw;
+  width: 7vw;
+  display: inline-block;
+}
+
+.icon {
+    margin: 0 0.4vw 0 0;
+    width: 1vw;
+    height: 1vw;
+}
+
+.customer-row {
+    margin: 0 0 1vw 0;
+    border: 0.2vw solid #b5dce9;     
+    background: white;      
+}
+
+.customer-name-col {                
+    margin: 0.5vw;
+    padding: 0.5vw;
+    opacity: 0.9;           
+}
+
+.customer-row:nth-child(odd){
+    margin: 1vw 0 1vw 1vw;    
+    box-shadow: 2vw 2vw 5vw black;
+}
+
+.customer-row:nth-child(even){
+    margin: 0;    
+    box-shadow: 2vw 2vw 5vw black;
+}
+
+.customer-col{    
+    border-left: 1px solid #b5dce9;
+    border-radius: 15px;
+    background: #d9eef5;    
+    margin: 0.5vw;
+    padding: 0.5vw;
+    opacity: 0.9;
 }

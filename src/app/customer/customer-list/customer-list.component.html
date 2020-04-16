@@ -1,17 +1,22 @@
 <div class="container-fluid">
-    <h4 class="display-4">Customers</h4>  
+    <h1>Customers</h1>  
     
-    <div class="row text-white bg-dark m-1 p-1 rounded-lg" *ngFor="let customer of customers" [routerLink]="['/details', customer.id]">
-        <div class="col p-1">
-            <p class="h4 m-0"><img class="icon-large" src="../../../assets/icons/user.png">{{customer.lastName}}, {{customer.firstName}}</p>
-            <p class="h6 m-0"><img class="icon-small m-1" src="../../../assets/icons/birth.png">{{customer.birthDate | date:'longDate'}}</p>
+    <div class="row customer-row" *ngFor="let customer of customers" [routerLink]="['/details', customer.id]">
+        <img class="icon-circle" src="../../../assets/icons/user-male.png">
+        <div class="col customer-name-col">
+            <h2>{{customer.lastName}}, {{customer.firstName}}</h2>
+            <p><img class="icon" src="../../../assets/icons/birth.png">{{customer.birthDate | date:'longDate'}}</p>
         </div>
-        <div class="col text-dark bg-white p-1">
-            <p class="h6 m-0"><img class="icon-small m-1" src="../../../assets/icons/map.png">{{customer.street}}, {{customer.postalCode}} {{customer.city}} ({{customer.country}})</p>                        
+        <div class="col customer-col">
+            <p><img class="icon" src="../../../assets/icons/map.png">{{customer.street}}, {{customer.postalCode}} {{customer.city}} ({{customer.country}})</p>                        
+            <p><img class="icon" src="../../../assets/icons/phone.png">{{customer.phone}}</p>
+            <p><img class="icon" src="../../../assets/icons/mail.png">{{customer.eMail}}</p>
+        </div>  
+        <div class="col customer-col">            
+            <p><img class="icon" src="../../../assets/icons/order.png">No orders</p>
         </div>
-        <div class="col text-dark bg-white p-1">
-            <p class="h6 m-0"><img class="icon-small m-1" src="../../../assets/icons/phone.png">{{customer.phone}}</p>
-            <p class="h6 m-0"><img class="icon-small m-1" src="../../../assets/icons/mail.png">{{customer.eMail}}</p>
+        <div class="col customer-col">            
+            <p><img class="icon" src="../../../assets/icons/issue.png">No issues</p>
         </div>                
     </div>        
 </div>
