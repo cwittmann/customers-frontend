@@ -32,9 +32,10 @@ span {
     width: 1vw;
     height: 1vw;
 }
+
 .customer {
     margin: 0 0 1vw 0;
-    border: 0.2vw solid #b35e8f;
+    border: 0.2vw solid #b5dce9;
     background: white;
     opacity: 0.95;
 }
@@ -46,5 +47,6 @@ button {
 }
 
 button:hover{
-    background: black;  
+    background: #b5dce9; 
+    color: black;
 }
