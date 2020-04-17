@@ -31,6 +31,12 @@ p {
     border: 0.2vw solid #b5dce9;     
     background: white; 
     opacity: 0.95;     
+    transition: background-color 0.5s;
+}
+
+.customer-row:hover {    
+    background: #b5dce9;
+    border: 0.2vw solid #b35e8f;   
 }
 
 .customer-name-col {                
@@ -71,12 +77,12 @@ p {
     font-size: calc(8px + 0.5vw);
 }
 
-button {
+.btn {
     border: 0;
     background: #b35e8f; 
      
 }
 
-button:hover{
+.btn:hover{
     background: black;  
 }

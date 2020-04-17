@@ -1,11 +1,18 @@
 <div class="container-fluid">    
     <h1>Customers</h1>  
     
-    <form class="form-inline" action="#" (submit)="filter(filterString.value)">
-        <input type="text" class="form-control" #filterString placeholder="Name">
+    <form class="form-inline" action="#" (submit)="filter(filterString.value, filterSelection.value)">
+        <input type="text" class="form-control" #filterString placeholder="Filter value">
+        <select class="form-control" #filterSelection>
+            <option value="name">Name</option>
+            <option value="street">Street</option>
+            <option value="postalCode">Postal Code</option>
+            <option value="city">City</option>
+            <option value="country">Country</option>            
+          </select>
         <button type="submit" class="btn btn-primary">Submit</button>
-    </form>    
-
+    </form>     
+    
     <div class="row customer-row" *ngFor="let customer of customers" [routerLink]="['/details', customer.id]">
         <img class="icon-user" src="../../../assets/icons/user-male.png">
         <div class="col customer-name-col">

@@ -15,11 +15,33 @@ export class CustomerListComponent implements OnInit {
 
   constructor(private customerService: CustomerService) { }  
 
-  filter(filterStringInput: string){
-    const filterString = filterStringInput;
+  filter(filterString: string, filterSelection: string){   
+
     this.customers = this.allCustomers.filter(function(elem) {
-      const name = elem.firstName + " " + elem.lastName;
-      return name.toUpperCase().includes(filterString.toUpperCase());
+
+    let filterValue ;
+
+      switch(filterSelection){        
+        case "name":
+          filterValue = elem.firstName + " " + elem.lastName;
+          break;
+        case "street":
+          filterValue = elem.street;
+          break;
+        case "postalCode":
+          filterValue = elem.postalCode ? elem.postalCode : "00000";
+          break;
+        case "city":
+          filterValue = elem.city;
+          break;
+        case "country":
+          filterValue = elem.country;
+          break;
+        default: 
+          filterValue = elem.firstName + " " + elem.lastName;
+      }
+      
+      return filterValue.toUpperCase().includes(filterString.toUpperCase());
     });
   }
 
