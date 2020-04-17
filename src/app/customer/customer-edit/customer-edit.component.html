@@ -9,7 +9,7 @@
                     <label class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
                         
-                        <input type="text" class="form-control" [(ngModel)]="customer.firstName" #firstName="ngModel" name="firstName" #firstName placeholder="First name" required minlength="2">                         
+                        <input type="text" class="form-control" [(ngModel)]="customer.firstName" #firstName="ngModel" [ngModelOptions]="{standalone: true}" name="firstName" #firstName placeholder="First name" required minlength="2">                         
                         <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
                             <div *ngIf="firstName.errors.required">
                                 First name is required.
@@ -19,7 +19,7 @@
                             </div>   
                         </div>
 
-                        <input type="text" class="form-control" [(ngModel)]="customer.lastName" #lastName="ngModel" name="lastName" #lastName placeholder="Last name" required minlength="2">                         
+                        <input type="text" class="form-control" [(ngModel)]="customer.lastName" #lastName="ngModel" [ngModelOptions]="{standalone: true}" name="lastName" #lastName placeholder="Last name" required minlength="2">                         
                         <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
                             <div *ngIf="lastName.errors.required">
                                 Last name is required.
@@ -33,7 +33,7 @@
                 <div class="form-group row m-1">
                     <label class="col-sm-2 col-form-label">Birth date</label>
                     <div class="col-sm-10">                        
-                        <input type="date" class="form-control" [ngModel]="customer.birthDate | date:'yyyy-MM-dd'" #birthDate="ngModel" name="birthDate" #birthDate required min='1900-01-01' max='2020-12-31'>     
+                        <input type="date" class="form-control" [ngModel]="customer.birthDate | date:'yyyy-MM-dd'" (ngModelChange)="customer.birthDate = $event" #birthDate="ngModel" [ngModelOptions]="{standalone: true}" name="birthDate" #birthDate required min='1900-01-01' max='2020-12-31'>     
                         <div *ngIf="birthDate.invalid && (birthDate.dirty || birthDate.touched)" class="alert alert-danger">
                             <div *ngIf="birthDate.errors.required">
                                 Birth date is required.
@@ -47,7 +47,7 @@
                 <div class="form-group row m-1">
                     <label class="col-sm-2 col-form-label">Address</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" [(ngModel)]="customer.street" #street="ngModel" name="street" #street placeholder="Street" required minlength="5">                         
+                        <input type="text" class="form-control" [(ngModel)]="customer.street" #street="ngModel" [ngModelOptions]="{standalone: true}" name="street" #street placeholder="Street" required minlength="5">                         
                         <div *ngIf="street.invalid && (street.dirty || street.touched)" class="alert alert-danger">
                             <div *ngIf="street.errors.required">
                                 Street is required.
@@ -57,7 +57,7 @@
                             </div>   
                         </div>
 
-                        <input type="text" class="form-control" [(ngModel)]="customer.postalCode" #postalCode="ngModel" name="postalCode" #postalCode placeholder="Postal Code" required minlength="4">                         
+                        <input type="text" class="form-control" [(ngModel)]="customer.postalCode" [ngModelOptions]="{standalone: true}" #postalCode="ngModel" name="postalCode" #postalCode placeholder="Postal Code" required minlength="4">                         
                         <div *ngIf="postalCode.invalid && (postalCode.dirty || postalCode.touched)" class="alert alert-danger">
                             <div *ngIf="postalCode.errors.required">
                                 Postal Code is required.
@@ -67,7 +67,7 @@
                             </div>   
                         </div>
 
-                        <input type="text" class="form-control" [(ngModel)]="customer.city" #city="ngModel" name="city" #city placeholder="City" required minlength="3">                         
+                        <input type="text" class="form-control" [(ngModel)]="customer.city" [ngModelOptions]="{standalone: true}" #city="ngModel" name="city" #city placeholder="City" required minlength="3">                         
                         <div *ngIf="city.invalid && (city.dirty || city.touched)" class="alert alert-danger">
                             <div *ngIf="city.errors.required">
                                 City is required.
@@ -77,7 +77,7 @@
                             </div>   
                         </div>
                         
-                        <input type="text" class="form-control" [(ngModel)]="customer.country" #country="ngModel" name="country" #country placeholder="Country" required minlength="3">                         
+                        <input type="text" class="form-control" [(ngModel)]="customer.country" [ngModelOptions]="{standalone: true}" #country="ngModel" name="country" #country placeholder="Country" required minlength="3">                         
                         <div *ngIf="country.invalid && (country.dirty || country.touched)" class="alert alert-danger">
                             <div *ngIf="country.errors.required">
                                 Country is required.
@@ -91,7 +91,7 @@
                 <div class="form-group row m-1">
                     <label class="col-sm-2 col-form-label">Contact</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" [(ngModel)]="customer.phone" #phone="ngModel" name="phone" #phone placeholder="Phone number" required minlength="8">                         
+                        <input type="text" class="form-control" [(ngModel)]="customer.phone" [ngModelOptions]="{standalone: true}" #phone="ngModel" name="phone" #phone placeholder="Phone number" required minlength="8">                         
                         <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
                             <div *ngIf="phone.errors.required">
                                 Phone number is required.
@@ -100,7 +100,7 @@
                                 Phone number must be at least 8 characters long.
                             </div>   
                         </div>    
-                        <input type="email" class="form-control" [(ngModel)]="customer.eMail" #eMail="ngModel" name="eMail" #eMail placeholder="E-Mail address" required email minlength="5">                         
+                        <input type="email" class="form-control" [(ngModel)]="customer.eMail" [ngModelOptions]="{standalone: true}" #eMail="ngModel" name="eMail" #eMail placeholder="E-Mail address" required email minlength="5">                         
                         <div *ngIf="eMail.invalid && (eMail.dirty || eMail.touched)" class="alert alert-danger">
                             <div *ngIf="eMail.errors.required">
                                 E-Mail address is required.
@@ -113,12 +113,12 @@
                             </div>   
                         </div>                             
                     </div>
-                </div>
+                </div>             
             </form>                                
         </div>
     </div>
    
     <button type="button" class="btn btn-primary btn-lg btn-block btn-danger" [routerLink]="['/details', customer.id]">Cancel</button>
-    <button type="button" class="btn btn-primary btn-lg btn-block btn-success" [disabled]="editForm.invalid" onclick="saveData()">Save</button>    
+    <button type="button" class="btn btn-primary btn-lg btn-block btn-success" (click)="saveData($event)">Save</button>    
     
 </div>
