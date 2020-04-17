@@ -1,0 +1,124 @@
+<div class="container-fluid">       
+    <h1>Editing: {{customer.firstName}} {{customer.lastName}}</h1> 
+    
+    <div class="row customer">                
+        <div class="col data-column">            
+            <h2>User Data</h2>  
+            <form #editForm>
+                <div class="form-group row m-1">
+                    <label class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        
+                        <input type="text" class="form-control" [(ngModel)]="customer.firstName" #firstName="ngModel" name="firstName" #firstName placeholder="First name" required minlength="2">                         
+                        <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+                            <div *ngIf="firstName.errors.required">
+                                First name is required.
+                            </div>
+                            <div *ngIf="firstName.errors.minlength">
+                                First name must be at least 2 characters long.
+                            </div>   
+                        </div>
+
+                        <input type="text" class="form-control" [(ngModel)]="customer.lastName" #lastName="ngModel" name="lastName" #lastName placeholder="Last name" required minlength="2">                         
+                        <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
+                            <div *ngIf="lastName.errors.required">
+                                Last name is required.
+                            </div>
+                            <div *ngIf="lastName.errors.minlength">
+                                Last name must be at least 2 characters long.
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row m-1">
+                    <label class="col-sm-2 col-form-label">Birth date</label>
+                    <div class="col-sm-10">                        
+                        <input type="date" class="form-control" [ngModel]="customer.birthDate | date:'yyyy-MM-dd'" #birthDate="ngModel" name="birthDate" #birthDate required min='1900-01-01' max='2020-12-31'>     
+                        <div *ngIf="birthDate.invalid && (birthDate.dirty || birthDate.touched)" class="alert alert-danger">
+                            <div *ngIf="birthDate.errors.required">
+                                Birth date is required.
+                            </div>
+                            <div *ngIf="birthDate.errors.min || birthDate.errors.max">
+                                Birth date must be between 1900 and 2020.
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row m-1">
+                    <label class="col-sm-2 col-form-label">Address</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" [(ngModel)]="customer.street" #street="ngModel" name="street" #street placeholder="Street" required minlength="5">                         
+                        <div *ngIf="street.invalid && (street.dirty || street.touched)" class="alert alert-danger">
+                            <div *ngIf="street.errors.required">
+                                Street is required.
+                            </div>
+                            <div *ngIf="street.errors.minlength">
+                                Street must be at least 5 characters long.
+                            </div>   
+                        </div>
+
+                        <input type="text" class="form-control" [(ngModel)]="customer.postalCode" #postalCode="ngModel" name="postalCode" #postalCode placeholder="Postal Code" required minlength="4">                         
+                        <div *ngIf="postalCode.invalid && (postalCode.dirty || postalCode.touched)" class="alert alert-danger">
+                            <div *ngIf="postalCode.errors.required">
+                                Postal Code is required.
+                            </div>
+                            <div *ngIf="postalCode.errors.minlength">
+                                Postal Code must be at least 4 characters long.
+                            </div>   
+                        </div>
+
+                        <input type="text" class="form-control" [(ngModel)]="customer.city" #city="ngModel" name="city" #city placeholder="City" required minlength="3">                         
+                        <div *ngIf="city.invalid && (city.dirty || city.touched)" class="alert alert-danger">
+                            <div *ngIf="city.errors.required">
+                                City is required.
+                            </div>
+                            <div *ngIf="city.errors.minlength">
+                                City must be at least 3 characters long.
+                            </div>   
+                        </div>
+                        
+                        <input type="text" class="form-control" [(ngModel)]="customer.country" #country="ngModel" name="country" #country placeholder="Country" required minlength="3">                         
+                        <div *ngIf="country.invalid && (country.dirty || country.touched)" class="alert alert-danger">
+                            <div *ngIf="country.errors.required">
+                                Country is required.
+                            </div>
+                            <div *ngIf="country.errors.minlength">
+                                Country must be at least 3 characters long.
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row m-1">
+                    <label class="col-sm-2 col-form-label">Contact</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" [(ngModel)]="customer.phone" #phone="ngModel" name="phone" #phone placeholder="Phone number" required minlength="8">                         
+                        <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
+                            <div *ngIf="phone.errors.required">
+                                Phone number is required.
+                            </div>
+                            <div *ngIf="phone.errors.minlength">
+                                Phone number must be at least 8 characters long.
+                            </div>   
+                        </div>    
+                        <input type="email" class="form-control" [(ngModel)]="customer.eMail" #eMail="ngModel" name="eMail" #eMail placeholder="E-Mail address" required email minlength="5">                         
+                        <div *ngIf="eMail.invalid && (eMail.dirty || eMail.touched)" class="alert alert-danger">
+                            <div *ngIf="eMail.errors.required">
+                                E-Mail address is required.
+                            </div>
+                            <div *ngIf="eMail.errors.email">
+                                This is not a valid e-mail address.
+                            </div>  
+                            <div *ngIf="eMail.errors.minlength">
+                                E-Mail address must be at least 8 characters long.
+                            </div>   
+                        </div>                             
+                    </div>
+                </div>
+            </form>                                
+        </div>
+    </div>
+   
+    <button type="button" class="btn btn-primary btn-lg btn-block btn-danger" [routerLink]="['/details', customer.id]">Cancel</button>
+    <button type="button" class="btn btn-primary btn-lg btn-block btn-success" [disabled]="editForm.invalid" onclick="saveData()">Save</button>    
+    
+</div>

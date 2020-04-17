@@ -1,0 +1,54 @@
+h1 {
+    margin: 2vw 2vw 2vw 0;
+    font-size: calc(12px + 1vw);   
+    color: #d9eef5;    
+}
+
+h2 {
+    margin: 0 0 0 0.5vw;
+    font-size: calc(12px + 1vw);   
+}
+
+.data-column {
+    margin: 0;  
+    padding: 1vw;  
+    font-size: calc(8px + 0.5vw);      
+    font-weight: 400;
+}
+
+span {
+    display: block;
+    margin: 1vw;
+    border-left: 1px solid #b5dce9;
+    border-radius: 15px;
+    background: #d9eef5;    
+    margin: 0.5vw;
+    padding: 0.5vw;
+    opacity: 0.9;
+}
+
+.icon {
+    margin: 0 0.4vw 0 0;
+    width: 1vw;
+    height: 1vw;
+}
+
+.customer {
+    margin: 0 0 1vw 0;
+    border: 0.2vw solid #b5dce9;
+    background: white;
+    opacity: 0.95;
+}
+
+.btn {
+    border: 0;
+    font-size: 2vw;  
+}
+
+.btn:hover{
+    background: black;     
+}
+
+.btn:disabled {
+    background: lightgray;     
+}
