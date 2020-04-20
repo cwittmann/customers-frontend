@@ -6,9 +6,23 @@
             <h2>User Data</h2>  
             <form #editForm>
                 <div class="form-group row m-1">
+                    <label class="col-sm-2 col-form-label">Id</label>                    
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" [(ngModel)]="customer.id" #firstName="ngModel" [ngModelOptions]="{standalone: true}" name="id" #id placeholder="Id" required readonly>                         
+                    </div>
+                    
                     <label class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                        
+                                 
+                        <select class="form-control" [ngModel]="customer.title" (ngModelChange)="customer.title = $event" #title="ngModel" [ngModelOptions]="{standalone: true}" name="title" #title>                             
+                            <option value="Mr">Mr</option>
+                            <option value="Mrs">Mrs</option>
+                            <option value="Ms">Ms</option>
+                            <option value="Dr">Dr</option>
+                            <option value="Rev">Rev</option>
+                            <option value="Honorable">Honorable</option>
+                        </select>
+
                         <input type="text" class="form-control" [(ngModel)]="customer.firstName" #firstName="ngModel" [ngModelOptions]="{standalone: true}" name="firstName" #firstName placeholder="First name" required minlength="2">                         
                         <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
                             <div *ngIf="firstName.errors.required">
@@ -45,15 +59,30 @@
                     </div>
                 </div>
                 <div class="form-group row m-1">
+                    <label class="col-sm-2 col-form-label">Gender</label>
+                    <div class="col-sm-10">                        
+                        <select class="form-control" [ngModel]="customer.gender" (ngModelChange)="customer.gender = $event" #gender="ngModel" [ngModelOptions]="{standalone: true}" name="gender" #gender required>                             
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <div *ngIf="gender.invalid && (gender.dirty || gender.touched)" class="alert alert-danger">
+                            <div *ngIf="gender.errors.required">
+                                Gender is required.
+                            </div>                          
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row m-1">
                     <label class="col-sm-2 col-form-label">Address</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" [(ngModel)]="customer.street" #street="ngModel" [ngModelOptions]="{standalone: true}" name="street" #street placeholder="Street" required minlength="5">                         
-                        <div *ngIf="street.invalid && (street.dirty || street.touched)" class="alert alert-danger">
-                            <div *ngIf="street.errors.required">
-                                Street is required.
+                        <input type="text" class="form-control" [(ngModel)]="customer.streetAddress" #street="ngModel" [ngModelOptions]="{standalone: true}" name="streetAddress" #streetAddress placeholder="Street Address" required minlength="5">                         
+                        <div *ngIf="streetAddress.invalid && (streetAddress.dirty || streetAddress.touched)" class="alert alert-danger">
+                            <div *ngIf="streetAddress.errors.required">
+                                Street address is required.
                             </div>
-                            <div *ngIf="street.errors.minlength">
-                                Street must be at least 5 characters long.
+                            <div *ngIf="streetAddress.errors.minlength">
+                                Street address must be at least 5 characters long.
                             </div>   
                         </div>
 
@@ -77,14 +106,25 @@
                             </div>   
                         </div>
                         
-                        <input type="text" class="form-control" [(ngModel)]="customer.country" [ngModelOptions]="{standalone: true}" #country="ngModel" name="country" #country placeholder="Country" required minlength="3">                         
+                        <input type="text" class="form-control" [(ngModel)]="customer.country" [ngModelOptions]="{standalone: true}" #country="ngModel" name="country" #country placeholder="Country code" required minlength="2" maxlength="2">                         
                         <div *ngIf="country.invalid && (country.dirty || country.touched)" class="alert alert-danger">
                             <div *ngIf="country.errors.required">
-                                Country is required.
+                                Country code is required.
                             </div>
                             <div *ngIf="country.errors.minlength">
-                                Country must be at least 3 characters long.
+                                Country code must be exactly 2 characters long.
                             </div>   
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row m-1">
+                    <label class="col-sm-2 col-form-label">Currency</label>
+                    <div class="col-sm-10">                        
+                        <input type="text" class="form-control" [(ngModel)]="customer.currency" [ngModelOptions]="{standalone: true}" #phone="ngModel" name="currency" #currency placeholder="Currency" required>                         
+                        <div *ngIf="currency.invalid && (currency.dirty || currency.touched)" class="alert alert-danger">
+                            <div *ngIf="currency.errors.required">
+                                Currency is required.
+                            </div>                          
                         </div>
                     </div>
                 </div>
@@ -118,7 +158,8 @@
         </div>
     </div>
    
-    <button type="button" class="btn btn-primary btn-lg btn-danger" [routerLink]="['/details', customer.id]">Cancel</button>
+    <button *ngIf="isNew" type="button" class="btn btn-primary btn-lg btn-danger" routerLink="">Cancel</button>
+    <button *ngIf="!isNew" type="button" class="btn btn-primary btn-lg btn-danger" [routerLink]="['/details', customer.id]">Cancel</button>
     <button type="button" class="btn btn-primary btn-lg btn-success" (click)="saveData($event)">Save</button>    
     
 </div>

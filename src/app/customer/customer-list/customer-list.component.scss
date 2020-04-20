@@ -6,7 +6,7 @@ h1 {
 
 h2 {
     margin: 0;
-    font-size: calc(12px + 1vw);
+    font-size: calc(12px + 0.5vw);    
 }
 
 p {
@@ -40,13 +40,13 @@ p {
 }
 
 .customer-name-col {                
-    margin: 0;
-    padding: 1vw; 
+    margin: 0.5vw;
 }
+    
 
 .customer-data-col {                
-    margin: 0;
-    padding: 0.5vw;     
+    margin: 0.5vw;
+    padding: 0.5vw;    
     border-left: 1px solid #b5dce9;        
 }
 
@@ -83,6 +83,11 @@ p {
      
 }
 
-.btn:hover{
+.btn:hover {
     background: black;  
+}
+
+.addCustomer {
+    position: absolute;
+    right: 0;
 }

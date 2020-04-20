@@ -8,7 +8,8 @@ import { CustomerEditComponent } from './customer/customer-edit/customer-edit.co
 const routes: Routes = [
   { path: '', component: CustomerListComponent },
   { path: 'details/:id', component: CustomerDetailsComponent },
-  { path: 'edit/:id', component: CustomerEditComponent },
+  { path: 'edit/:id', component: CustomerEditComponent },  
+  { path: 'new', component: CustomerEditComponent },
   { path: '*', redirectTo: '' }
 ];
 

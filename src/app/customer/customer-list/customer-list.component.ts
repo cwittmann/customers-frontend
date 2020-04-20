@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Customer } from 'src/app/shared/model/customer'
 import { CustomerService } from 'src/app/shared/services/customer/customer.service'
 import { Observable } from 'rxjs/Observable'
+import { isBuffer } from 'util';
 
 @Component({
   selector: 'app-customer-list',
@@ -25,8 +26,22 @@ export class CustomerListComponent implements OnInit {
         case "name":
           filterValue = elem.firstName + " " + elem.lastName;
           break;
+        case "gender":
+          if(elem.gender.toUpperCase() === "MALE"){
+            return filterString.toUpperCase() === "MALE";
+          }          
+          if(elem.gender.toUpperCase() === "FEMALE"){
+            return filterString.toUpperCase() === "FEMALE";
+          }          
+          if(elem.gender.toUpperCase() === "OTHER"){
+            return filterString.toUpperCase() === "OTHER";
+          }          
+          break;
+        case "job":
+          filterValue = elem.job;
+          break;
         case "street":
-          filterValue = elem.street;
+          filterValue = elem.streetAddress;
           break;
         case "postalCode":
           filterValue = elem.postalCode ? elem.postalCode : "00000";

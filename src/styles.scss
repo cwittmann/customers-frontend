@@ -2,3 +2,11 @@ body {
     background: linear-gradient(173deg, rgba(2,0,36,1) 0%, rgba(37,68,103,1) 0%, rgba(51,129,148,1) 100%);    
     font-family: Roboto, Arial, sans-serif;
 }
+
+$flag-icon-css-path: '~flag-icon-css/flags' !default;
+@import "~flag-icon-css/sass/flag-icon";
+
+.flag-icon {
+    width: 1vw;  
+    opacity: 0.8;
+}
