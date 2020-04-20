@@ -43,6 +43,8 @@ span {
 .btn {
     border: 0;
     font-size: 2vw;  
+    margin: 0.2vw;
+    font-size: calc(8px + 0.5vw);  
 }
 
 .btn:hover{

@@ -42,8 +42,9 @@ span {
 
 button {
     border: 0;
+    margin: 0.2vw;
     background: #b35e8f;  
-    font-size: 2vw;  
+    font-size: calc(8px + 0.5vw);  
 }
 
 button:hover{
