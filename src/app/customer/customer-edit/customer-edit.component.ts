@@ -27,11 +27,23 @@ export class CustomerEditComponent implements OnInit {
   saveData(event){
       const allCustomerValuesValid = !Object.values(this.customer).some(x => (x == null || x == ''));
       
-      if(allCustomerValuesValid){
+      if(!allCustomerValuesValid){
+        return;
+      }
+
+      if(this.isNew){        
+        this.customerService.insertCustomer(this.customer).subscribe(() => {
+          this.router.navigate([""]);
+        });                  
+      }
+      else{
         this.customerService.updateCustomer(this.customer).subscribe(() => {
-            this.router.navigate([""]);
-          });          
-      }      
+          this.router.navigate([""]);
+        });                  
+      }
+
+        
+           
   }
 
   ngOnInit(): void {    
@@ -40,8 +52,10 @@ export class CustomerEditComponent implements OnInit {
     if(this.isNew){      
       const uuid = uuidv4();      
       this.id = uuid;
-      this.customer = new Customer(this.id, null,null,null,null,null,null,null,null,null, null, null, null, null);
-    }
+      this.customer = new Customer(this.id, null,null,"Mrs","Female",null,null,null,null,null, null, null, null, null);      
+      
+      return;
+    }    
 
     this.customerService.getCustomer(this.id).subscribe((data: Customer[]) => {
       this.customer = data[0]; 
