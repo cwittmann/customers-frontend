@@ -10,22 +10,29 @@ import { SharedModule } from './shared/shared.module';
 import { CustomerListComponent } from './customer/customer-list';
 import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
 import { CustomerEditComponent } from './customer/customer-edit/customer-edit.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ConfirmDialogComponent } from './common-components/confirm-dialog/confirm-dialog.component';
+import { CommonComponentsModule } from './common-components/common-components.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomerListComponent,
     CustomerDetailsComponent,
-    CustomerEditComponent
+    CustomerEditComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,    
-    CustomerModule,
+    CustomerModule, 
     FormsModule,
+    MatDialogModule,
     NgbModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

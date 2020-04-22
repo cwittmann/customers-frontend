@@ -6,14 +6,15 @@
             <h2>User Data</h2>  
             <form #editForm>
                 <div class="form-group row m-1">
-                    <label class="col-sm-2 col-form-label">Id</label>                    
+                    <label class="col-sm-2 col-form-label d-none d-lg-block">Id</label>                    
                     <div class="col-sm-10">
                         <input type="text" class="form-control" [(ngModel)]="customer.id" #firstName="ngModel" [ngModelOptions]="{standalone: true}" name="id" #id placeholder="Id" required readonly>                         
                     </div>
                     
-                    <label class="col-sm-2 col-form-label">Name</label>
+                    <label class="col-sm-2 col-form-label d-none d-lg-block">Name</label>
                     <div class="col-sm-10">
-                                 
+                        
+                        <label for="title" class="control-form-label label-small">Title</label>
                         <select class="form-control" [ngModel]="customer.title" (ngModelChange)="customer.title = $event" #title="ngModel" [ngModelOptions]="{standalone: true}" name="title" #title>                             
                             <option value="Mr">Mr</option>
                             <option value="Mrs" selected>Mrs</option>
@@ -22,7 +23,8 @@
                             <option value="Rev">Rev</option>
                             <option value="Honorable">Honorable</option>
                         </select>
-
+                        
+                        <label for="firstName" class="control-form-label label-small">First name</label>
                         <input type="text" class="form-control" [(ngModel)]="customer.firstName" #firstName="ngModel" [ngModelOptions]="{standalone: true}" name="firstName" #firstName placeholder="First name" required minlength="2">                         
                         <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
                             <div *ngIf="firstName.errors.required">
@@ -33,6 +35,7 @@
                             </div>   
                         </div>
 
+                        <label for="lastName" class="control-form-label label-small">Last name</label>
                         <input type="text" class="form-control" [(ngModel)]="customer.lastName" #lastName="ngModel" [ngModelOptions]="{standalone: true}" name="lastName" #lastName placeholder="Last name" required minlength="2">                         
                         <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
                             <div *ngIf="lastName.errors.required">
@@ -45,8 +48,9 @@
                     </div>
                 </div>
                 <div class="form-group row m-1">
-                    <label class="col-sm-2 col-form-label">Birth date</label>
+                    <label class="col-sm-2 col-form-label d-none d-lg-block">Birth date</label>
                     <div class="col-sm-10">                        
+                        <label for="birthDate" class="control-form-label label-small">Birth date</label>
                         <input type="date" class="form-control" [ngModel]="customer.birthDate | date:'yyyy-MM-dd'" (ngModelChange)="customer.birthDate = $event" #birthDate="ngModel" [ngModelOptions]="{standalone: true}" name="birthDate" #birthDate required min='1900-01-01' max='2020-12-31'>     
                         <div *ngIf="birthDate.invalid && (birthDate.dirty || birthDate.touched)" class="alert alert-danger">
                             <div *ngIf="birthDate.errors.required">
@@ -59,8 +63,9 @@
                     </div>
                 </div>
                 <div class="form-group row m-1">
-                    <label class="col-sm-2 col-form-label">Gender</label>
+                    <label class="col-sm-2 col-form-label d-none d-lg-block">Gender</label>
                     <div class="col-sm-10">                        
+                        <label for="gender" class="control-form-label label-small">Gender</label>
                         <select class="form-control" [ngModel]="customer.gender" (ngModelChange)="customer.gender = $event" #gender="ngModel" [ngModelOptions]="{standalone: true}" name="gender" #gender required>                             
                             <option value="Female">Female</option>
                             <option value="Male">Male</option>
@@ -75,8 +80,9 @@
                 </div>
                 
                 <div class="form-group row m-1">
-                    <label class="col-sm-2 col-form-label">Job</label>
-                    <div class="col-sm-10">                        
+                    <label class="col-sm-2 col-form-label d-none d-lg-block">Job</label>
+                    <div class="col-sm-10">
+                        <label for="job" class="control-form-label label-small">Job</label>                        
                         <input type="text" class="form-control" [(ngModel)]="customer.job" [ngModelOptions]="{standalone: true}" #job="ngModel" name="job" #job placeholder="Job" required minlength="3">                         
                         <div *ngIf="job.invalid && (job.dirty || job.touched)" class="alert alert-danger">
                             <div *ngIf="job.errors.required">
@@ -90,8 +96,9 @@
                 </div>
 
                 <div class="form-group row m-1">
-                    <label class="col-sm-2 col-form-label">Address</label>
+                    <label class="col-sm-2 col-form-label d-none d-lg-block">Address</label>
                     <div class="col-sm-10">
+                        <label for="street" class="control-form-label label-small">Street</label>
                         <input type="text" class="form-control" [(ngModel)]="customer.streetAddress" #street="ngModel" [ngModelOptions]="{standalone: true}" name="streetAddress" #streetAddress placeholder="Street Address" required minlength="5">                         
                         <div *ngIf="streetAddress.invalid && (streetAddress.dirty || streetAddress.touched)" class="alert alert-danger">
                             <div *ngIf="streetAddress.errors.required">
@@ -102,6 +109,7 @@
                             </div>   
                         </div>
 
+                        <label for="postalCode" class="control-form-label label-small">Postal Code</label>
                         <input type="text" class="form-control" [(ngModel)]="customer.postalCode" [ngModelOptions]="{standalone: true}" #postalCode="ngModel" name="postalCode" #postalCode placeholder="Postal Code" required minlength="4">                         
                         <div *ngIf="postalCode.invalid && (postalCode.dirty || postalCode.touched)" class="alert alert-danger">
                             <div *ngIf="postalCode.errors.required">
@@ -112,6 +120,7 @@
                             </div>   
                         </div>
 
+                        <label for="city" class="control-form-label label-small">City</label>
                         <input type="text" class="form-control" [(ngModel)]="customer.city" [ngModelOptions]="{standalone: true}" #city="ngModel" name="city" #city placeholder="City" required minlength="3">                         
                         <div *ngIf="city.invalid && (city.dirty || city.touched)" class="alert alert-danger">
                             <div *ngIf="city.errors.required">
@@ -122,6 +131,7 @@
                             </div>   
                         </div>
                         
+                        <label for="country" class="control-form-label label-small">Country</label>
                         <input type="text" class="form-control" [(ngModel)]="customer.country" [ngModelOptions]="{standalone: true}" #country="ngModel" name="country" #country placeholder="Country code" required minlength="2" maxlength="2">                         
                         <div *ngIf="country.invalid && (country.dirty || country.touched)" class="alert alert-danger">
                             <div *ngIf="country.errors.required">
@@ -134,8 +144,9 @@
                     </div>
                 </div>
                 <div class="form-group row m-1">
-                    <label class="col-sm-2 col-form-label">Currency</label>
-                    <div class="col-sm-10">                        
+                    <label class="col-sm-2 col-form-label d-none d-lg-block">Currency</label>
+                    <div class="col-sm-10">
+                        <label for="curency" class="control-form-label label-small">Currency</label>                        
                         <input type="text" class="form-control" [(ngModel)]="customer.currency" [ngModelOptions]="{standalone: true}" #phone="ngModel" name="currency" #currency placeholder="Currency" required>                         
                         <div *ngIf="currency.invalid && (currency.dirty || currency.touched)" class="alert alert-danger">
                             <div *ngIf="currency.errors.required">
@@ -145,8 +156,9 @@
                     </div>
                 </div>
                 <div class="form-group row m-1">
-                    <label class="col-sm-2 col-form-label">Contact</label>
+                    <label class="col-sm-2 col-form-label d-none d-lg-block">Contact</label>
                     <div class="col-sm-10">
+                        <label for="phone" class="control-form-label label-small">Phone</label>
                         <input type="text" class="form-control" [(ngModel)]="customer.phone" [ngModelOptions]="{standalone: true}" #phone="ngModel" name="phone" #phone placeholder="Phone number" required minlength="8">                         
                         <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
                             <div *ngIf="phone.errors.required">
@@ -156,6 +168,8 @@
                                 Phone number must be at least 8 characters long.
                             </div>   
                         </div>    
+
+                        <label for="eMail" class="control-form-label label-small">E-Mail</label>
                         <input type="email" class="form-control" [(ngModel)]="customer.eMail" [ngModelOptions]="{standalone: true}" #eMail="ngModel" name="eMail" #eMail placeholder="E-Mail address" required email minlength="5">                         
                         <div *ngIf="eMail.invalid && (eMail.dirty || eMail.touched)" class="alert alert-danger">
                             <div *ngIf="eMail.errors.required">

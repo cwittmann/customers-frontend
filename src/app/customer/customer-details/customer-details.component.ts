@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Customer } from 'src/app/shared/model/customer';
 import { CustomerService } from 'src/app/shared/services/customer/customer.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent, ConfirmDialogModel } from 'src/app/common-components/confirm-dialog/confirm-dialog.component';
 import { Order } from 'src/app/shared/model/order';
 import { Product } from 'src/app/shared/model/product';
+
 
 @Component({
   selector: 'app-customer-details',
@@ -15,7 +18,28 @@ export class CustomerDetailsComponent implements OnInit {
   id: any;
   customer: Customer;
 
-  constructor(private activatedRoute: ActivatedRoute, private customerService: CustomerService) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private customerService: CustomerService, public dialog: MatDialog) { }
+
+  deleteCustomer(event){
+
+    const dialogData = new ConfirmDialogModel("Confirm Action", "Are you sure young want to delete customer?");
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      const result = dialogResult;
+      
+      if(result){
+        this.customerService.deleteCustomer(this.customer.id.toString()).subscribe(async () => {
+          this.router.navigate([""]);
+        });
+      }
+      
+    });
+  }
 
   ngOnInit() {    
     this.id = this.activatedRoute.snapshot.params.id;    
