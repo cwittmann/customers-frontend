@@ -12,14 +12,15 @@ import { Order } from 'src/app/shared/model/order';
 })
 export class CustomerListComponent implements OnInit {
 
+  loading: boolean = false;
+
   allCustomers: Customer[];
   customers: Customer[];    
   allOrders: Order[];
 
   constructor(private customerService: CustomerService) { }  
 
-  filter(filterString: string, filterSelection: string){   
-
+  filter(filterString: string, filterSelection: string){
     this.customers = this.allCustomers.filter(function(elem) {
 
     let filterValue ;
@@ -60,21 +61,26 @@ export class CustomerListComponent implements OnInit {
       
       return filterValue.toUpperCase().includes(filterString.toUpperCase());
     });
+
+    this.customers.sort((customer1, customer2) => customer1.lastName > customer2.lastName ? 1 : -1);    
   }
 
   ngOnInit() {
+    this.loading = true;
     this.customerService.getAllCustomers().subscribe((customers: Customer[]) => {      
-      this.allCustomers = customers;
-      this.customers = customers;
+      this.allCustomers = customers;      
 
         this.customerService.getAllOrders().subscribe((orders: Order[]) => {
           this.allOrders = orders;
 
-          for (let customer of this.customers){            
+          for (let customer of customers){            
             let customerAsCustomer = customer as Customer;
             let ordersOfCustomer = this.allOrders.filter(x => x.customerId == customerAsCustomer.id);
             customer.numberOfOrders = ordersOfCustomer.length;
           }
+
+          this.customers = customers.sort((customer1, customer2) => customer1.lastName > customer2.lastName ? 1 : -1);
+          this.loading = false;
         });           
     });
   }
