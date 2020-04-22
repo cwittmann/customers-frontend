@@ -19,9 +19,18 @@ h1 {
   position: relative;
 }
 
+.logo:hover{
+    cursor: pointer;
+}
+
+
 .settings {  
   right: 0;
   margin: 1vw;
   width: calc(16px + 1.5vw);  
   position: absolute;
+}
+
+.settings:hover{
+    cursor: pointer;
 }

@@ -26,12 +26,13 @@ p {
     border: 0.1vw dotted #b5dce9;     
     background: white; 
     opacity: 0.95;     
-    transition: background-color 0.25s;
+    transition: background-color 0.25s;    
 }
 
 .customer-row:hover {    
     background: #b5dce9;
     border: 0.1vw dotted #b35e8f;   
+    cursor: pointer;
 }
 
 .customer-name-col {                
