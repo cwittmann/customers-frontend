@@ -45,8 +45,7 @@ export class CustomerDetailsComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.params.id;    
     this.customerService.getCustomer(this.id).subscribe(async (customers: Customer[]) => {      
       let customer = customers[0];            
-      customer.orders = await this.customerService.getAllOrdersOfCustomer(this.id);
-      console.log(customer.orders);
+      customer.orders = await this.customerService.getAllOrdersOfCustomer(this.id);      
       this.customer = customer;
   })
 }
