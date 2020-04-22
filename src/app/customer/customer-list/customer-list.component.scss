@@ -1,17 +1,12 @@
 h1 {
-    margin: 2vw 2vw 2vw 0;
+    margin: 2vw 2vw 2vw 0;   
     font-size: calc(12px + 1vw);
     color: #d9eef5;    
 }
 
-h2 {
-    margin: 0;
-    font-size: calc(12px + 0.5vw);    
-}
-
 p {
-    margin: 0;
-    font-size: calc(8px + 0.5vw);   
+    margin: 0;    
+    font-size: calc(10px + 0.3vw);   
     font-weight: 400;
 }
 
@@ -28,7 +23,7 @@ p {
 
 .customer-row {
     margin: 0 0 1vw 0;
-    border: 0.2vw solid #b5dce9;     
+    border: 0.1vw dotted #b5dce9;     
     background: white; 
     opacity: 0.95;     
     transition: background-color 0.5s;
@@ -36,7 +31,7 @@ p {
 
 .customer-row:hover {    
     background: #b5dce9;
-    border: 0.2vw solid #b35e8f;   
+    border: 0.2vw dotted #b35e8f;   
 }
 
 .customer-name-col {                
@@ -47,16 +42,12 @@ p {
 .customer-data-col {                
     margin: 0.5vw;
     padding: 0.5vw;    
-    border-left: 1px solid #b5dce9;        
+    border-left: 1px dotted #d3eef7;        
 }
 
 .customer-row:nth-child(even){
-    margin: 1vw 0 1vw 1vw;    
+    margin: 1vw 0 1vw 0;    
     box-shadow: 2vw 2vw 5vw black;
-    
-    .customer-data-col {
-        margin: 0 0 0 -0.5vw;        
-    }
 }
 
 .customer-row:nth-child(odd){
@@ -65,9 +56,7 @@ p {
 }
 
 .customer-col{    
-    border-left: 1px solid #b5dce9;
-    border-radius: 15px;
-    background: #d9eef5;    
+    border-left: 1px solid #d3eef7;       
     margin: 0.5vw;
     padding: 0.5vw;
     opacity: 0.9;

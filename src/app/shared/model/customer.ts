@@ -1,3 +1,5 @@
+import { Order } from './order';
+
 export class Customer {
   id: number;  
   firstName: string;
@@ -13,6 +15,9 @@ export class Customer {
   currency: string;
   phone: string;
   eMail: string;
+
+  orders: Order[];
+  numberOfOrders: number;
 
   constructor(id, firstName, lastName, title, gender, job, birthDate, streetAddress, postalCode, city, country, currency, phone, eMail) {
     this.id = id;

@@ -5,7 +5,11 @@ export class Order {
     date: Date;
     status: number;
     amount: number;
-    timestamp: Date;    
+    timestamp: Date;  
+    
+    name: string;
+    manufacturer: string;
+    price: string;
   
     constructor(id, customerId, productId, date, status, amount, timestamp) {
       this.id = id;

@@ -15,7 +15,11 @@
         <div class="w-100 d-block d-md-none"></div>
         <div class="col data-column">
             <h2>Orders</h2>                         
-            <span><img class="icon" src="../../../assets/icons/order.png">No orders</span> 
+            <span *ngFor="let order of customer.orders"><img class="icon" src="../../../assets/icons/order.png">
+            {{order.amount}} x {{order.name}} ({{order.manufacturer}}) ---            
+            {{order.amount * order.price | number:'3.1-5'}} {{customer.currency}}          
+            </span> 
+            <span *ngIf="customer.orders.length == 0"><img class="icon" src="../../../assets/icons/order.png">No orders</span> 
         </div>
         <div class="w-100 d-block d-lg-none"></div>
         <div class="col data-column">

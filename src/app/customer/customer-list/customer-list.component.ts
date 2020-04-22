@@ -3,6 +3,7 @@ import { Customer } from 'src/app/shared/model/customer'
 import { CustomerService } from 'src/app/shared/services/customer/customer.service'
 import { Observable } from 'rxjs/Observable'
 import { isBuffer } from 'util';
+import { Order } from 'src/app/shared/model/order';
 
 @Component({
   selector: 'app-customer-list',
@@ -13,6 +14,7 @@ export class CustomerListComponent implements OnInit {
 
   allCustomers: Customer[];
   customers: Customer[];    
+  allOrders: Order[];
 
   constructor(private customerService: CustomerService) { }  
 
@@ -61,9 +63,19 @@ export class CustomerListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.customerService.getAllCustomers().subscribe((data: Customer[]) => {
-      this.allCustomers = data; 
-      this.customers = this.allCustomers;
+    this.customerService.getAllCustomers().subscribe((customers: Customer[]) => {      
+      this.allCustomers = customers;
+      this.customers = customers;
+
+        this.customerService.getAllOrders().subscribe((orders: Order[]) => {
+          this.allOrders = orders;
+
+          for (let customer of this.customers){            
+            let customerAsCustomer = customer as Customer;
+            let ordersOfCustomer = this.allOrders.filter(x => x.customerId == customerAsCustomer.id);
+            customer.numberOfOrders = ordersOfCustomer.length;
+          }
+        });           
     });
   }
 }
