@@ -4,33 +4,39 @@
   <div class="row customer">
     <div class="col data-column">
       <h2>User Data</h2>
-      <span><img class="icon" src="../../../assets/icons/birth.png" />{{ customer.birthDate | date: 'longDate' }}</span>
-      <span><img class="icon" src="../../../assets/icons/gender.png" />{{ customer.gender }}</span>
-      <span><img class="icon" src="../../../assets/icons/job.png" />{{ customer.job }}</span>
-      <span
-        ><img class="icon" src="../../../assets/icons/map.png" />{{ customer.streetAddress }},
-        {{ customer.postalCode }} {{ customer.city }} ({{ customer.country }})</span
-      >
-      <span><img class="icon" src="../../../assets/icons/currency.png" />{{ customer.currency }}</span>
-      <span><img class="icon" src="../../../assets/icons/phone.png" />{{ customer.phone }}</span>
-      <span><img class="icon" src="../../../assets/icons/mail.png" />{{ customer.eMail }}</span>
+      <div class="detailItem">
+        <img class="icon" src="../../../assets/icons/birth.png" />{{ customer.birthDate | date: 'longDate' }}
+      </div>
+      <div class="detailItem"><img class="icon" src="../../../assets/icons/gender.png" />{{ customer.gender }}</div>
+      <div class="detailItem"><img class="icon" src="../../../assets/icons/job.png" />{{ customer.job }}</div>
+      <div class="detailItem">
+        <img class="icon" src="../../../assets/icons/map.png" />{{ customer.streetAddress }}, {{ customer.postalCode }}
+        {{ customer.city }} ({{ customer.country }})
+      </div>
+      <div class="detailItem"><img class="icon" src="../../../assets/icons/currency.png" />{{ customer.currency }}</div>
+      <div class="detailItem"><img class="icon" src="../../../assets/icons/phone.png" />{{ customer.phone }}</div>
+      <div class="detailItem"><img class="icon" src="../../../assets/icons/mail.png" />{{ customer.eMail }}</div>
     </div>
     <div class="w-100 d-block d-md-none"></div>
     <div class="col data-column">
       <h2>Orders</h2>
-      <span *ngFor="let order of customer.orders"
-        ><img class="icon" src="../../../assets/icons/order.png" /> {{ order.amount }} x {{ order.name }} ({{
+      <div
+        class="detailItem orderLink"
+        *ngFor="let order of customer.orders"
+        [routerLink]="['/order-details', order.id]"
+      >
+        <img class="icon" src="../../../assets/icons/order.png" /> {{ order.amount }} x {{ order.name }} ({{
           order.manufacturer
         }}) --- {{ order.amount * order.price | number: '3.1-5' }} {{ customer.currency }}
-      </span>
-      <span *ngIf="customer.orders.length == 0"
-        ><img class="icon" src="../../../assets/icons/order.png" />No orders</span
-      >
+      </div>
+      <div class="detailItem" *ngIf="customer.orders.length == 0">
+        <img class="icon" src="../../../assets/icons/order.png" />No orders
+      </div>
     </div>
     <div class="w-100 d-block d-lg-none"></div>
     <div class="col data-column">
       <h2>Issues</h2>
-      <span><img class="icon" src="../../../assets/icons/issue.png" />No issues</span>
+      <div class="detailItem"><img class="icon" src="../../../assets/icons/issue.png" />No issues</div>
     </div>
   </div>
 

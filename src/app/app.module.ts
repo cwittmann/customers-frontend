@@ -14,6 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmDialogComponent } from './common-components/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { OrderDetailsComponent } from './order/order-details/order-details.component';
+import { OrderModule } from './order/order.module';
 
 @NgModule({
   declarations: [
@@ -22,11 +24,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     CustomerDetailsComponent,
     CustomerEditComponent,
     ConfirmDialogComponent,
+    OrderDetailsComponent,
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     CustomerModule,
+    OrderModule,
     FormsModule,
     MatDialogModule,
     MatSnackBarModule,

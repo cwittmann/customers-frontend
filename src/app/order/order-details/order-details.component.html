@@ -1,0 +1,18 @@
+<div class="container-fluid">
+  <h1>Order</h1>
+
+  <div class="row customer">
+    <div class="col data-column">
+      <h2>Orders</h2>
+      <div class="orderItem">
+        <img class="icon" src="../../../assets/icons/order.png" /> {{ order.amount }} x {{ order.name }} ({{
+          order.manufacturer
+        }}) --- {{ order.amount }} {{ order.price | number: '3.1-5' }}
+      </div>
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-primary btn-lg" [routerLink]="['/order-edit', order.id]">Edit</button>
+  <button type="button" class="btn btn-primary btn-lg" (click)="deleteOrder($event)">Delete</button>
+  <button type="button" class="btn btn-primary btn-lg" routerLink="/customer-list">Back to Customer List</button>
+</div>

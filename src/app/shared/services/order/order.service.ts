@@ -14,7 +14,9 @@ export class OrderService {
   }
 
   async getAllOrdersOfCustomer(customerId: string) {
-    let ordersOfCustomer = await this.http.get<Order[]>('http://localhost:8000/api/orders/' + customerId).toPromise();
+    let ordersOfCustomer = await this.http
+      .get<Order[]>('http://localhost:8000/api/ordersOfCustomer/' + customerId)
+      .toPromise();
 
     for (let order of ordersOfCustomer) {
       let products = await this.productService.getProduct(order.productId.toString()).toPromise();
@@ -30,5 +32,9 @@ export class OrderService {
 
   getOrder(id: string) {
     return this.http.get('http://localhost:8000/api/orders/' + id);
+  }
+
+  deleteOrder(id: string) {
+    return this.http.delete('http://localhost:8000/api/orders/' + id);
   }
 }
