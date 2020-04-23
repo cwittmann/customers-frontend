@@ -103,6 +103,7 @@ export class CustomerEditComponent implements OnInit {
 
     this.customerService.getCustomer(this.id).subscribe((data: Customer[]) => {
       this.customer = data[0];
+      this.form.markAllAsTouched();
       this.form.setValue(this.customer);
     });
   }
