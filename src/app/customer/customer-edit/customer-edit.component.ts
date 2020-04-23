@@ -5,6 +5,7 @@ import { CustomerService } from 'src/app/shared/services/customer/customer.servi
 import { Router } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-customer-edit',
@@ -20,18 +21,13 @@ export class CustomerEditComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    public snackBar: MatSnackBar
   ) {
     this.activatedRoute.url.subscribe((params) => {
       if (params[0].path === 'new') {
         this.isNew = true;
       }
-    });
-  }
-
-  changeDropdownValue(event) {
-    this.form.get(event.target.id).setValue(event.target.value, {
-      onlySelf: true,
     });
   }
 
@@ -47,10 +43,16 @@ export class CustomerEditComponent implements OnInit {
       this.customer.id = this.id;
 
       this.customerService.insertCustomer(this.customer).subscribe(() => {
+        this.snackBar.open('Customer ' + this.customer.firstName + ' ' + this.customer.lastName + ' added', null, {
+          duration: 5000,
+        });
         this.router.navigate(['']);
       });
     } else {
       this.customerService.updateCustomer(this.customer).subscribe(() => {
+        this.snackBar.open('Customer ' + this.customer.firstName + ' ' + this.customer.lastName + ' updated', null, {
+          duration: 5000,
+        });
         this.router.navigate(['']);
       });
     }

@@ -4,11 +4,13 @@ h1 {
   color: #d9eef5;
 }
 
-.data-column {
-  margin: 0;
+form {
   padding: 1vw;
-  font-size: calc(8px + 0.5vw);
-  font-weight: 400;
+  background: white;
+}
+
+.row {
+  margin: 0;
 }
 
 .form-group {
@@ -18,37 +20,20 @@ h1 {
 label {
   margin: 0;
   font-size: calc(8px + 0.2vw);
-  color: white;
+  color: black;
 }
 
 .form-control {
   display: block;
   margin: 0;
   padding: 0 0 0 1vw;
+  width: calc(200px + 8vw);
   border-left: 0.4vw solid #b5dce9;
   border-radius: 0;
   background: #d9eef5;
   color: black;
   font-size: calc(8px + 0.5vw);
   opacity: 0.9;
-}
-
-.label-small {
-  margin: 0;
-  font-size: calc(8px + 0.2vw);
-}
-
-.icon {
-  margin: 0 0.4vw 0 0;
-  width: 1vw;
-  height: 1vw;
-}
-
-.customer {
-  margin: 0 0 1vw 0;
-  border: 0.2vw solid #b5dce9;
-  background: white;
-  opacity: 0.95;
 }
 
 .btn {
