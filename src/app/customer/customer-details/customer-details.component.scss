@@ -20,10 +20,12 @@ h1 {
   margin: 0.5vw;
   padding: 0.5vw;
   opacity: 0.9;
+  transition: background-color 0.25s;
 }
 
 .orderLink:hover {
   cursor: pointer;
+  background: #b5dce9;
 }
 
 .icon {
