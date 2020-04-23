@@ -1,195 +1,180 @@
-<div class="container-fluid">       
-    <h1>Editing: {{customer.firstName}} {{customer.lastName}}</h1> 
-    
-    <div class="row customer">                
-        <div class="col data-column">            
-            <h2>User Data</h2>  
-            <form #editForm>
-                <div class="form-group row m-1">
-                    <label class="col-sm-2 col-form-label d-none d-lg-block">Id</label>                    
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" [(ngModel)]="customer.id" #firstName="ngModel" [ngModelOptions]="{standalone: true}" name="id" #id placeholder="Id" required readonly>                         
-                    </div>
-                    
-                    <label class="col-sm-2 col-form-label d-none d-lg-block">Name</label>
-                    <div class="col-sm-10">
-                        
-                        <label for="title" class="control-form-label label-small">Title</label>
-                        <select class="form-control" [ngModel]="customer.title" (ngModelChange)="customer.title = $event" #title="ngModel" [ngModelOptions]="{standalone: true}" name="title" #title>                             
-                            <option value="Mr">Mr</option>
-                            <option value="Mrs" selected>Mrs</option>
-                            <option value="Ms">Ms</option>
-                            <option value="Dr">Dr</option>
-                            <option value="Rev">Rev</option>
-                            <option value="Honorable">Honorable</option>
-                        </select>
-                        
-                        <label for="firstName" class="control-form-label label-small">First name</label>
-                        <input type="text" class="form-control" [(ngModel)]="customer.firstName" #firstName="ngModel" [ngModelOptions]="{standalone: true}" name="firstName" #firstName placeholder="First name" required minlength="2">                         
-                        <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
-                            <div *ngIf="firstName.errors.required">
-                                First name is required.
-                            </div>
-                            <div *ngIf="firstName.errors.minlength">
-                                First name must be at least 2 characters long.
-                            </div>   
-                        </div>
+<div class="container-fluid">
+  <h1>Editing: {{ customer.firstName }} {{ customer.lastName }}</h1>
 
-                        <label for="lastName" class="control-form-label label-small">Last name</label>
-                        <input type="text" class="form-control" [(ngModel)]="customer.lastName" #lastName="ngModel" [ngModelOptions]="{standalone: true}" name="lastName" #lastName placeholder="Last name" required minlength="2">                         
-                        <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
-                            <div *ngIf="lastName.errors.required">
-                                Last name is required.
-                            </div>
-                            <div *ngIf="lastName.errors.minlength">
-                                Last name must be at least 2 characters long.
-                            </div>   
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row m-1">
-                    <label class="col-sm-2 col-form-label d-none d-lg-block">Birth date</label>
-                    <div class="col-sm-10">                        
-                        <label for="birthDate" class="control-form-label label-small">Birth date</label>
-                        <input type="date" class="form-control" [ngModel]="customer.birthDate | date:'yyyy-MM-dd'" (ngModelChange)="customer.birthDate = $event" #birthDate="ngModel" [ngModelOptions]="{standalone: true}" name="birthDate" #birthDate required min='1900-01-01' max='2020-12-31'>     
-                        <div *ngIf="birthDate.invalid && (birthDate.dirty || birthDate.touched)" class="alert alert-danger">
-                            <div *ngIf="birthDate.errors.required">
-                                Birth date is required.
-                            </div>
-                            <div *ngIf="birthDate.errors.min || birthDate.errors.max">
-                                Birth date must be between 1900 and 2020.
-                            </div>   
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row m-1">
-                    <label class="col-sm-2 col-form-label d-none d-lg-block">Gender</label>
-                    <div class="col-sm-10">                        
-                        <label for="gender" class="control-form-label label-small">Gender</label>
-                        <select class="form-control" [ngModel]="customer.gender" (ngModelChange)="customer.gender = $event" #gender="ngModel" [ngModelOptions]="{standalone: true}" name="gender" #gender required>                             
-                            <option value="Female">Female</option>
-                            <option value="Male">Male</option>
-                            <option value="Other">Other</option>
-                        </select>
-                        <div *ngIf="gender.invalid && (gender.dirty || gender.touched)" class="alert alert-danger">
-                            <div *ngIf="gender.errors.required">
-                                Gender is required.
-                            </div>                          
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group row m-1">
-                    <label class="col-sm-2 col-form-label d-none d-lg-block">Job</label>
-                    <div class="col-sm-10">
-                        <label for="job" class="control-form-label label-small">Job</label>                        
-                        <input type="text" class="form-control" [(ngModel)]="customer.job" [ngModelOptions]="{standalone: true}" #job="ngModel" name="job" #job placeholder="Job" required minlength="3">                         
-                        <div *ngIf="job.invalid && (job.dirty || job.touched)" class="alert alert-danger">
-                            <div *ngIf="job.errors.required">
-                                Job title is required.
-                            </div>                          
-                            <div *ngIf="job.errors.minlength">
-                                Job title must be at least 3 characters long.
-                            </div>   
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group row m-1">
-                    <label class="col-sm-2 col-form-label d-none d-lg-block">Address</label>
-                    <div class="col-sm-10">
-                        <label for="street" class="control-form-label label-small">Street</label>
-                        <input type="text" class="form-control" [(ngModel)]="customer.streetAddress" #street="ngModel" [ngModelOptions]="{standalone: true}" name="streetAddress" #streetAddress placeholder="Street Address" required minlength="5">                         
-                        <div *ngIf="streetAddress.invalid && (streetAddress.dirty || streetAddress.touched)" class="alert alert-danger">
-                            <div *ngIf="streetAddress.errors.required">
-                                Street address is required.
-                            </div>
-                            <div *ngIf="streetAddress.errors.minlength">
-                                Street address must be at least 5 characters long.
-                            </div>   
-                        </div>
-
-                        <label for="postalCode" class="control-form-label label-small">Postal Code</label>
-                        <input type="text" class="form-control" [(ngModel)]="customer.postalCode" [ngModelOptions]="{standalone: true}" #postalCode="ngModel" name="postalCode" #postalCode placeholder="Postal Code" required minlength="4">                         
-                        <div *ngIf="postalCode.invalid && (postalCode.dirty || postalCode.touched)" class="alert alert-danger">
-                            <div *ngIf="postalCode.errors.required">
-                                Postal Code is required.
-                            </div>
-                            <div *ngIf="postalCode.errors.minlength">
-                                Postal Code must be at least 4 characters long.
-                            </div>   
-                        </div>
-
-                        <label for="city" class="control-form-label label-small">City</label>
-                        <input type="text" class="form-control" [(ngModel)]="customer.city" [ngModelOptions]="{standalone: true}" #city="ngModel" name="city" #city placeholder="City" required minlength="3">                         
-                        <div *ngIf="city.invalid && (city.dirty || city.touched)" class="alert alert-danger">
-                            <div *ngIf="city.errors.required">
-                                City is required.
-                            </div>
-                            <div *ngIf="city.errors.minlength">
-                                City must be at least 3 characters long.
-                            </div>   
-                        </div>
-                        
-                        <label for="country" class="control-form-label label-small">Country</label>
-                        <input type="text" class="form-control" [(ngModel)]="customer.country" [ngModelOptions]="{standalone: true}" #country="ngModel" name="country" #country placeholder="Country code" required minlength="2" maxlength="2">                         
-                        <div *ngIf="country.invalid && (country.dirty || country.touched)" class="alert alert-danger">
-                            <div *ngIf="country.errors.required">
-                                Country code is required.
-                            </div>
-                            <div *ngIf="country.errors.minlength">
-                                Country code must be exactly 2 characters long.
-                            </div>   
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row m-1">
-                    <label class="col-sm-2 col-form-label d-none d-lg-block">Currency</label>
-                    <div class="col-sm-10">
-                        <label for="curency" class="control-form-label label-small">Currency</label>                        
-                        <input type="text" class="form-control" [(ngModel)]="customer.currency" [ngModelOptions]="{standalone: true}" #phone="ngModel" name="currency" #currency placeholder="Currency" required>                         
-                        <div *ngIf="currency.invalid && (currency.dirty || currency.touched)" class="alert alert-danger">
-                            <div *ngIf="currency.errors.required">
-                                Currency is required.
-                            </div>                          
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row m-1">
-                    <label class="col-sm-2 col-form-label d-none d-lg-block">Contact</label>
-                    <div class="col-sm-10">
-                        <label for="phone" class="control-form-label label-small">Phone</label>
-                        <input type="text" class="form-control" [(ngModel)]="customer.phone" [ngModelOptions]="{standalone: true}" #phone="ngModel" name="phone" #phone placeholder="Phone number" required minlength="8">                         
-                        <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
-                            <div *ngIf="phone.errors.required">
-                                Phone number is required.
-                            </div>
-                            <div *ngIf="phone.errors.minlength">
-                                Phone number must be at least 8 characters long.
-                            </div>   
-                        </div>    
-
-                        <label for="eMail" class="control-form-label label-small">E-Mail</label>
-                        <input type="email" class="form-control" [(ngModel)]="customer.eMail" [ngModelOptions]="{standalone: true}" #eMail="ngModel" name="eMail" #eMail placeholder="E-Mail address" required email minlength="5">                         
-                        <div *ngIf="eMail.invalid && (eMail.dirty || eMail.touched)" class="alert alert-danger">
-                            <div *ngIf="eMail.errors.required">
-                                E-Mail address is required.
-                            </div>
-                            <div *ngIf="eMail.errors.email">
-                                This is not a valid e-mail address.
-                            </div>  
-                            <div *ngIf="eMail.errors.minlength">
-                                E-Mail address must be at least 8 characters long.
-                            </div>   
-                        </div>                             
-                    </div>
-                </div>             
-            </form>                                
-        </div>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label for="id">Id</label>
+      <input formControlName="id" id="id" type="text" class="form-control" readonly />
     </div>
-   
+
+    <div class="form-group">
+      <label for="firstName">First name</label>
+      <input formControlName="firstName" id="firstName" type="text" class="form-control" />
+
+      <div *ngIf="formControls.firstName.touched && formControls.firstName.invalid" class="alert alert-danger">
+        <div *ngIf="formControls.firstName.errors.required">First name is required.</div>
+        <div *ngIf="formControls.firstName.errors.minlength">First name should be at least 2 characters long.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last name</label>
+      <input formControlName="lastName" id="lastName" type="text" class="form-control" />
+
+      <div *ngIf="formControls.lastName.touched && formControls.lastName.invalid" class="alert alert-danger">
+        <div *ngIf="formControls.lastName.errors.required">Last name is required.</div>
+        <div *ngIf="formControls.lastName.errors.minlength">Last name should be at least 2 characters long.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="title">Title</label>
+
+      <select formControlName="title" id="title" class="form-control" (change)="changeDropdownValue($event)">
+        <option value="">No title selected</option>
+        <option value="Mr">Mr</option>
+        <option value="Mrs">Mrs</option>
+        <option value="Ms">Ms</option>
+        <option value="Dr">Dr</option>
+        <option value="Rev">Rev</option>
+        <option value="Honorable">Honorable</option>
+      </select>
+
+      <div *ngIf="formControls.title.touched && formControls.title.invalid" class="alert alert-danger">
+        <div *ngIf="formControls.title.errors.required">Title is required.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="title">Title</label>
+
+      <select formControlName="gender" id="gender" class="form-control" (change)="changeDropdownValue($event)">
+        <option value="">No gender selected</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <div *ngIf="formControls.title.touched && formControls.title.invalid" class="alert alert-danger">
+        <div *ngIf="formControls.title.errors.required">Gender is required.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="job">Job</label>
+      <input formControlName="job" id="job" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="birthDate">Birth date</label>
+      <input
+        formControlName="birthDate"
+        id="birthDate"
+        type="date"
+        class="form-control"
+        [ngModel]="customer.birthDate | date: 'yyyy-MM-dd'"
+      />
+
+      <div *ngIf="formControls.birthDate.touched && formControls.birthDate.invalid" class="alert alert-danger">
+        <div *ngIf="formControls.birthDate.errors.required">Birth date is required.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="streetAddress">Street address</label>
+      <input formControlName="streetAddress" id="streetAddress" type="text" class="form-control" />
+
+      <div *ngIf="formControls.streetAddress.touched && formControls.streetAddress.invalid" class="alert alert-danger">
+        <div *ngIf="formControls.streetAddress.errors.required">Street address is required.</div>
+        <div *ngIf="formControls.streetAddress.errors.minlength">
+          Street address should be at least 4 characters long.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="postalCode">Postal code</label>
+      <input formControlName="postalCode" id="postalCode" type="text" class="form-control" />
+
+      <div *ngIf="formControls.postalCode.touched && formControls.postalCode.invalid" class="alert alert-danger">
+        <div *ngIf="formControls.postalCode.errors.required">Postal code is required.</div>
+        <div *ngIf="formControls.postalCode.errors.minlength">
+          Postal code should be at least 4 characters long.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="city">City</label>
+      <input formControlName="city" id="city" type="text" class="form-control" />
+
+      <div *ngIf="formControls.city.touched && formControls.city.invalid" class="alert alert-danger">
+        <div *ngIf="formControls.city.errors.required">City is required.</div>
+        <div *ngIf="formControls.city.errors.minlength">
+          City should be at least 4 characters long.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="country">Country</label>
+      <input formControlName="country" id="country" type="text" class="form-control" />
+
+      <div *ngIf="formControls.country.touched && formControls.country.invalid" class="alert alert-danger">
+        <div *ngIf="formControls.country.errors.required">Country code is required.</div>
+        <div *ngIf="formControls.country.errors.minlength || formControls.country.errors.maxlength">
+          Country code should be exactly 2 characters long.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="currency">Currency</label>
+      <input formControlName="currency" id="currency" type="text" class="form-control" />
+
+      <div *ngIf="formControls.currency.touched && formControls.currency.invalid" class="alert alert-danger">
+        <div *ngIf="formControls.currency.errors.required">Currency is required.</div>
+        <div *ngIf="formControls.currency.errors.minlength">
+          Currency should be at least 2 characters long.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input formControlName="phone" id="phone" type="text" class="form-control" />
+
+      <div *ngIf="formControls.phone.touched && formControls.phone.invalid" class="alert alert-danger">
+        <div *ngIf="formControls.phone.errors.required">Phone is required.</div>
+        <div *ngIf="formControls.phone.errors.minlength">
+          Phone should be at least 6 characters long.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="eMail">eMail</label>
+      <input formControlName="eMail" id="eMail" type="text" class="form-control" />
+
+      <div *ngIf="formControls.eMail.touched && formControls.eMail.invalid" class="alert alert-danger">
+        <div *ngIf="formControls.eMail.errors.required">E-Mail is required.</div>
+        <div *ngIf="formControls.eMail.errors.minlength">
+          E-Mail should be at least 6 characters long.
+        </div>
+      </div>
+    </div>
+
     <button *ngIf="isNew" type="button" class="btn btn-primary btn-lg btn-danger" routerLink="">Cancel</button>
-    <button *ngIf="!isNew" type="button" class="btn btn-primary btn-lg btn-danger" [routerLink]="['/details', customer.id]">Cancel</button>
-    <button type="button" class="btn btn-primary btn-lg btn-success" (click)="saveData($event)">Save</button>    
-    
+    <button
+      *ngIf="!isNew"
+      type="button"
+      class="btn btn-primary btn-lg btn-danger"
+      [routerLink]="['/details', customer.id]"
+    >
+      Cancel
+    </button>
+    <button type="button" class="btn btn-primary btn-lg btn-success" type="submit" [disabled]="!form.valid">
+      Save
+    </button>
+  </form>
 </div>

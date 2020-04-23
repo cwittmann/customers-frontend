@@ -1,7 +1,7 @@
 import { Order } from './order';
 
 export class Customer {
-  id: number;  
+  id: number;
   firstName: string;
   lastName: string;
   title: string;
@@ -16,10 +16,26 @@ export class Customer {
   phone: string;
   eMail: string;
 
+  birthDateString: string;
   orders: Order[];
   numberOfOrders: number;
 
-  constructor(id, firstName, lastName, title, gender, job, birthDate, streetAddress, postalCode, city, country, currency, phone, eMail) {
+  constructor(
+    id,
+    firstName,
+    lastName,
+    title,
+    gender,
+    job,
+    birthDate,
+    streetAddress,
+    postalCode,
+    city,
+    country,
+    currency,
+    phone,
+    eMail
+  ) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -31,8 +47,8 @@ export class Customer {
     this.postalCode = postalCode;
     this.city = city;
     this.country = country;
-    this.currency = currency;    
+    this.currency = currency;
     this.phone = phone;
     this.eMail = eMail;
   }
-  }
+}
