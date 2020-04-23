@@ -12,7 +12,6 @@ import { CustomerDetailsComponent } from './customer/customer-details/customer-d
 import { CustomerEditComponent } from './customer/customer-edit/customer-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmDialogComponent } from './common-components/confirm-dialog/confirm-dialog.component';
-import { CommonComponentsModule } from './common-components/common-components.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 

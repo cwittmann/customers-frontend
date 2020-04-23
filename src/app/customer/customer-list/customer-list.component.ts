@@ -1,87 +1,86 @@
 import { Component, OnInit } from '@angular/core';
-import { Customer } from 'src/app/shared/model/customer'
-import { CustomerService } from 'src/app/shared/services/customer/customer.service'
-import { Observable } from 'rxjs/Observable'
-import { isBuffer } from 'util';
+import { Customer } from 'src/app/shared/model/customer';
+import { CustomerService } from 'src/app/shared/services/customer/customer.service';
 import { Order } from 'src/app/shared/model/order';
+import { IndexedDatabaseService } from 'src/app/shared/services/database/indexed-database.service';
 
 @Component({
   selector: 'app-customer-list',
   templateUrl: './customer-list.component.html',
-  styleUrls: ['./customer-list.component.scss']
+  styleUrls: ['./customer-list.component.scss'],
 })
 export class CustomerListComponent implements OnInit {
-
   loading: boolean = false;
 
   allCustomers: Customer[];
-  customers: Customer[];    
+  customers: Customer[];
   allOrders: Order[];
 
-  constructor(private customerService: CustomerService) { }  
+  constructor(private customerService: CustomerService, private indexedDatabaseService: IndexedDatabaseService) {}
 
-  filter(filterString: string, filterSelection: string){
-    this.customers = this.allCustomers.filter(function(elem) {
+  filter(filterString: string, filterSelection: string) {
+    this.customers = this.allCustomers.filter(function (elem) {
+      let filterValue;
 
-    let filterValue ;
-
-      switch(filterSelection){        
-        case "name":
-          filterValue = elem.firstName + " " + elem.lastName;
+      switch (filterSelection) {
+        case 'name':
+          filterValue = elem.firstName + ' ' + elem.lastName;
           break;
-        case "gender":
-          if(elem.gender.toUpperCase() === "MALE"){
-            return filterString.toUpperCase() === "MALE";
-          }          
-          if(elem.gender.toUpperCase() === "FEMALE"){
-            return filterString.toUpperCase() === "FEMALE";
-          }          
-          if(elem.gender.toUpperCase() === "OTHER"){
-            return filterString.toUpperCase() === "OTHER";
-          }          
+        case 'gender':
+          if (elem.gender.toUpperCase() === 'MALE') {
+            return filterString.toUpperCase() === 'MALE';
+          }
+          if (elem.gender.toUpperCase() === 'FEMALE') {
+            return filterString.toUpperCase() === 'FEMALE';
+          }
+          if (elem.gender.toUpperCase() === 'OTHER') {
+            return filterString.toUpperCase() === 'OTHER';
+          }
           break;
-        case "job":
+        case 'job':
           filterValue = elem.job;
           break;
-        case "street":
+        case 'street':
           filterValue = elem.streetAddress;
           break;
-        case "postalCode":
-          filterValue = elem.postalCode ? elem.postalCode : "00000";
+        case 'postalCode':
+          filterValue = elem.postalCode ? elem.postalCode : '00000';
           break;
-        case "city":
+        case 'city':
           filterValue = elem.city;
           break;
-        case "country":
+        case 'country':
           filterValue = elem.country;
           break;
-        default: 
-          filterValue = elem.firstName + " " + elem.lastName;
+        default:
+          filterValue = elem.firstName + ' ' + elem.lastName;
       }
-      
+
       return filterValue.toUpperCase().includes(filterString.toUpperCase());
     });
 
-    this.customers.sort((customer1, customer2) => customer1.lastName > customer2.lastName ? 1 : -1);    
+    this.customers.sort((customer1, customer2) => (customer1.lastName > customer2.lastName ? 1 : -1));
   }
 
   ngOnInit() {
     this.loading = true;
-    this.customerService.getAllCustomers().subscribe((customers: Customer[]) => {      
-      this.allCustomers = customers;      
+    this.customerService.getAllCustomers().subscribe((customers: Customer[]) => {
+      this.allCustomers = customers;
+      this.indexedDatabaseService.addCustomersToDB(customers);
 
-        this.customerService.getAllOrders().subscribe((orders: Order[]) => {
-          this.allOrders = orders;
+      this.customerService.getAllOrders().subscribe((orders: Order[]) => {
+        this.allOrders = orders;
+        this.indexedDatabaseService.addOrdersToDB(orders);
 
-          for (let customer of customers){            
-            let customerAsCustomer = customer as Customer;
-            let ordersOfCustomer = this.allOrders.filter(x => x.customerId == customerAsCustomer.id);
-            customer.numberOfOrders = ordersOfCustomer.length;
-          }
+        for (let customer of customers) {
+          let customerAsCustomer = customer as Customer;
+          let ordersOfCustomer = this.allOrders.filter((x) => x.customerId == customerAsCustomer.id);
+          customer.numberOfOrders = ordersOfCustomer.length;
+        }
 
-          this.customers = customers.sort((customer1, customer2) => customer1.lastName > customer2.lastName ? 1 : -1);
-          this.loading = false;
-        });           
+        this.customers = customers.sort((customer1, customer2) => (customer1.lastName > customer2.lastName ? 1 : -1));
+        this.loading = false;
+      });
     });
   }
 }

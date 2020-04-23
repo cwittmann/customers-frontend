@@ -44,7 +44,7 @@ export class CustomerDetailsComponent implements OnInit {
           this.snackBar.open('Customer ' + this.customer.firstName + ' ' + this.customer.lastName + ' deleted', null, {
             duration: 5000,
           });
-          this.router.navigate(['']);
+          this.router.navigate(['/customer-list']);
         });
       }
     });

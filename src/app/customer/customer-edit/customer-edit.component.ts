@@ -46,14 +46,14 @@ export class CustomerEditComponent implements OnInit {
         this.snackBar.open('Customer ' + this.customer.firstName + ' ' + this.customer.lastName + ' added', null, {
           duration: 5000,
         });
-        this.router.navigate(['']);
+        this.router.navigate(['/customer-list']);
       });
     } else {
       this.customerService.updateCustomer(this.customer).subscribe(() => {
         this.snackBar.open('Customer ' + this.customer.firstName + ' ' + this.customer.lastName + ' updated', null, {
           duration: 5000,
         });
-        this.router.navigate(['']);
+        this.router.navigate(['/customer-details', this.customer.id]);
       });
     }
   }
