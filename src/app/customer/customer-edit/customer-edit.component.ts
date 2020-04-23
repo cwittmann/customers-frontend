@@ -25,7 +25,7 @@ export class CustomerEditComponent implements OnInit {
     public snackBar: MatSnackBar
   ) {
     this.activatedRoute.url.subscribe((params) => {
-      if (params[0].path === 'new') {
+      if (params[0].path === 'customer-new') {
         this.isNew = true;
       }
     });

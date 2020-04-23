@@ -3,6 +3,7 @@ import { Customer } from 'src/app/shared/model/customer';
 import { CustomerService } from 'src/app/shared/services/customer/customer.service';
 import { Order } from 'src/app/shared/model/order';
 import { IndexedDatabaseService } from 'src/app/shared/services/database/indexed-database.service';
+import { OrderService } from 'src/app/shared/services/order/order.service';
 
 @Component({
   selector: 'app-customer-list',
@@ -16,7 +17,11 @@ export class CustomerListComponent implements OnInit {
   customers: Customer[];
   allOrders: Order[];
 
-  constructor(private customerService: CustomerService, private indexedDatabaseService: IndexedDatabaseService) {}
+  constructor(
+    private customerService: CustomerService,
+    private orderService: OrderService,
+    private indexedDatabaseService: IndexedDatabaseService
+  ) {}
 
   filter(filterString: string, filterSelection: string) {
     this.customers = this.allCustomers.filter(function (elem) {
@@ -68,7 +73,7 @@ export class CustomerListComponent implements OnInit {
       this.allCustomers = customers;
       this.indexedDatabaseService.addCustomersToDB(customers);
 
-      this.customerService.getAllOrders().subscribe((orders: Order[]) => {
+      this.orderService.getAllOrders().subscribe((orders: Order[]) => {
         this.allOrders = orders;
         this.indexedDatabaseService.addOrdersToDB(orders);
 

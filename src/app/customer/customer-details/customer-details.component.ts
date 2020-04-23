@@ -10,6 +10,7 @@ import {
 } from 'src/app/common-components/confirm-dialog/confirm-dialog.component';
 import { Order } from 'src/app/shared/model/order';
 import { Product } from 'src/app/shared/model/product';
+import { OrderService } from 'src/app/shared/services/order/order.service';
 
 @Component({
   selector: 'app-customer-details',
@@ -24,6 +25,7 @@ export class CustomerDetailsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private customerService: CustomerService,
+    private orderService: OrderService,
     public dialog: MatDialog,
     public snackBar: MatSnackBar
   ) {}
@@ -54,7 +56,7 @@ export class CustomerDetailsComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.params.id;
     this.customerService.getCustomer(this.id).subscribe(async (customers: Customer[]) => {
       let customer = customers[0];
-      customer.orders = await this.customerService.getAllOrdersOfCustomer(this.id);
+      customer.orders = await this.orderService.getAllOrdersOfCustomer(this.id);
       this.customer = customer;
     });
   }
