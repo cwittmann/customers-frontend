@@ -34,6 +34,14 @@ export class OrderService {
     return this.http.get('http://localhost:8000/api/orders/' + id);
   }
 
+  insertOrder(order: Order) {
+    return this.http.post('http://localhost:8000/api/orders/', order);
+  }
+
+  updateOrder(order: Order) {
+    return this.http.put('http://localhost:8000/api/orders/' + order.id, order);
+  }
+
   deleteOrder(id: string) {
     return this.http.delete('http://localhost:8000/api/orders/' + id);
   }

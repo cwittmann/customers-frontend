@@ -15,7 +15,8 @@ const routes: Routes = [
   { path: 'customer-new', component: CustomerEditComponent },
   { path: 'order-list', component: OrderListComponent },
   { path: 'order-details/:id', component: OrderDetailsComponent },
-  { path: 'order-wizard', component: OrderWizardComponent },
+  { path: 'order-edit/:id', component: OrderWizardComponent },
+  { path: 'order-new', component: OrderWizardComponent },
   { path: '*', redirectTo: 'customer-list' },
 ];
 

@@ -1,0 +1,69 @@
+h1 {
+  margin: 2vw 2vw 2vw 0;
+  font-size: calc(12px + 1vw);
+  color: #d9eef5;
+}
+
+form {
+  padding: 1vw;
+  background: white;
+}
+
+.row {
+  margin: 0;
+}
+
+.form-group {
+  margin: 0 0 0.5vw 0;
+}
+
+label {
+  margin: 0;
+  font-size: calc(8px + 0.2vw);
+  color: black;
+}
+
+.form-control {
+  display: block;
+  margin: 0;
+  padding: 0 0 0 1vw;
+  width: calc(200px + 8vw);
+  border-left: 0.4vw solid #b5dce9;
+  border-radius: 0;
+  background: #d9eef5;
+  color: black;
+  font-size: calc(8px + 0.5vw);
+  opacity: 0.9;
+}
+
+.tab {
+  display: none;
+}
+
+.active {
+  color: #b35e8f;
+}
+
+.breadcrumb-item:hover {
+  cursor: pointer;
+}
+
+.btn {
+  border: 0;
+  font-size: 2vw;
+  margin: 0.2vw;
+  background: #b35e8f;
+  font-size: calc(8px + 0.5vw);
+}
+
+.btn-success {
+  background: green;
+}
+
+.btn:hover {
+  background: black;
+}
+
+.btn:disabled {
+  background: lightgray;
+}
