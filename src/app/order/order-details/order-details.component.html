@@ -14,5 +14,7 @@
 
   <button type="button" class="btn btn-primary btn-lg" [routerLink]="['/order-edit', order.id]">Edit</button>
   <button type="button" class="btn btn-primary btn-lg" (click)="deleteOrder($event)">Delete</button>
-  <button type="button" class="btn btn-primary btn-lg" routerLink="/customer-list">Back to Customer List</button>
+  <button type="button" class="btn btn-primary btn-lg" [routerLink]="['/customer-details', order.customerId]">
+    Back to Customer Details
+  </button>
 </div>
