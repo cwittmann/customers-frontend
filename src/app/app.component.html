@@ -1,6 +1,23 @@
-<nav>
+<nav class="navbar navbar-expand-lg">
   <img class="logo" src="../../../assets/icons/logo.png" routerLink="/customer-list" />
   <h1>Customers Application</h1>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNavAltMarkup"
+    aria-controls="navbarNavAltMarkup"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" routerLink="/customer-list">Customers</a>
+      <a class="nav-item nav-link" routerLink="/order-list">Orders</a>
+    </div>
+  </div>
   <img class="settings" src="../../../assets/icons/settings.png" (click)="openSettings($event)" />
 </nav>
 

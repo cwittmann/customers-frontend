@@ -1,7 +1,7 @@
-nav {    
-    background: #070d14;
-    box-shadow: 2vw 2vw 5vw black;
-    opacity: 0.8;
+nav {
+  background: #070d14;
+  box-shadow: 2vw 2vw 5vw black;
+  opacity: 0.8;
 }
 
 h1 {
@@ -12,25 +12,30 @@ h1 {
   vertical-align: middle;
 }
 
-.logo {  
+.logo {
   left: 0;
   margin: 1vw;
-  width: calc(16px + 1.5vw);  
+  width: calc(16px + 1.5vw);
   position: relative;
 }
 
-.logo:hover{
-    cursor: pointer;
+.logo:hover {
+  cursor: pointer;
 }
 
+.nav-link {
+  margin: 0 0 0 1vw;
+  font-size: calc(12px + 0.5vw);
+  color: white;
+}
 
-.settings {  
+.settings {
   right: 0;
   margin: 1vw;
-  width: calc(16px + 1.5vw);  
+  width: calc(16px + 1.5vw);
   position: absolute;
 }
 
-.settings:hover{
-    cursor: pointer;
+.settings:hover {
+  cursor: pointer;
 }

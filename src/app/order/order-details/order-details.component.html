@@ -1,20 +1,31 @@
 <div class="container-fluid">
   <h1>Order</h1>
 
-  <div class="row customer">
+  <div class="row order">
     <div class="col data-column">
       <h2>Orders</h2>
-      <div class="orderItem">
-        <img class="icon" src="../../../assets/icons/order.png" /> {{ order.amount }} x {{ order.name }} ({{
-          order.manufacturer
-        }}) --- {{ order.amount }} {{ order.price | number: '3.1-5' }}
+      <div class="detailItem">
+        <img class="icon" src="../../../assets/icons/date.png" /> {{ order.date | date: 'longDate' }}
+      </div>
+      <div class="detailItem orderLink" [routerLink]="['/customer-details', order.customerId]">
+        <img class="icon" src="../../../assets/icons/user.png" /> {{ order.customerName }}
+      </div>
+      <div class="detailItem">
+        <img class="icon" src="../../../assets/icons/manufacturer.png" /> {{ order.manufacturer }}
+      </div>
+      <div class="detailItem"><img class="icon" src="../../../assets/icons/product.png" /> {{ order.name }}</div>
+      <div class="detailItem"><img class="icon" src="../../../assets/icons/currency.png" /> {{ order.price }} Euro</div>
+      <div class="detailItem"><img class="icon" src="../../../assets/icons/counter.png" /> {{ order.amount }} x</div>
+      <div class="detailItem">
+        <img class="icon" src="../../../assets/icons/bill.png" /> {{ order.amount }}
+        {{ order.price | number: '3.1-5' }} Euro
       </div>
     </div>
   </div>
 
   <button type="button" class="btn btn-primary btn-lg" [routerLink]="['/order-edit', order.id]">Edit</button>
   <button type="button" class="btn btn-primary btn-lg" (click)="deleteOrder($event)">Delete</button>
-  <button type="button" class="btn btn-primary btn-lg" [routerLink]="['/customer-details', order.customerId]">
-    Back to Customer Details
+  <button type="button" class="btn btn-primary btn-lg" routerLink="/order-list">
+    Back to Order List
   </button>
 </div>

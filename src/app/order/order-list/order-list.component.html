@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div *ngIf="loading" class="spinner" role="status"></div>
+
+  <button class="btn btn-primary addOrder" routerLink="/order-wizard">New order</button>
+  <h1>Orders</h1>
+
+  <form class="form-inline" action="#" (submit)="filter(filterString.value, filterSelection.value)">
+    <input type="text" class="form-control" #filterString placeholder="Filter value" />
+    <select class="form-control" #filterSelection>
+      <option value="name">Name</option>
+    </select>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+  <div class="row order-row" *ngFor="let order of orders" [routerLink]="['/order-details', order.id]">
+    <div class="col order-name-col">
+      <p class="title">{{ order.manufacturer }}</p>
+      <h2>{{ order.name }}</h2>
+    </div>
+    <div class="col d-none d-sm-block order-col">
+      <div>
+        <img class="icon" src="../../../assets/icons/order.png" />{{ order.amount }} items ordered on
+        {{ order.date | date: 'longDate' }}
+      </div>
+    </div>
+    <div class="col d-none d-lg-block order-col">
+      <div>
+        <img class="icon" src="../../../assets/icons/user.png" />
+        {{ order.customerName }}
+      </div>
+    </div>
+  </div>
+</div>

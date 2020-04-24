@@ -11,7 +11,7 @@ h1 {
   font-weight: 400;
 }
 
-.orderItem {
+.detailItem {
   display: block;
   margin: 1vw;
   border-left: 0.4vw solid #b5dce9;
@@ -22,13 +22,18 @@ h1 {
   opacity: 0.9;
 }
 
+.orderLink:hover {
+  cursor: pointer;
+  background: #b5dce9;
+}
+
 .icon {
   margin: 0 0.6vw 0 0;
   width: calc(12px + 0.5vw);
   height: calc(12px + 0.5vw);
 }
 
-.customer {
+.order {
   margin: 0 0 1vw 0;
   border: 0.2vw solid #b5dce9;
   background: white;

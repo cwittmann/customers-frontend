@@ -27,6 +27,7 @@ export class OrderDetailsComponent implements OnInit {
     private router: Router,
     private orderService: OrderService,
     private productService: ProductService,
+    private customerService: CustomerService,
     public dialog: MatDialog,
     public snackBar: MatSnackBar
   ) {}
@@ -58,7 +59,18 @@ export class OrderDetailsComponent implements OnInit {
     this.orderService.getOrder(this.id).subscribe(async (orders: Order[]) => {
       let order = orders[0];
       this.order = order;
-      console.log(orders);
+
+      let products = await this.productService.getProduct(order.productId.toString()).toPromise();
+      products = products as Product[];
+      let product = products[0];
+      order.name = product.name;
+      order.manufacturer = product.manufacturer;
+      order.price = product.price;
+
+      let customers = await this.customerService.getCustomer(order.customerId.toString()).toPromise();
+      customers = customers as Customer[];
+      let customer = customers[0];
+      order.customerName = customer.firstName + ' ' + customer.lastName;
     });
   }
 }
