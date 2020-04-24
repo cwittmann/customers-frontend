@@ -17,8 +17,8 @@
       <div class="detailItem"><img class="icon" src="../../../assets/icons/currency.png" /> {{ order.price }} Euro</div>
       <div class="detailItem"><img class="icon" src="../../../assets/icons/counter.png" /> {{ order.amount }} x</div>
       <div class="detailItem">
-        <img class="icon" src="../../../assets/icons/bill.png" /> {{ order.amount }}
-        {{ order.price | number: '3.1-5' }} Euro
+        <img class="icon" src="../../../assets/icons/bill.png" />
+        {{ order.totalPrice | currency }}
       </div>
     </div>
   </div>

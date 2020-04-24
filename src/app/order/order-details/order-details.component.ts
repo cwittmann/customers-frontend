@@ -61,11 +61,11 @@ export class OrderDetailsComponent implements OnInit {
       this.order = order;
 
       let products = await this.productService.getProduct(order.productId.toString()).toPromise();
-      products = products as Product[];
       let product = products[0];
       order.name = product.name;
       order.manufacturer = product.manufacturer;
       order.price = product.price;
+      order.totalPrice = order.amount * Number(order.price);
 
       let customers = await this.customerService.getCustomer(order.customerId.toString()).toPromise();
       customers = customers as Customer[];

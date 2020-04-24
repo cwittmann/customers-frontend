@@ -27,7 +27,7 @@
       >
         <img class="icon" src="../../../assets/icons/order.png" /> {{ order.amount }} x {{ order.name }} ({{
           order.manufacturer
-        }}) --- {{ order.amount * order.price | number: '3.1-5' }} {{ customer.currency }}
+        }}) --- {{ order.amount * order.price | currency }}
       </div>
       <div class="detailItem" *ngIf="customer.orders.length == 0">
         <img class="icon" src="../../../assets/icons/order.png" />No orders

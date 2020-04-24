@@ -10,6 +10,7 @@ export class Order {
   name: string;
   manufacturer: string;
   price: string;
+  totalPrice: number;
 
   customerName: string;
 
