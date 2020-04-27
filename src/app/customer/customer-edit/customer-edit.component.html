@@ -9,16 +9,9 @@
 
     <div class="row">
       <div class="form-group">
-        <label for="title">Title</label>
-
+        <label for="title">Gender</label>
         <select formControlName="title" id="title" class="form-control" [ngModel]="customer.title">
-          <option value="">No title selected</option>
-          <option value="Mr">Mr</option>
-          <option value="Mrs">Mrs</option>
-          <option value="Ms">Ms</option>
-          <option value="Dr">Dr</option>
-          <option value="Rev">Rev</option>
-          <option value="Honorable">Honorable</option>
+          <option *ngFor="let key of titleTypeOptions" [value]="key">{{ key }}</option>
         </select>
 
         <div *ngIf="formControls.title.touched && formControls.title.invalid" class="alert alert-danger">
@@ -66,16 +59,12 @@
     <div class="row">
       <div class="form-group">
         <label for="gender">Gender</label>
-
         <select formControlName="gender" id="gender" class="form-control" [ngModel]="customer.gender">
-          <option value="">No gender selected</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
+          <option *ngFor="let key of genderTypeOptions" [value]="key">{{ key }}</option>
         </select>
 
-        <div *ngIf="formControls.title.touched && formControls.title.invalid" class="alert alert-danger">
-          <div *ngIf="formControls.title.errors.required">Gender is required.</div>
+        <div *ngIf="formControls.gender.touched && formControls.gender.invalid" class="alert alert-danger">
+          <div *ngIf="formControls.gender.errors.required">Gender is required.</div>
         </div>
       </div>
 

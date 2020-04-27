@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Gender } from 'src/app/shared/enum/gender';
+import { Title } from 'src/app/shared/enum/title';
 
 @Component({
   selector: 'app-customer-edit',
@@ -17,6 +19,10 @@ export class CustomerEditComponent implements OnInit {
   isNew: boolean = false;
   customer: Customer;
   form: FormGroup;
+  genderTypes = Gender;
+  genderTypeOptions = [];
+  titleTypes = Title;
+  titleTypeOptions = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -64,6 +70,9 @@ export class CustomerEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.genderTypeOptions = Object.keys(this.genderTypes);
+    this.titleTypeOptions = Object.keys(this.titleTypes);
+
     this.form = new FormGroup({
       id: new FormControl(''),
       firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
