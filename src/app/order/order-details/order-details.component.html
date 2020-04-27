@@ -20,6 +20,9 @@
         <img class="icon" src="../../../assets/icons/bill.png" />
         {{ order.totalPrice | currency }}
       </div>
+      <div class="detailItem">
+        <img class="icon" src="../../../assets/icons/status.png" /> {{ orderStatusTypes[order.status] }}
+      </div>
     </div>
   </div>
 

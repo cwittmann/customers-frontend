@@ -12,6 +12,7 @@ import { Order } from 'src/app/shared/model/order';
 import { Product } from 'src/app/shared/model/product';
 import { OrderService } from 'src/app/shared/services/order/order.service';
 import { ProductService } from 'src/app/shared/services/product/product.service';
+import { OrderStatus } from 'src/app/shared/enum/order-status';
 
 @Component({
   selector: 'app-order-details',
@@ -21,6 +22,8 @@ import { ProductService } from 'src/app/shared/services/product/product.service'
 export class OrderDetailsComponent implements OnInit {
   id: any;
   order: Order;
+  orderStatusTypes = OrderStatus;
+  orderStatusTypeOptions = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -55,6 +58,10 @@ export class OrderDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.orderStatusTypeOptions = Object.keys(this.orderStatusTypes)
+      .map((key) => this.orderStatusTypes[key])
+      .filter((value) => typeof value !== 'string') as string[];
+
     this.id = this.activatedRoute.snapshot.params.id;
     this.orderService.getOrder(this.id).subscribe(async (orders: Order[]) => {
       let order = orders[0];

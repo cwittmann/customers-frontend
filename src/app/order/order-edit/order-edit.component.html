@@ -74,14 +74,14 @@
 
     <div class="tab">
       <h2>Order Status</h2>
-      <div class="form-group">
-        <div class="form-group">
-          <label for="status">Status</label>
-          <input formControlName="status" id="status" type="text" class="form-control" [ngModel]="order.status" />
 
-          <div *ngIf="formControls.status.touched && formControls.status.invalid" class="alert alert-danger">
-            <div *ngIf="formControls.status.errors.required">Status is required.</div>
-          </div>
+      <div class="form-group">
+        <select formControlName="status" id="status" class="form-control" [ngModel]="order.status">
+          <option *ngFor="let key of orderStatusTypeOptions" [value]="key">{{ orderStatusTypes[key] }}</option>
+        </select>
+
+        <div *ngIf="formControls.status.touched && formControls.status.invalid" class="alert alert-danger">
+          <div *ngIf="formControls.status.errors.required">Status is required.</div>
         </div>
       </div>
     </div>

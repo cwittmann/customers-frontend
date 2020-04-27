@@ -9,6 +9,7 @@ import { Customer } from 'src/app/shared/model/customer';
 import { Product } from 'src/app/shared/model/product';
 import { CustomerService } from 'src/app/shared/services/customer/customer.service';
 import { ProductService } from 'src/app/shared/services/product/product.service';
+import { OrderStatus } from 'src/app/shared/enum/order-status';
 
 @Component({
   selector: 'app-order-edit',
@@ -24,6 +25,8 @@ export class OrderEditComponent implements OnInit {
   form: FormGroup;
   currentTab: number = 0;
   lastTab: number = 2;
+  orderStatusTypes = OrderStatus;
+  orderStatusTypeOptions = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -74,6 +77,10 @@ export class OrderEditComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    this.orderStatusTypeOptions = Object.keys(this.orderStatusTypes)
+      .map((key) => this.orderStatusTypes[key])
+      .filter((value) => typeof value !== 'string') as string[];
+
     this.form = new FormGroup({
       id: new FormControl(''),
       customerId: new FormControl('', [Validators.required, Validators.minLength(36), Validators.maxLength(36)]),
