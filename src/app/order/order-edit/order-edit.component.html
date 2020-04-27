@@ -19,19 +19,14 @@
 
       <div class="form-group">
         <label for="customerId">Customer</label>
-        <input
-          formControlName="customerId"
-          id="customerId"
-          type="text"
-          class="form-control"
-          [ngModel]="order.customerId"
-        />
+        <select formControlName="customerId" id="customerId" class="form-control" [ngModel]="order.customerId">
+          <option *ngFor="let customer of allCustomers" [value]="customer.id"
+            >{{ customer.lastName }}, {{ customer.firstName }}</option
+          >
+        </select>
 
         <div *ngIf="formControls.customerId.touched && formControls.customerId.invalid" class="alert alert-danger">
-          <div *ngIf="formControls.customerId.errors.required">CustomerId is required.</div>
-          <div *ngIf="formControls.customerId.errors.minlength || formControls.customerId.errors.maxlength">
-            CustomerId should be exactly 36 characters long.
-          </div>
+          <div *ngIf="formControls.customerId.errors.required">Customer is required.</div>
         </div>
       </div>
 
@@ -55,19 +50,12 @@
       <h2>Product data</h2>
       <div class="form-group">
         <label for="productId">Product</label>
-        <input
-          formControlName="productId"
-          id="productId"
-          type="text"
-          class="form-control"
-          [ngModel]="order.productId"
-        />
+        <select formControlName="productId" id="productId" class="form-control" [ngModel]="order.productId">
+          <option *ngFor="let product of allProducts" [value]="product.id">{{ product.name }}</option>
+        </select>
 
         <div *ngIf="formControls.productId.touched && formControls.productId.invalid" class="alert alert-danger">
-          <div *ngIf="formControls.productId.errors.required">CustomerId is required.</div>
-          <div *ngIf="formControls.productId.errors.minlength || formControls.productId.errors.maxlength">
-            ProductId should be exactly 36 characters long.
-          </div>
+          <div *ngIf="formControls.productId.errors.required">Product is required.</div>
         </div>
       </div>
 
@@ -76,7 +64,7 @@
         <input formControlName="amount" id="amount" type="text" class="form-control" [ngModel]="order.amount" />
 
         <div *ngIf="formControls.amount.touched && formControls.amount.invalid" class="alert alert-danger">
-          <div *ngIf="formControls.amount.errors.required">CustomerId is required.</div>
+          <div *ngIf="formControls.amount.errors.required">Amount is required.</div>
           <div *ngIf="formControls.amount.errors.min">
             Amount should be at least 1.
           </div>
@@ -98,14 +86,24 @@
       </div>
     </div>
 
-    <button type="button" class="btn btn-primary btn-lg" routerLink="/order/list">Cancel</button>
-    <button type="button" class="btn btn-primary btn-lg prev" (click)="previous()" [disabled]="currentTab === 0">
+    <button type="button" class="btn btn-primary btn-lg shadow-none" routerLink="/order/list">Cancel</button>
+    <button
+      type="button"
+      class="btn btn-primary btn-lg prev shadow-none"
+      (click)="previous()"
+      [disabled]="currentTab === 0"
+    >
       Previous
     </button>
-    <button type="button" class="btn btn-primary btn-lg next" (click)="next()" [disabled]="currentTab === lastTab">
+    <button
+      type="button"
+      class="btn btn-primary btn-lg next shadow-none"
+      (click)="next()"
+      [disabled]="currentTab === lastTab"
+    >
       Next
     </button>
-    <button type="button" class="btn btn-primary btn-lg" type="submit">
+    <button type="button" class="btn btn-primary btn-lg shadow-none" type="submit">
       Save
     </button>
   </form>

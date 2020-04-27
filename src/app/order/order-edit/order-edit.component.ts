@@ -5,6 +5,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { OrderService } from 'src/app/shared/services/order/order.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { v4 as uuidv4 } from 'uuid';
+import { Customer } from 'src/app/shared/model/customer';
+import { Product } from 'src/app/shared/model/product';
+import { CustomerService } from 'src/app/shared/services/customer/customer.service';
+import { ProductService } from 'src/app/shared/services/product/product.service';
 
 @Component({
   selector: 'app-order-edit',
@@ -15,6 +19,8 @@ export class OrderEditComponent implements OnInit {
   id: any;
   isNew: boolean = false;
   order: Order;
+  allCustomers: Customer[];
+  allProducts: Product[];
   form: FormGroup;
   currentTab: number = 0;
   lastTab: number = 2;
@@ -23,6 +29,8 @@ export class OrderEditComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private orderService: OrderService,
+    private customerService: CustomerService,
+    private productService: ProductService,
     public snackBar: MatSnackBar,
     private elem: ElementRef,
     private renderer: Renderer2
@@ -50,14 +58,14 @@ export class OrderEditComponent implements OnInit {
       this.order.id = this.id;
 
       this.orderService.insertOrder(this.order).subscribe(() => {
-        this.snackBar.open('Order ' + this.order.name + ' added', null, {
+        this.snackBar.open('Order added', null, {
           duration: 5000,
         });
         this.router.navigate(['/order/list']);
       });
     } else {
       this.orderService.updateOrder(this.order).subscribe(() => {
-        this.snackBar.open('Order ' + this.order.name + ' updated', null, {
+        this.snackBar.open('Order updated', null, {
           duration: 5000,
         });
         this.router.navigate(['/order/details', this.order.id]);
@@ -65,7 +73,7 @@ export class OrderEditComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.form = new FormGroup({
       id: new FormControl(''),
       customerId: new FormControl('', [Validators.required, Validators.minLength(36), Validators.maxLength(36)]),
@@ -76,6 +84,15 @@ export class OrderEditComponent implements OnInit {
     });
 
     this.id = this.activatedRoute.snapshot.params.id;
+    let allCustomersPromise = await this.customerService.getAllCustomers().toPromise();
+    this.allCustomers = allCustomersPromise as Customer[];
+    this.allCustomers = this.allCustomers.sort((customer1, customer2) =>
+      customer1.lastName > customer2.lastName ? 1 : -1
+    );
+
+    let allProductsPromise = await this.productService.getAllProducts().toPromise();
+    this.allProducts = allProductsPromise as Product[];
+    this.allProducts = this.allProducts.sort((product1, product2) => (product1.name > product2.name ? 1 : -1));
 
     if (this.isNew) {
       const uuid = uuidv4();

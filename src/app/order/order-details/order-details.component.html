@@ -23,9 +23,11 @@
     </div>
   </div>
 
-  <button type="button" class="btn btn-primary btn-lg" [routerLink]="['/order/edit', order.id]">Edit</button>
-  <button type="button" class="btn btn-primary btn-lg" (click)="deleteOrder($event)">Delete</button>
-  <button type="button" class="btn btn-primary btn-lg" routerLink="/order/list">
+  <button type="button" class="btn btn-primary btn-lg shadow-none" [routerLink]="['/order/edit', order.id]">
+    Edit
+  </button>
+  <button type="button" class="btn btn-primary btn-lg shadow-none" (click)="deleteOrder($event)">Delete</button>
+  <button type="button" class="btn btn-primary btn-lg shadow-none" routerLink="/order/list">
     Back to Order List
   </button>
 </div>

@@ -8,7 +8,6 @@ import { OrderEditComponent } from './order/order-edit/order-edit.component';
 import { OrderListComponent } from './order/order-list/order-list.component';
 
 const routes: Routes = [
-  { path: '', component: CustomerListComponent },
   {
     path: 'customer',
     children: [
@@ -29,6 +28,7 @@ const routes: Routes = [
       { path: 'new', component: OrderEditComponent },
     ],
   },
+  { path: '', redirectTo: 'customer', pathMatch: 'full' },
   { path: '*', redirectTo: 'customer', pathMatch: 'full' },
 ];
 

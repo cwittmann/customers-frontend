@@ -223,18 +223,23 @@
       </div>
     </div>
 
-    <button *ngIf="isNew" type="button" class="btn btn-primary btn-lg btn-danger" routerLink="/customer/list">
+    <button
+      *ngIf="isNew"
+      type="button"
+      class="btn btn-primary btn-lg btn-danger shadow-none"
+      routerLink="/customer/list"
+    >
       Cancel
     </button>
     <button
       *ngIf="!isNew"
       type="button"
-      class="btn btn-primary btn-lg btn-danger"
+      class="btn btn-primary btn-lg btn-danger shadow-none"
       [routerLink]="['/customer/details', customer.id]"
     >
       Cancel
     </button>
-    <button type="button" class="btn btn-primary btn-lg btn-success" type="submit">
+    <button type="button" class="btn btn-primary btn-lg btn-success shadow-none" type="submit">
       Save
     </button>
   </form>

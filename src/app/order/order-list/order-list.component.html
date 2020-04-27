@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div *ngIf="loading" class="spinner" role="status"></div>
 
-  <button class="btn btn-primary addOrder" routerLink="/order/new">New order</button>
+  <button class="btn btn-primary addOrder shadow-none" routerLink="/order/new">New order</button>
   <h1>Orders</h1>
 
   <form class="form-inline" action="#" (submit)="filter(filterString.value, filterSelection.value)">
@@ -9,7 +9,7 @@
     <select class="form-control" #filterSelection>
       <option value="name">Name</option>
     </select>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary shadow-none">Submit</button>
   </form>
 
   <div class="row order-row" *ngFor="let order of orders" [routerLink]="['/order/details', order.id]">

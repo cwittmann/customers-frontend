@@ -40,7 +40,11 @@
     </div>
   </div>
 
-  <button type="button" class="btn btn-primary btn-lg" [routerLink]="['/customer/edit', customer.id]">Edit</button>
-  <button type="button" class="btn btn-primary btn-lg" (click)="deleteCustomer($event)">Delete</button>
-  <button type="button" class="btn btn-primary btn-lg" routerLink="/customer/list">Back to Customer List</button>
+  <button type="button" class="btn btn-primary btn-lg shadow-none" [routerLink]="['/customer/edit', customer.id]">
+    Edit
+  </button>
+  <button type="button" class="btn btn-primary btn-lg shadow-none" (click)="deleteCustomer($event)">Delete</button>
+  <button type="button" class="btn btn-primary btn-lg shadow-none" routerLink="/customer/list">
+    Back to Customer List
+  </button>
 </div>
