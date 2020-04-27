@@ -4,7 +4,7 @@ import { CustomerListComponent } from './customer/customer-list/customer-list.co
 import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
 import { CustomerEditComponent } from './customer/customer-edit/customer-edit.component';
 import { OrderDetailsComponent } from './order/order-details/order-details.component';
-import { OrderWizardComponent } from './order/order-wizard/order-wizard.component';
+import { OrderEditComponent } from './order/order-edit/order-edit.component';
 import { OrderListComponent } from './order/order-list/order-list.component';
 
 const routes: Routes = [
@@ -25,8 +25,8 @@ const routes: Routes = [
       { path: '', redirectTo: 'list', pathMatch: 'full' },
       { path: 'list', component: OrderListComponent },
       { path: 'details/:id', component: OrderDetailsComponent },
-      { path: 'edit/:id', component: OrderWizardComponent },
-      { path: 'new', component: OrderWizardComponent },
+      { path: 'edit/:id', component: OrderEditComponent },
+      { path: 'new', component: OrderEditComponent },
     ],
   },
   { path: '*', redirectTo: 'customer', pathMatch: 'full' },

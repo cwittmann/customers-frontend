@@ -25,7 +25,7 @@ export class CustomerEditComponent implements OnInit {
     public snackBar: MatSnackBar
   ) {
     this.activatedRoute.url.subscribe((params) => {
-      if (params[0].path === 'customer/new') {
+      if (params[0].path === 'new') {
         this.isNew = true;
       }
     });
@@ -37,6 +37,11 @@ export class CustomerEditComponent implements OnInit {
 
   submit() {
     this.form.markAllAsTouched();
+
+    if (this.form.invalid) {
+      return;
+    }
+
     this.customer = this.form.value as Customer;
 
     if (this.isNew) {
@@ -46,14 +51,14 @@ export class CustomerEditComponent implements OnInit {
         this.snackBar.open('Customer ' + this.customer.firstName + ' ' + this.customer.lastName + ' added', null, {
           duration: 5000,
         });
-        this.router.navigate(['/customer-list']);
+        this.router.navigate(['/customer/list']);
       });
     } else {
       this.customerService.updateCustomer(this.customer).subscribe(() => {
         this.snackBar.open('Customer ' + this.customer.firstName + ' ' + this.customer.lastName + ' updated', null, {
           duration: 5000,
         });
-        this.router.navigate(['/customer-details', this.customer.id]);
+        this.router.navigate(['/customer/details', this.customer.id]);
       });
     }
   }

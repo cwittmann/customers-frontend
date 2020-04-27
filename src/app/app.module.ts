@@ -16,7 +16,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { OrderDetailsComponent } from './order/order-details/order-details.component';
 import { OrderModule } from './order/order.module';
-import { OrderWizardComponent } from './order/order-wizard/order-wizard.component';
+import { OrderEditComponent } from './order/order-edit/order-edit.component';
 import { OrderListComponent } from './order/order-list/order-list.component';
 
 @NgModule({
@@ -27,7 +27,7 @@ import { OrderListComponent } from './order/order-list/order-list.component';
     CustomerEditComponent,
     ConfirmDialogComponent,
     OrderDetailsComponent,
-    OrderWizardComponent,
+    OrderEditComponent,
     OrderListComponent,
   ],
   imports: [

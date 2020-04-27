@@ -48,7 +48,7 @@ export class OrderDetailsComponent implements OnInit {
           this.snackBar.open('order ' + this.order.name + ' deleted', null, {
             duration: 5000,
           });
-          this.router.navigate(['/customer-details', this.order.customerId]);
+          this.router.navigate(['/customer/details', this.order.customerId]);
         });
       }
     });

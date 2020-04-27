@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div *ngIf="loading" class="spinner" role="status"></div>
 
-  <button class="btn btn-primary addOrder" routerLink="/customer/new">New order</button>
+  <button class="btn btn-primary addOrder" routerLink="/order/new">New order</button>
   <h1>Orders</h1>
 
   <form class="form-inline" action="#" (submit)="filter(filterString.value, filterSelection.value)">

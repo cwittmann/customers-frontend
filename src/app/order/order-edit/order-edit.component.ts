@@ -7,11 +7,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
-  selector: 'app-order-wizard',
-  templateUrl: './order-wizard.component.html',
-  styleUrls: ['./order-wizard.component.scss'],
+  selector: 'app-order-edit',
+  templateUrl: './order-edit.component.html',
+  styleUrls: ['./order-edit.component.scss'],
 })
-export class OrderWizardComponent implements OnInit {
+export class OrderEditComponent implements OnInit {
   id: any;
   isNew: boolean = false;
   order: Order;
@@ -28,7 +28,7 @@ export class OrderWizardComponent implements OnInit {
     private renderer: Renderer2
   ) {
     this.activatedRoute.url.subscribe((params) => {
-      if (params[0].path === 'order/new') {
+      if (params[0].path === 'new') {
         this.isNew = true;
       }
     });
@@ -40,6 +40,10 @@ export class OrderWizardComponent implements OnInit {
 
   submit() {
     this.form.markAllAsTouched();
+    if (this.form.invalid) {
+      return;
+    }
+
     this.order = this.form.value as Order;
 
     if (this.isNew) {
@@ -49,14 +53,14 @@ export class OrderWizardComponent implements OnInit {
         this.snackBar.open('Order ' + this.order.name + ' added', null, {
           duration: 5000,
         });
-        this.router.navigate(['/order-list']);
+        this.router.navigate(['/order/list']);
       });
     } else {
       this.orderService.updateOrder(this.order).subscribe(() => {
         this.snackBar.open('Order ' + this.order.name + ' updated', null, {
           duration: 5000,
         });
-        this.router.navigate(['/order-details', this.order.id]);
+        this.router.navigate(['/order/details', this.order.id]);
       });
     }
   }
@@ -78,6 +82,7 @@ export class OrderWizardComponent implements OnInit {
       this.id = uuid;
       this.order = new Order(this.id, null, null, null, null, null, null);
 
+      this.showTab(0);
       return;
     }
 
