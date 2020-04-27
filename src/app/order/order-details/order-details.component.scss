@@ -13,18 +13,16 @@ h1 {
 
 .detailItem {
   display: block;
-  margin: 1vw;
-  border-left: 0.4vw solid #b5dce9;
-  background: #d9eef5;
+  margin: 0;
   color: black;
-  margin: 0.5vw;
-  padding: 0.5vw;
+  margin: 1vw 1vw 1vw 0;
   opacity: 0.9;
+  transition: background-color 0.25s;
 }
 
 .orderLink:hover {
   cursor: pointer;
-  background: #b5dce9;
+  color: #b35e8f;
 }
 
 .icon {
@@ -35,6 +33,7 @@ h1 {
 
 .order {
   margin: 0 0 1vw 0;
+  width: 90vw;
   border: 0.2vw solid #b5dce9;
   background: white;
   opacity: 0.95;
