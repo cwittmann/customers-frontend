@@ -223,14 +223,14 @@
       </div>
     </div>
 
-    <button *ngIf="isNew" type="button" class="btn btn-primary btn-lg btn-danger" routerLink="/customer-list">
+    <button *ngIf="isNew" type="button" class="btn btn-primary btn-lg btn-danger" routerLink="/customer/list">
       Cancel
     </button>
     <button
       *ngIf="!isNew"
       type="button"
       class="btn btn-primary btn-lg btn-danger"
-      [routerLink]="['/customer-details', customer.id]"
+      [routerLink]="['/customer/details', customer.id]"
     >
       Cancel
     </button>

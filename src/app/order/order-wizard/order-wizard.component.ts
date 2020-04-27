@@ -28,7 +28,7 @@ export class OrderWizardComponent implements OnInit {
     private renderer: Renderer2
   ) {
     this.activatedRoute.url.subscribe((params) => {
-      if (params[0].path === 'order-new') {
+      if (params[0].path === 'order/new') {
         this.isNew = true;
       }
     });

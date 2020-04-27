@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div *ngIf="loading" class="spinner" role="status"></div>
 
-  <button class="btn btn-primary addCustomer" routerLink="/customer-new">New Customer</button>
+  <button class="btn btn-primary addCustomer" routerLink="/customer/new">New Customer</button>
   <h1>Customers</h1>
 
   <form class="form-inline" action="#" (submit)="filter(filterString.value, filterSelection.value)">
@@ -18,7 +18,7 @@
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 
-  <div class="row customer-row" *ngFor="let customer of customers" [routerLink]="['/customer-details', customer.id]">
+  <div class="row customer-row" *ngFor="let customer of customers" [routerLink]="['/customer/details', customer.id]">
     <div class="col customer-name-col">
       <p class="title">{{ customer.title }}</p>
       <h2>{{ customer.lastName }}, {{ customer.firstName }}</h2>

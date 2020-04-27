@@ -9,15 +9,27 @@ import { OrderListComponent } from './order/order-list/order-list.component';
 
 const routes: Routes = [
   { path: '', component: CustomerListComponent },
-  { path: 'customer-list', component: CustomerListComponent },
-  { path: 'customer-details/:id', component: CustomerDetailsComponent },
-  { path: 'customer-edit/:id', component: CustomerEditComponent },
-  { path: 'customer-new', component: CustomerEditComponent },
-  { path: 'order-list', component: OrderListComponent },
-  { path: 'order-details/:id', component: OrderDetailsComponent },
-  { path: 'order-edit/:id', component: OrderWizardComponent },
-  { path: 'order-new', component: OrderWizardComponent },
-  { path: '*', redirectTo: 'customer-list' },
+  {
+    path: 'customer',
+    children: [
+      { path: '', redirectTo: 'list', pathMatch: 'full' },
+      { path: 'list', component: CustomerListComponent },
+      { path: 'details/:id', component: CustomerDetailsComponent },
+      { path: 'edit/:id', component: CustomerEditComponent },
+      { path: 'new', component: CustomerEditComponent },
+    ],
+  },
+  {
+    path: 'order',
+    children: [
+      { path: '', redirectTo: 'list', pathMatch: 'full' },
+      { path: 'list', component: OrderListComponent },
+      { path: 'details/:id', component: OrderDetailsComponent },
+      { path: 'edit/:id', component: OrderWizardComponent },
+      { path: 'new', component: OrderWizardComponent },
+    ],
+  },
+  { path: '*', redirectTo: 'customer', pathMatch: 'full' },
 ];
 
 @NgModule({
