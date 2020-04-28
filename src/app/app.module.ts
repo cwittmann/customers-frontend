@@ -18,6 +18,7 @@ import { OrderDetailsComponent } from './order/order-details/order-details.compo
 import { OrderModule } from './order/order.module';
 import { OrderEditComponent } from './order/order-edit/order-edit.component';
 import { OrderListComponent } from './order/order-list/order-list.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { OrderListComponent } from './order/order-list/order-list.component';
     OrderDetailsComponent,
     OrderEditComponent,
     OrderListComponent,
+    LoginComponent,
   ],
   imports: [
     AppRoutingModule,

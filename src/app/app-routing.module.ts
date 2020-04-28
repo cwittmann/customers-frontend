@@ -6,10 +6,14 @@ import { CustomerEditComponent } from './customer/customer-edit/customer-edit.co
 import { OrderDetailsComponent } from './order/order-details/order-details.component';
 import { OrderEditComponent } from './order/order-edit/order-edit.component';
 import { OrderListComponent } from './order/order-list/order-list.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuardService } from './shared/services/authentication/auth-guard.service';
 
 const routes: Routes = [
+  { path: 'login', component: LoginComponent },
   {
     path: 'customer',
+    canActivate: [AuthGuardService],
     children: [
       { path: '', redirectTo: 'list', pathMatch: 'full' },
       { path: 'list', component: CustomerListComponent },
@@ -20,6 +24,7 @@ const routes: Routes = [
   },
   {
     path: 'order',
+    canActivate: [AuthGuardService],
     children: [
       { path: '', redirectTo: 'list', pathMatch: 'full' },
       { path: 'list', component: OrderListComponent },
