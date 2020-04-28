@@ -67,25 +67,24 @@ export class CustomerListComponent implements OnInit {
     this.customers.sort((customer1, customer2) => (customer1.lastName > customer2.lastName ? 1 : -1));
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.loading = true;
-    this.customerService.getAllCustomers().subscribe((customers: Customer[]) => {
-      this.allCustomers = customers;
-      this.indexedDatabaseService.addCustomersToDB(customers);
 
-      this.orderService.getAllOrders().subscribe((orders: Order[]) => {
-        this.allOrders = orders;
-        this.indexedDatabaseService.addOrdersToDB(orders);
+    let customers = await this.customerService.getAllCustomers();
+    this.allCustomers = customers;
+    this.indexedDatabaseService.addCustomersToDB(customers);
 
-        for (let customer of customers) {
-          let customerAsCustomer = customer as Customer;
-          let ordersOfCustomer = this.allOrders.filter((x) => x.customerId == customerAsCustomer.id);
-          customer.numberOfOrders = ordersOfCustomer.length;
-        }
+    let orders = await this.orderService.getAllOrders();
+    this.allOrders = orders;
+    this.indexedDatabaseService.addOrdersToDB(orders);
 
-        this.customers = customers.sort((customer1, customer2) => (customer1.lastName > customer2.lastName ? 1 : -1));
-        this.loading = false;
-      });
-    });
+    for (let customer of customers) {
+      let customerAsCustomer = customer as Customer;
+      let ordersOfCustomer = this.allOrders.filter((x) => x.customerId == customerAsCustomer.id);
+      customer.numberOfOrders = ordersOfCustomer.length;
+    }
+
+    this.customers = customers.sort((customer1, customer2) => (customer1.lastName > customer2.lastName ? 1 : -1));
+    this.loading = false;
   }
 }

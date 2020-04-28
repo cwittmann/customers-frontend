@@ -44,20 +44,18 @@ export class OrderListComponent implements OnInit {
   async ngOnInit() {
     this.loading = true;
 
-    let orders = await this.orderService.getAllOrders().toPromise();
+    let orders = await this.orderService.getAllOrders();
     this.allOrders = orders as Order[];
     this.allOrders = this.allOrders.slice(0, 100);
 
     for (let order of this.allOrders) {
-      let products = await this.productService.getProduct(order.productId.toString()).toPromise();
-      products = products as Product[];
+      let products = await this.productService.getProduct(order.productId.toString());
       let product = products[0];
       order.name = product.name;
       order.manufacturer = product.manufacturer;
       order.price = product.price;
 
-      let customers = await this.customerService.getCustomer(order.customerId.toString()).toPromise();
-      customers = customers as Customer[];
+      let customers = await this.customerService.getCustomer(order.customerId.toString());
       let customer = customers[0];
       order.customerName = customer.firstName + ' ' + customer.lastName;
     }

@@ -42,22 +42,20 @@ export class CustomerDetailsComponent implements OnInit {
       const result = dialogResult;
 
       if (result) {
-        this.customerService.deleteCustomer(this.customer.id.toString()).subscribe(async () => {
-          this.snackBar.open('Customer ' + this.customer.firstName + ' ' + this.customer.lastName + ' deleted', null, {
-            duration: 5000,
-          });
-          this.router.navigate(['/customer/list']);
+        this.customerService.deleteCustomer(this.customer.id.toString());
+        this.snackBar.open('Customer ' + this.customer.firstName + ' ' + this.customer.lastName + ' deleted', null, {
+          duration: 5000,
         });
+        this.router.navigate(['/customer/list']);
       }
     });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.id = this.activatedRoute.snapshot.params.id;
-    this.customerService.getCustomer(this.id).subscribe(async (customers: Customer[]) => {
-      let customer = customers[0];
-      customer.orders = await this.orderService.getAllOrdersOfCustomer(this.id);
-      this.customer = customer;
-    });
+    let customers = await this.customerService.getCustomer(this.id);
+    let customer = customers[0];
+    customer.orders = await this.orderService.getAllOrdersOfCustomer(this.id);
+    this.customer = customer;
   }
 }

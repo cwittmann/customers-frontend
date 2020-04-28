@@ -53,23 +53,21 @@ export class CustomerEditComponent implements OnInit {
     if (this.isNew) {
       this.customer.id = this.id;
 
-      this.customerService.insertCustomer(this.customer).subscribe(() => {
-        this.snackBar.open('Customer ' + this.customer.firstName + ' ' + this.customer.lastName + ' added', null, {
-          duration: 5000,
-        });
-        this.router.navigate(['/customer/list']);
+      this.customerService.insertCustomer(this.customer);
+      this.snackBar.open('Customer ' + this.customer.firstName + ' ' + this.customer.lastName + ' added', null, {
+        duration: 5000,
       });
+      this.router.navigate(['/customer/list']);
     } else {
-      this.customerService.updateCustomer(this.customer).subscribe(() => {
-        this.snackBar.open('Customer ' + this.customer.firstName + ' ' + this.customer.lastName + ' updated', null, {
-          duration: 5000,
-        });
-        this.router.navigate(['/customer/details', this.customer.id]);
+      this.customerService.updateCustomer(this.customer);
+      this.snackBar.open('Customer ' + this.customer.firstName + ' ' + this.customer.lastName + ' updated', null, {
+        duration: 5000,
       });
+      this.router.navigate(['/customer/details', this.customer.id]);
     }
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.genderTypeOptions = Object.keys(this.genderTypes);
     this.titleTypeOptions = Object.keys(this.titleTypes);
 
@@ -115,10 +113,9 @@ export class CustomerEditComponent implements OnInit {
       return;
     }
 
-    this.customerService.getCustomer(this.id).subscribe((data: Customer[]) => {
-      this.customer = data[0];
-      this.form.markAllAsTouched();
-      this.form.setValue(this.customer);
-    });
+    let customers = await this.customerService.getCustomer(this.id);
+    this.customer = customers[0];
+    this.form.markAllAsTouched();
+    this.form.setValue(this.customer);
   }
 }

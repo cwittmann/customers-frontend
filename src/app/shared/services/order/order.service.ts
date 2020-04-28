@@ -9,8 +9,8 @@ import { ProductService } from '../product/product.service';
 export class OrderService {
   constructor(private http: HttpClient, private productService: ProductService) {}
 
-  getAllOrders() {
-    return this.http.get('http://localhost:8000/api/orders');
+  async getAllOrders(): Promise<Order[]> {
+    return await this.http.get<Order[]>('http://localhost:8000/api/orders').toPromise();
   }
 
   async getAllOrdersOfCustomer(customerId: string) {
@@ -19,7 +19,7 @@ export class OrderService {
       .toPromise();
 
     for (let order of ordersOfCustomer) {
-      let products = await this.productService.getProduct(order.productId.toString()).toPromise();
+      let products = await this.productService.getProduct(order.productId.toString());
       let product = products[0];
 
       order.name = product.name;
@@ -30,19 +30,19 @@ export class OrderService {
     return ordersOfCustomer;
   }
 
-  getOrder(id: string) {
-    return this.http.get('http://localhost:8000/api/orders/' + id);
+  async getOrder(id: string): Promise<Order[]> {
+    return await this.http.get<Order[]>('http://localhost:8000/api/orders/' + id).toPromise();
   }
 
-  insertOrder(order: Order) {
-    return this.http.post('http://localhost:8000/api/orders/', order);
+  async insertOrder(order: Order) {
+    return await this.http.post('http://localhost:8000/api/orders/', order).toPromise();
   }
 
-  updateOrder(order: Order) {
-    return this.http.put('http://localhost:8000/api/orders/' + order.id, order);
+  async updateOrder(order: Order) {
+    return this.http.put('http://localhost:8000/api/orders/' + order.id, order).toPromise();
   }
 
-  deleteOrder(id: string) {
-    return this.http.delete('http://localhost:8000/api/orders/' + id);
+  async deleteOrder(id: string) {
+    return this.http.delete('http://localhost:8000/api/orders/' + id).toPromise();
   }
 }

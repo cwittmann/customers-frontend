@@ -47,37 +47,34 @@ export class OrderDetailsComponent implements OnInit {
       const result = dialogResult;
 
       if (result) {
-        this.orderService.deleteOrder(this.order.id.toString()).subscribe(async () => {
-          this.snackBar.open('order ' + this.order.name + ' deleted', null, {
-            duration: 5000,
-          });
-          this.router.navigate(['/customer/details', this.order.customerId]);
+        this.orderService.deleteOrder(this.order.id.toString());
+        this.snackBar.open('order ' + this.order.name + ' deleted', null, {
+          duration: 5000,
         });
+        this.router.navigate(['/customer/details', this.order.customerId]);
       }
     });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.orderStatusTypeOptions = Object.keys(this.orderStatusTypes)
       .map((key) => this.orderStatusTypes[key])
       .filter((value) => typeof value !== 'string') as string[];
 
     this.id = this.activatedRoute.snapshot.params.id;
-    this.orderService.getOrder(this.id).subscribe(async (orders: Order[]) => {
-      let order = orders[0];
-      this.order = order;
+    let orders = await this.orderService.getOrder(this.id);
+    let order = orders[0];
+    this.order = order;
 
-      let products = await this.productService.getProduct(order.productId.toString()).toPromise();
-      let product = products[0];
-      order.name = product.name;
-      order.manufacturer = product.manufacturer;
-      order.price = product.price;
-      order.totalPrice = order.amount * Number(order.price);
+    let products = await this.productService.getProduct(order.productId.toString());
+    let product = products[0];
+    order.name = product.name;
+    order.manufacturer = product.manufacturer;
+    order.price = product.price;
+    order.totalPrice = order.amount * Number(order.price);
 
-      let customers = await this.customerService.getCustomer(order.customerId.toString()).toPromise();
-      customers = customers as Customer[];
-      let customer = customers[0];
-      order.customerName = customer.firstName + ' ' + customer.lastName;
-    });
+    let customers = await this.customerService.getCustomer(order.customerId.toString());
+    let customer = customers[0];
+    order.customerName = customer.firstName + ' ' + customer.lastName;
   }
 }

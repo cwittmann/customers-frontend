@@ -9,7 +9,7 @@
 
     <div class="row">
       <div class="form-group">
-        <label for="title">Gender</label>
+        <label for="title">Title</label>
         <select formControlName="title" id="title" class="form-control" [ngModel]="customer.title">
           <option *ngFor="let key of titleTypeOptions" [value]="key">{{ key }}</option>
         </select>

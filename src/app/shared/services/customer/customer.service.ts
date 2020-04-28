@@ -8,23 +8,23 @@ import { HttpClient } from '@angular/common/http';
 export class CustomerService {
   constructor(private http: HttpClient) {}
 
-  getAllCustomers() {
-    return this.http.get('http://localhost:8000/api/customers');
+  async getAllCustomers(): Promise<Customer[]> {
+    return await this.http.get<Customer[]>('http://localhost:8000/api/customers').toPromise();
   }
 
-  getCustomer(id: string) {
-    return this.http.get('http://localhost:8000/api/customers/' + id);
+  async getCustomer(id: string): Promise<Customer[]> {
+    return await this.http.get<Customer[]>('http://localhost:8000/api/customers/' + id).toPromise();
   }
 
-  insertCustomer(Customer: Customer) {
-    return this.http.post('http://localhost:8000/api/customers/', Customer);
+  async insertCustomer(Customer: Customer) {
+    return await this.http.post('http://localhost:8000/api/customers/', Customer).toPromise();
   }
 
-  updateCustomer(Customer: Customer) {
-    return this.http.put('http://localhost:8000/api/customers/' + Customer.id, Customer);
+  async updateCustomer(Customer: Customer) {
+    return await this.http.put('http://localhost:8000/api/customers/' + Customer.id, Customer).toPromise();
   }
 
-  deleteCustomer(id: string) {
-    return this.http.delete('http://localhost:8000/api/customers/' + id);
+  async deleteCustomer(id: string) {
+    return await this.http.delete('http://localhost:8000/api/customers/' + id).toPromise();
   }
 }

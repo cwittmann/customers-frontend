@@ -60,23 +60,21 @@ export class OrderEditComponent implements OnInit {
     if (this.isNew) {
       this.order.id = this.id;
 
-      this.orderService.insertOrder(this.order).subscribe(() => {
-        this.snackBar.open('Order added', null, {
-          duration: 5000,
-        });
-        this.router.navigate(['/order/list']);
+      this.orderService.insertOrder(this.order);
+      this.snackBar.open('Order added', null, {
+        duration: 5000,
       });
+      this.router.navigate(['/order/list']);
     } else {
-      this.orderService.updateOrder(this.order).subscribe(() => {
-        this.snackBar.open('Order updated', null, {
-          duration: 5000,
-        });
-        this.router.navigate(['/order/details', this.order.id]);
+      this.orderService.updateOrder(this.order);
+      this.snackBar.open('Order updated', null, {
+        duration: 5000,
       });
+      this.router.navigate(['/order/details', this.order.id]);
     }
   }
 
-  async ngOnInit(): Promise<void> {
+  async ngOnInit() {
     this.orderStatusTypeOptions = Object.keys(this.orderStatusTypes)
       .map((key) => this.orderStatusTypes[key])
       .filter((value) => typeof value !== 'string') as string[];
@@ -91,13 +89,13 @@ export class OrderEditComponent implements OnInit {
     });
 
     this.id = this.activatedRoute.snapshot.params.id;
-    let allCustomersPromise = await this.customerService.getAllCustomers().toPromise();
-    this.allCustomers = allCustomersPromise as Customer[];
+    let allCustomers = await this.customerService.getAllCustomers();
+    this.allCustomers = allCustomers;
     this.allCustomers = this.allCustomers.sort((customer1, customer2) =>
       customer1.lastName > customer2.lastName ? 1 : -1
     );
 
-    let allProductsPromise = await this.productService.getAllProducts().toPromise();
+    let allProductsPromise = await this.productService.getAllProducts();
     this.allProducts = allProductsPromise as Product[];
     this.allProducts = this.allProducts.sort((product1, product2) => (product1.name > product2.name ? 1 : -1));
 
@@ -110,13 +108,11 @@ export class OrderEditComponent implements OnInit {
       return;
     }
 
-    this.orderService.getOrder(this.id).subscribe((orders: Order[]) => {
-      this.order = orders[0];
-      this.form.markAllAsTouched();
-      this.form.setValue(this.order);
-    });
-
+    let orders = await this.orderService.getOrder(this.id);
+    this.order = orders[0];
     this.showTab(0);
+    this.form.markAllAsTouched();
+    this.form.setValue(this.order);
   }
 
   showTab(newTab) {
