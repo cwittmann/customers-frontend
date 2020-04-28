@@ -2,9 +2,11 @@
   <h1>Editing: {{ customer.firstName }} {{ customer.lastName }}</h1>
 
   <form [formGroup]="form" (ngSubmit)="submit()">
-    <div class="form-group">
-      <label for="id">Id</label>
-      <input formControlName="id" id="id" type="text" class="form-control" [ngModel]="customer.id" readonly />
+    <div class="row">
+      <div class="form-group">
+        <label for="id">Id</label>
+        <input formControlName="id" id="id" type="text" class="form-control" [ngModel]="customer.id" readonly />
+      </div>
     </div>
 
     <div class="row">

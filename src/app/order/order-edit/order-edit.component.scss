@@ -9,6 +9,11 @@ form {
   background: white;
 }
 
+.tab {
+  position: relative;
+  animation: enterFromRight 0.5s;
+}
+
 .row {
   margin: 0;
 }
@@ -54,6 +59,7 @@ label {
   margin: 0.2vw;
   background: #b35e8f;
   font-size: calc(8px + 0.5vw);
+  animation: fadeIn 1s;
 }
 
 .btn-success {

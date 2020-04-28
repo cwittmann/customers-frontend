@@ -11,6 +11,8 @@ form {
 
 .row {
   margin: 0;
+  position: relative;
+  animation: enterFromRight 0.5s;
 }
 
 .form-group {
