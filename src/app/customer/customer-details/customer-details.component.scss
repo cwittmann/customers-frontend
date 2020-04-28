@@ -20,9 +20,15 @@ h1 {
   transition: background-color 0.25s;
 }
 
+.orderLink {
+  transition: color 0.25s, background-color 0.25s, padding 0.5s;
+}
+
 .orderLink:hover {
   cursor: pointer;
-  color: #b35e8f;
+  background-color: #b35e8f;
+  color: white;
+  padding: 0.4vw;
 }
 
 .icon {
@@ -32,11 +38,13 @@ h1 {
 }
 
 .customer {
+  position: relative;
   margin: 0 0 1vw 0;
   width: 90vw;
   border: 0.2vw solid #b5dce9;
   background: white;
   opacity: 0.95;
+  animation: enterFromRight 0.5s;
 }
 
 button {
@@ -44,6 +52,7 @@ button {
   margin: 0.2vw;
   background: #b35e8f;
   font-size: calc(8px + 0.5vw);
+  animation: fadeIn 1.5s;
 }
 
 button:hover {

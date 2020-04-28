@@ -21,18 +21,26 @@ p {
   height: 1vw;
 }
 
+.form-inline {
+  animation: fadeIn 1s;
+}
+
 .customer-row {
+  position: relative;
   margin: 0 0 1vw 0;
   width: 90vw;
   border: 0.1vw dotted #b5dce9;
   background: white;
   opacity: 0.95;
-  transition: background-color 0.25s;
+  transition: all 0.25s;
+  animation: fadeIn 1s;
 }
 
 .customer-row:hover {
   background: #b5dce9;
+  color: #2a4852;
   border: 0.1vw dotted #b35e8f;
+  width: 88vw;
   cursor: pointer;
 }
 

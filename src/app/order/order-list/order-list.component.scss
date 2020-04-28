@@ -21,6 +21,10 @@ p {
   height: 1vw;
 }
 
+.form-inline {
+  animation: fadeIn 1s;
+}
+
 .order-row {
   margin: 0 0 1vw 0;
   width: 90vw;
@@ -28,11 +32,15 @@ p {
   background: white;
   opacity: 0.95;
   transition: background-color 0.25s;
+  transition: all 0.25s;
+  animation: fadeIn 1s;
 }
 
 .order-row:hover {
   background: #b5dce9;
+  color: #2a4852;
   border: 0.1vw dotted #b35e8f;
+  width: 88vw;
   cursor: pointer;
 }
 
@@ -96,13 +104,4 @@ button {
   border-top: 6px solid rgba(0, 174, 239, 0.8);
   border-radius: 100%;
   z-index: 100;
-}
-
-@keyframes rotation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(359deg);
-  }
 }
