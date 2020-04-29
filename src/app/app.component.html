@@ -30,9 +30,24 @@
       >
     </div>
   </div>
-  <img *ngIf="isOnline" class="onlineOffline" src="../../../assets/icons/online.png" />
-  <img *ngIf="!isOnline" class="onlineOffline" src="../../../assets/icons/offline.png" />
-  <img class="settings" src="../../../assets/icons/settings.png" (click)="openSettings($event)" />
+  <div *ngIf="isAuthenticated" class="menu-actions">
+    <img class="menu-item profile" src="../../../assets/icons/profile.png" (click)="showProfile($event)" />
+
+    <img
+      *ngIf="isOnline"
+      class="menu-item onlineOffline"
+      src="../../../assets/icons/online.png"
+      (click)="goOffline($event)"
+    />
+    <img
+      *ngIf="!isOnline"
+      class="menu-item onlineOffline"
+      src="../../../assets/icons/offline.png"
+      (click)="goOnline($event)"
+    />
+
+    <img class="menu-item settings" src="../../../assets/icons/logout.png" (click)="logout($event)" />
+  </div>
 </nav>
 
 <router-outlet></router-outlet>

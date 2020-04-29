@@ -36,7 +36,17 @@ export class AppComponent {
     });
   }
 
-  openSettings(event) {
+  goOffline(event) {
+    this.connectionService.goOffline();
+  }
+
+  goOnline(event) {
+    this.connectionService.goOnline();
+  }
+
+  showProfile(event) {}
+
+  logout(event) {
     const dialogData = new ConfirmDialogModel('Logout', 'Do you want to logout?');
 
     let dialogRef = this.dialog.open(ConfirmDialogComponent, {

@@ -13,6 +13,16 @@ export class ConnectionService {
     this.InitializeConnectionCheck();
   }
 
+  goOffline() {
+    this.connectionChanged.emit(false);
+    clearInterval(this.interval);
+  }
+
+  goOnline() {
+    this.connectionChanged.emit(true);
+    this.InitializeConnectionCheck();
+  }
+
   InitializeConnectionCheck() {
     this.interval = setInterval(async () => {
       await this.http
