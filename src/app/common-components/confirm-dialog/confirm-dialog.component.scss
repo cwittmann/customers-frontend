@@ -1,10 +1,32 @@
-.btn {
-    border: 0;
-    font-size: 2vw;  
-    margin: 0.2vw;
-    font-size: calc(8px + 0.5vw);  
+body {
+  padding: 10vw;
 }
 
-.btn:hover{
-    background: black;     
+h2 {
+  margin-bottom: 1vw;
+  border-bottom: 0.2vw solid #b35e8f;
+}
+
+p {
+  text-align: left;
+}
+
+.text {
+}
+
+.btn {
+  margin: 0.2vw;
+  border: 0;
+  font-size: 2vw;
+  font-size: calc(8px + 0.5vw);
+  animation: fadeIn 1s;
+}
+
+.btn-success {
+  background: green;
+}
+
+.btn:hover {
+  background: black;
+  color: white;
 }
