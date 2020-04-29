@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { IndexedDatabaseService } from './shared/services/database/indexed-database.service';
 import { Router } from '@angular/router';
 import { AuthService } from './shared/services/authentication/auth.service';
+import { ConnectionService } from './shared/services/connection/connection.service';
 
 @Component({
   selector: 'app-root',
@@ -17,17 +18,21 @@ export class AppComponent {
   title = 'customers';
   indexedDatabaseService: IndexedDatabaseService;
   isAuthenticated: Boolean = false;
+  isOnline: Boolean;
 
   constructor(
     public dialog: MatDialog,
     private IndexedDatabaseService: IndexedDatabaseService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private connectionService: ConnectionService
   ) {
     authService.userAuthenticated.subscribe((isAuthenticated) => {
-      console.log(isAuthenticated);
       this.isAuthenticated = isAuthenticated;
-      console.log(this.isAuthenticated);
+    });
+
+    connectionService.connectionChanged.subscribe((isOnline) => {
+      this.isOnline = isOnline;
     });
   }
 

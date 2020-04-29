@@ -29,6 +29,13 @@ h1 {
   color: #b35e8f;
 }
 
+.onlineOffline {
+  right: calc(10px + 5vw);
+  margin: 1vw;
+  width: calc(16px + 1.5vw);
+  position: absolute;
+}
+
 .settings {
   right: 0;
   margin: 1vw;

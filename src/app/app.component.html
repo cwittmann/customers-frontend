@@ -30,6 +30,8 @@
       >
     </div>
   </div>
+  <img *ngIf="isOnline" class="onlineOffline" src="../../../assets/icons/online.png" />
+  <img *ngIf="!isOnline" class="onlineOffline" src="../../../assets/icons/offline.png" />
   <img class="settings" src="../../../assets/icons/settings.png" (click)="openSettings($event)" />
 </nav>
 
