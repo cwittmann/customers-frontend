@@ -33,8 +33,8 @@ const routes: Routes = [
       { path: 'new', component: OrderEditComponent },
     ],
   },
-  { path: '', redirectTo: 'customer', pathMatch: 'full' },
-  { path: '*', redirectTo: 'customer', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '*', redirectTo: 'login', pathMatch: 'full' },
 ];
 
 @NgModule({

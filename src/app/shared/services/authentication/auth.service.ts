@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -6,7 +6,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthService {
   loggedInUserInfo: {};
-  constructor(private http: HttpClient) {}
+  userAuthenticated: EventEmitter<Boolean>;
+
+  constructor(private http: HttpClient) {
+    this.userAuthenticated = new EventEmitter();
+  }
 
   public isAuthenticated(): Boolean {
     let userData = localStorage.getItem('userInfo');
@@ -16,8 +20,14 @@ export class AuthService {
     return false;
   }
 
+  public logout() {
+    localStorage.removeItem('userInfo');
+    this.userAuthenticated.emit(false);
+  }
+
   public setUserInfo(user) {
     localStorage.setItem('userInfo', JSON.stringify(user));
+    this.userAuthenticated.emit(true);
   }
 
   public validate(email, password) {
