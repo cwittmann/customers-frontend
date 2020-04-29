@@ -3,11 +3,12 @@ import {
   ConfirmDialogModel,
   ConfirmDialogComponent,
 } from './common-components/confirm-dialog/confirm-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { IndexedDatabaseService } from './shared/services/database/indexed-database.service';
 import { Router } from '@angular/router';
 import { AuthService } from './shared/services/authentication/auth.service';
 import { ConnectionService } from './shared/services/connection/connection.service';
+import { ModalDialogComponent } from './common-components/modal-dialog/modal-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -44,7 +45,15 @@ export class AppComponent {
     this.connectionService.goOnline();
   }
 
-  showProfile(event) {}
+  showProfile(event) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.id = 'modal-component';
+
+    dialogConfig.data = { title: 'User', text: 'User data 1 \n User data 2 \n User data 3' };
+
+    this.dialog.open(ModalDialogComponent, dialogConfig);
+  }
 
   logout(event) {
     const dialogData = new ConfirmDialogModel('Logout', 'Do you want to logout?');

@@ -19,6 +19,7 @@ import { OrderModule } from './order/order.module';
 import { OrderEditComponent } from './order/order-edit/order-edit.component';
 import { OrderListComponent } from './order/order-list/order-list.component';
 import { LoginComponent } from './login/login.component';
+import { ModalDialogComponent } from './common-components/modal-dialog/modal-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { LoginComponent } from './login/login.component';
     OrderEditComponent,
     OrderListComponent,
     LoginComponent,
+    ModalDialogComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -46,6 +48,7 @@ import { LoginComponent } from './login/login.component';
     BrowserAnimationsModule,
   ],
   providers: [],
+  entryComponents: [ConfirmDialogComponent, ModalDialogComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

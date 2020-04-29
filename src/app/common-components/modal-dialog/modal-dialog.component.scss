@@ -1,0 +1,35 @@
+body {
+  padding: 10vw;
+}
+
+h2 {
+  margin-bottom: 1vw;
+  border-bottom: 0.2vw solid #b35e8f;
+}
+
+p {
+  text-align: left;
+}
+
+.text {
+  margin: 0 10vw 0 10vw;
+  white-space: pre-line;
+}
+
+.btn {
+  margin-top: 3vw;
+  border: 0;
+  font-size: 2vw;
+  background: #b35e8f;
+  font-size: calc(8px + 0.5vw);
+  animation: fadeIn 1s;
+}
+
+.btn-success {
+  background: green;
+}
+
+.btn:hover {
+  background: black;
+  color: white;
+}

@@ -4,6 +4,8 @@ import { CustomerService } from 'src/app/shared/services/customer/customer.servi
 import { Order } from 'src/app/shared/model/order';
 import { IndexedDatabaseService } from 'src/app/shared/services/database/indexed-database.service';
 import { OrderService } from 'src/app/shared/services/order/order.service';
+import { AuthService } from 'src/app/shared/services/authentication/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-list',
@@ -20,7 +22,9 @@ export class CustomerListComponent implements OnInit {
   constructor(
     private customerService: CustomerService,
     private orderService: OrderService,
-    private indexedDatabaseService: IndexedDatabaseService
+    private indexedDatabaseService: IndexedDatabaseService,
+    private authenticationService: AuthService,
+    private router: Router
   ) {}
 
   filter(filterString: string, filterSelection: string) {
