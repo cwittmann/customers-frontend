@@ -24,32 +24,7 @@ export class CustomerListComponent implements OnInit {
     private orderService: OrderService,
     private indexedDatabaseService: IndexedDatabaseService,
     private connectionService: ConnectionService
-  ) {
-    indexedDatabaseService.localCustomerDataLoaded.subscribe((localCustomerData) => {
-      if (this.isLocalDataLoaded) {
-        return;
-      }
-
-      this.allCustomers = localCustomerData;
-
-      if (this.allCustomers?.length > 0 && this.allOrders?.length > 0) {
-        this.isLocalDataLoaded = true;
-        this.displayCustomers();
-      }
-    });
-    indexedDatabaseService.localOrderDataLoaded.subscribe((localOrderData) => {
-      if (this.isLocalDataLoaded) {
-        return;
-      }
-
-      this.allOrders = localOrderData;
-
-      if (this.allCustomers?.length > 0 && this.allOrders?.length > 0) {
-        this.isLocalDataLoaded = true;
-        this.displayCustomers();
-      }
-    });
-  }
+  ) {}
 
   filter(filterString: string, filterSelection: string) {
     this.customers = this.allCustomers.filter(function (elem) {
@@ -94,6 +69,22 @@ export class CustomerListComponent implements OnInit {
 
     this.customers.sort((customer1, customer2) => (customer1.lastName > customer2.lastName ? 1 : -1));
   }
+  async ngOnInit() {
+    this.loading = true;
+
+    let connectionToServer = await this.connectionService.checkConnection();
+
+    if (connectionToServer) {
+      this.allCustomers = await this.customerService.getAllCustomers();
+      this.indexedDatabaseService.addCustomersToDatabase(this.allCustomers);
+
+      let orders = await this.orderService.getAllOrders();
+      this.allOrders = orders;
+      this.indexedDatabaseService.addOrdersToDatabase(orders);
+
+      this.displayCustomers();
+    }
+  }
 
   displayCustomers() {
     for (let customer of this.allCustomers) {
@@ -106,26 +97,5 @@ export class CustomerListComponent implements OnInit {
       customer1.lastName > customer2.lastName ? 1 : -1
     );
     this.loading = false;
-  }
-
-  async ngOnInit() {
-    this.loading = true;
-
-    let connectionToServer = await this.connectionService.checkConnection();
-
-    if (connectionToServer) {
-      this.customers = await this.customerService.getAllCustomers();
-      this.allCustomers = this.customers;
-      this.indexedDatabaseService.addCustomersToDatabase(this.customers);
-
-      let orders = await this.orderService.getAllOrders();
-      this.allOrders = orders;
-      this.indexedDatabaseService.addOrdersToDatabase(orders);
-
-      this.displayCustomers();
-    } else {
-      this.indexedDatabaseService.getCustomersFromDatabase();
-      this.indexedDatabaseService.getOrdersFromDatabase();
-    }
   }
 }
