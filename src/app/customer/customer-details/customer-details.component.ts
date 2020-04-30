@@ -11,6 +11,8 @@ import {
 import { Order } from 'src/app/shared/model/order';
 import { Product } from 'src/app/shared/model/product';
 import { OrderService } from 'src/app/shared/services/order/order.service';
+import { DatabaseService } from 'src/app/shared/services/database/database.service';
+import { IndexedDatabaseService } from 'src/app/shared/services/database/indexed-database.service';
 
 @Component({
   selector: 'app-customer-details',
@@ -24,8 +26,9 @@ export class CustomerDetailsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private databaseService: DatabaseService,
+    private indexedDatabaseService: IndexedDatabaseService,
     private customerService: CustomerService,
-    private orderService: OrderService,
     public dialog: MatDialog,
     public snackBar: MatSnackBar
   ) {}
@@ -35,7 +38,7 @@ export class CustomerDetailsComponent implements OnInit {
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       maxWidth: '400px',
-      data: dialogData,
+      data: { dialogData },
     });
 
     dialogRef.afterClosed().subscribe((dialogResult) => {
@@ -53,9 +56,21 @@ export class CustomerDetailsComponent implements OnInit {
 
   async ngOnInit() {
     this.id = this.activatedRoute.snapshot.params.id;
-    let customers = await this.customerService.getCustomer(this.id);
-    let customer = customers[0];
-    customer.orders = await this.orderService.getAllOrdersOfCustomer(this.id);
-    this.customer = customer;
+    this.databaseService.requestCustomerFromDatabase(this.id);
+    this.databaseService.requestOrderFromDatabase(this.id);
+    this.registerDataEvents();
+  }
+
+  registerDataEvents() {
+    this.databaseService.localCustomerDataLoaded.subscribe((customerData) => {
+      this.fillCustomersData(customerData);
+    });
+    this.indexedDatabaseService.localCustomerDataLoaded.subscribe((localCustomerData) => {
+      this.fillCustomersData(localCustomerData);
+    });
+  }
+
+  fillCustomersData(localCustomersData) {
+    this.customer = localCustomersData;
   }
 }

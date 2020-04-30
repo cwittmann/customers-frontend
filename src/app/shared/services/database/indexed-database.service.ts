@@ -6,12 +6,15 @@ import { Order } from '../../model/order';
   providedIn: 'root',
 })
 export class IndexedDatabaseService {
+  localCustomerDataLoaded: EventEmitter<Customer>;
   localCustomersDataLoaded: EventEmitter<Customer[]>;
+  localOrderDataLoaded: EventEmitter<Order>;
   localOrdersDataLoaded: EventEmitter<Order[]>;
-  self1 = this;
 
   constructor() {
+    this.localCustomerDataLoaded = new EventEmitter();
     this.localCustomersDataLoaded = new EventEmitter();
+    this.localOrderDataLoaded = new EventEmitter();
     this.localOrdersDataLoaded = new EventEmitter();
   }
 
@@ -21,8 +24,8 @@ export class IndexedDatabaseService {
 
     dbReq.onupgradeneeded = function (event: any) {
       db = event.target.result;
-      db.createObjectStore('customer', { autoIncrement: true });
-      db.createObjectStore('order', { autoIncrement: true });
+      db.createObjectStore('customer', { autoIncrement: true, keyPath: 'id' });
+      db.createObjectStore('order', { autoIncrement: true, keyPath: 'id' });
     };
 
     dbReq.onsuccess = function (event: any) {
@@ -57,6 +60,34 @@ export class IndexedDatabaseService {
     };
   }
 
+  async getItemFromDatabase(type: string, id) {
+    let indexedDB = window.indexedDB;
+    let open = indexedDB.open('customersDB', 2);
+
+    open.onsuccess = async function () {
+      let db = open.result;
+      let transaction = db.transaction([type], 'readwrite');
+      let store = transaction.objectStore(type);
+      let items = await store.get(id);
+
+      let customerEmitter = this.localCustomerDataLoaded;
+      let orderEmitter = this.localOrderDataLoaded;
+
+      transaction.oncomplete = function () {
+        console.log(items.result);
+        if (type === 'customer') {
+          customerEmitter.emit(items.result);
+        }
+        if (type === 'order') {
+          orderEmitter.emit(items.result);
+        }
+      };
+      transaction.onerror = function (event: any) {
+        alert('error storing customer ' + event.target.errorCode);
+      };
+    }.bind(this);
+  }
+
   async getItemsFromDatabase(type: string) {
     let indexedDB = window.indexedDB;
     let open = indexedDB.open('customersDB', 2);
@@ -67,15 +98,15 @@ export class IndexedDatabaseService {
       let store = transaction.objectStore(type);
       let items = await store.getAll();
 
-      let customerEmitter = this.localCustomersDataLoaded;
-      let orderEmitter = this.localOrdersDataLoaded;
+      let customersEmitter = this.localCustomersDataLoaded;
+      let ordersEmitter = this.localOrdersDataLoaded;
 
       transaction.oncomplete = function () {
         if (type === 'customer') {
-          customerEmitter.emit(items.result);
+          customersEmitter.emit(items.result);
         }
         if (type === 'order') {
-          orderEmitter.emit(items.result);
+          ordersEmitter.emit(items.result);
         }
       };
       transaction.onerror = function (event: any) {
@@ -90,12 +121,20 @@ export class IndexedDatabaseService {
     this.storeItemsInDatabase('customer', customers);
   }
 
+  requestCustomerFromDatabase(id) {
+    return this.getItemFromDatabase('customer', id);
+  }
+
   requestCustomersFromDatabase() {
     return this.getItemsFromDatabase('customer');
   }
 
   addOrdersToDatabase(orders: Order[]) {
     this.storeItemsInDatabase('order', orders);
+  }
+
+  requestOrderFromDatabase(id) {
+    return this.getItemFromDatabase('order', id);
   }
 
   requestOrdersFromDatabase() {

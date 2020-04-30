@@ -20,7 +20,7 @@ export class CustomerListComponent implements OnInit {
   customers: Customer[];
   allOrders: Order[];
 
-  constructor(private databaseService: DatabaseService, private indexedDatabaseService: IndexedDatabaseService) {
+  constructor(private databaseService: DatabaseService) {
     this.registerDataEvents();
   }
 
@@ -35,13 +35,7 @@ export class CustomerListComponent implements OnInit {
     this.databaseService.localCustomersDataLoaded.subscribe((localCustomersData) => {
       this.fillCustomersData(localCustomersData);
     });
-    this.indexedDatabaseService.localCustomersDataLoaded.subscribe((localCustomersData) => {
-      this.fillCustomersData(localCustomersData);
-    });
     this.databaseService.localOrdersDataLoaded.subscribe((localOrdersData) => {
-      this.fillOrderData(localOrdersData);
-    });
-    this.indexedDatabaseService.localOrdersDataLoaded.subscribe((localOrdersData) => {
       this.fillOrderData(localOrdersData);
     });
   }
