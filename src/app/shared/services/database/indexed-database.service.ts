@@ -6,13 +6,13 @@ import { Order } from '../../model/order';
   providedIn: 'root',
 })
 export class IndexedDatabaseService {
-  localCustomerDataLoaded: EventEmitter<Customer[]>;
-  localOrderDataLoaded: EventEmitter<Order[]>;
+  localCustomersDataLoaded: EventEmitter<Customer[]>;
+  localOrdersDataLoaded: EventEmitter<Order[]>;
   self1 = this;
 
   constructor() {
-    this.localCustomerDataLoaded = new EventEmitter();
-    this.localOrderDataLoaded = new EventEmitter();
+    this.localCustomersDataLoaded = new EventEmitter();
+    this.localOrdersDataLoaded = new EventEmitter();
   }
 
   ngOnInit() {
@@ -61,16 +61,14 @@ export class IndexedDatabaseService {
     let indexedDB = window.indexedDB;
     let open = indexedDB.open('customersDB', 2);
 
-    let result;
-
     open.onsuccess = async function () {
       let db = open.result;
       let transaction = db.transaction([type], 'readwrite');
       let store = transaction.objectStore(type);
       let items = await store.getAll();
 
-      let customerEmitter = this.localCustomerDataLoaded;
-      let orderEmitter = this.localOrderDataLoaded;
+      let customerEmitter = this.localCustomersDataLoaded;
+      let orderEmitter = this.localOrdersDataLoaded;
 
       transaction.oncomplete = function () {
         if (type === 'customer') {
@@ -92,7 +90,7 @@ export class IndexedDatabaseService {
     this.storeItemsInDatabase('customer', customers);
   }
 
-  getCustomersFromDatabase() {
+  requestCustomersFromDatabase() {
     return this.getItemsFromDatabase('customer');
   }
 
@@ -100,7 +98,7 @@ export class IndexedDatabaseService {
     this.storeItemsInDatabase('order', orders);
   }
 
-  getOrdersFromDatabase() {
+  requestOrdersFromDatabase() {
     return this.getItemsFromDatabase('order');
   }
 }
