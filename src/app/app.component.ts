@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import { AuthService } from './shared/services/authentication/auth.service';
 import { ConnectionService } from './shared/services/connection/connection.service';
 import { ModalDialogComponent } from './common-components/modal-dialog/modal-dialog.component';
+import { UserService } from './shared/services/user/user.service';
+import { User } from './shared/model/user';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +26,7 @@ export class AppComponent {
   constructor(
     public dialog: MatDialog,
     private IndexedDatabaseService: IndexedDatabaseService,
+    private userService: UserService,
     private router: Router,
     private authService: AuthService,
     private connectionService: ConnectionService
@@ -45,12 +48,16 @@ export class AppComponent {
     this.connectionService.goOnline();
   }
 
-  showProfile(event) {
+  async showProfile(event) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.id = 'modal-component';
 
-    dialogConfig.data = { title: 'User', text: 'User data 1 \n User data 2 \n User data 3' };
+    let userId = this.authService.getCurrentUserId();
+    let users = await this.userService.getUser(userId);
+    let user = users[0] as User;
+
+    dialogConfig.data = { title: user.userName, object: user };
 
     this.dialog.open(ModalDialogComponent, dialogConfig);
   }

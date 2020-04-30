@@ -3,7 +3,7 @@
     <h2>{{ title }}</h2>
   </header>
   <section>
-    <p class="text">{{ text }}</p>
+    <app-user [object]="object"></app-user>
   </section>
   <footer>
     <button class="btn" (click)="closeModal()">Close</button>

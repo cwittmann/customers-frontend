@@ -20,6 +20,7 @@ import { OrderEditComponent } from './order/order-edit/order-edit.component';
 import { OrderListComponent } from './order/order-list/order-list.component';
 import { LoginComponent } from './login/login.component';
 import { ModalDialogComponent } from './common-components/modal-dialog/modal-dialog.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ModalDialogComponent } from './common-components/modal-dialog/modal-dia
     OrderListComponent,
     LoginComponent,
     ModalDialogComponent,
+    UserComponent,
   ],
   imports: [
     AppRoutingModule,

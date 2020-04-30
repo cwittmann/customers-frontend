@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class AuthService {
+  currentUserId: string;
   loggedInUserInfo: {};
   userAuthenticated: EventEmitter<Boolean>;
 
@@ -13,21 +14,29 @@ export class AuthService {
   }
 
   public isAuthenticated(): Boolean {
-    let userData = localStorage.getItem('userInfo');
-    if (userData && JSON.parse(userData)) {
+    let userId = localStorage.getItem('userId');
+    if (userId && JSON.parse(userId)) {
       return true;
     }
     return false;
   }
 
   public logout() {
-    localStorage.removeItem('userInfo');
+    localStorage.removeItem('userId');
     this.userAuthenticated.emit(false);
   }
 
-  public setUserInfo(user) {
-    localStorage.setItem('userInfo', JSON.stringify(user));
+  public setUserInfo(userId) {
+    localStorage.setItem('userId', JSON.stringify(userId));
+    this.currentUserId = userId;
     this.userAuthenticated.emit(true);
+  }
+
+  public getCurrentUserId() {
+    let userIdJSON = localStorage.getItem('userId');
+    let userId = JSON.parse(userIdJSON);
+
+    return userId.user;
   }
 
   public validate(email, password) {
