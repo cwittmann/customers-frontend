@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Customer } from '../../model/customer';
 import { Order } from '../../model/order';
 
@@ -6,7 +6,14 @@ import { Order } from '../../model/order';
   providedIn: 'root',
 })
 export class IndexedDatabaseService {
-  constructor() {}
+  localCustomerDataLoaded: EventEmitter<Customer[]>;
+  localOrderDataLoaded: EventEmitter<Order[]>;
+  self1 = this;
+
+  constructor() {
+    this.localCustomerDataLoaded = new EventEmitter();
+    this.localOrderDataLoaded = new EventEmitter();
+  }
 
   ngOnInit() {
     let db;
@@ -27,47 +34,73 @@ export class IndexedDatabaseService {
     };
   }
 
-  addCustomersToDB(customers: Customer[]) {
+  storeItemsInDatabase(type: string, items: any[]) {
     let indexedDB = window.indexedDB;
     let open = indexedDB.open('customersDB', 2);
 
     open.onsuccess = function () {
       let db = open.result;
-      let transaction = db.transaction(['customer'], 'readwrite');
-      let store = transaction.objectStore('customer');
+      let transaction = db.transaction([type], 'readwrite');
+      let store = transaction.objectStore(type);
+      store.clear();
 
-      for (let customer of customers) {
-        store.add(customer);
+      for (let item of items) {
+        store.add(item);
       }
 
       transaction.oncomplete = function () {
-        console.log('All customers stored in IndexedDB.');
+        console.log('All ' + type + 's stored in IndexedDB.');
       };
       transaction.onerror = function (event: any) {
-        alert('error storing customer ' + event.target.errorCode);
+        alert('Error storing ' + type + ' ' + event.target.errorCode);
       };
     };
   }
 
-  addOrdersToDB(orders: Order[]) {
+  async getItemsFromDatabase(type: string) {
     let indexedDB = window.indexedDB;
     let open = indexedDB.open('customersDB', 2);
 
-    open.onsuccess = function () {
-      let db = open.result;
-      let transaction = db.transaction(['order'], 'readwrite');
-      let store = transaction.objectStore('order');
+    let result;
 
-      for (let order of orders) {
-        store.add(order);
-      }
+    open.onsuccess = async function () {
+      let db = open.result;
+      let transaction = db.transaction([type], 'readwrite');
+      let store = transaction.objectStore(type);
+      let items = await store.getAll();
+
+      let customerEmitter = this.localCustomerDataLoaded;
+      let orderEmitter = this.localOrderDataLoaded;
 
       transaction.oncomplete = function () {
-        console.log('All customers stored in IndexedDB.');
+        if (type === 'customer') {
+          customerEmitter.emit(items.result);
+        }
+        if (type === 'order') {
+          orderEmitter.emit(items.result);
+        }
       };
       transaction.onerror = function (event: any) {
         alert('error storing customer ' + event.target.errorCode);
       };
-    };
+    }.bind(this);
+  }
+
+  getItems() {}
+
+  addCustomersToDatabase(customers: Customer[]) {
+    this.storeItemsInDatabase('customer', customers);
+  }
+
+  getCustomersFromDatabase() {
+    return this.getItemsFromDatabase('customer');
+  }
+
+  addOrdersToDatabase(orders: Order[]) {
+    this.storeItemsInDatabase('order', orders);
+  }
+
+  getOrdersFromDatabase() {
+    return this.getItemsFromDatabase('order');
   }
 }

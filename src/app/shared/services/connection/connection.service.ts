@@ -13,27 +13,35 @@ export class ConnectionService {
     this.InitializeConnectionCheck();
   }
 
+  async checkConnection() {
+    let checkConnectionResult;
+
+    await this.http
+      .get('http://localhost:8000/api/connect')
+      .toPromise()
+      .then(() => {
+        checkConnectionResult = true;
+      })
+      .catch((error) => {
+        checkConnectionResult = false;
+      });
+
+    return checkConnectionResult;
+  }
+
   goOffline() {
     this.connectionChanged.emit(false);
     clearInterval(this.interval);
   }
 
   goOnline() {
-    this.connectionChanged.emit(true);
     this.InitializeConnectionCheck();
   }
 
   InitializeConnectionCheck() {
     this.interval = setInterval(async () => {
-      await this.http
-        .get('http://localhost:8000/api/connect')
-        .toPromise()
-        .then(() => {
-          this.connectionChanged.emit(true);
-        })
-        .catch((error) => {
-          this.connectionChanged.emit(false);
-        });
+      let connectionCheckResult = await this.checkConnection();
+      this.connectionChanged.emit(connectionCheckResult);
     }, 5000);
   }
 }
