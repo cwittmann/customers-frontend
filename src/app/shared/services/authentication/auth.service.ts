@@ -44,4 +44,8 @@ export class AuthService {
       .post('http://localhost:8000/api/authenticate', { username: email, password: password })
       .toPromise();
   }
+
+  public register(user) {
+    return this.http.post('http://localhost:8000/api/register', user).toPromise();
+  }
 }

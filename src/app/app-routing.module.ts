@@ -8,6 +8,7 @@ import { OrderEditComponent } from './order/order-edit/order-edit.component';
 import { OrderListComponent } from './order/order-list/order-list.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuardService } from './shared/services/authentication/auth-guard.service';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -33,6 +34,7 @@ const routes: Routes = [
       { path: 'new', component: OrderEditComponent },
     ],
   },
+  { path: 'register', component: RegisterComponent, pathMatch: 'full' },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '*', redirectTo: 'login', pathMatch: 'full' },
 ];

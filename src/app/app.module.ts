@@ -21,6 +21,7 @@ import { OrderListComponent } from './order/order-list/order-list.component';
 import { LoginComponent } from './login/login.component';
 import { ModalDialogComponent } from './common-components/modal-dialog/modal-dialog.component';
 import { UserComponent } from './user/user.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -35,12 +36,11 @@ import { UserComponent } from './user/user.component';
     LoginComponent,
     ModalDialogComponent,
     UserComponent,
+    RegisterComponent,
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
-    CustomerModule,
-    OrderModule,
     FormsModule,
     MatDialogModule,
     MatSnackBarModule,

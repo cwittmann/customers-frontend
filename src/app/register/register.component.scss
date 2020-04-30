@@ -40,18 +40,8 @@ h1 {
   background: lightgray;
 }
 
-.register {
-  margin: 0.5vw;
-  color: white;
-  font-size: calc(8px + 0.5vw);
-}
-
-.register:hover {
-  cursor: pointer;
-}
-
 .error {
   margin: 0.5vw;
-  color: lightcoral;
-  font-size: calc(8px + 0.5vw);
+  color: white;
+  font-size: calc(12px + 0.5vw);
 }
