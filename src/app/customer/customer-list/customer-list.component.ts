@@ -5,7 +5,6 @@ import { Order } from 'src/app/shared/model/order';
 import { IndexedDatabaseService } from 'src/app/shared/services/database/indexed-database.service';
 import { OrderService } from 'src/app/shared/services/order/order.service';
 import { ConnectionService } from 'src/app/shared/services/connection/connection.service';
-import { DatabaseService } from 'src/app/shared/services/database/database.service';
 
 @Component({
   selector: 'app-customer-list',
@@ -20,69 +19,36 @@ export class CustomerListComponent implements OnInit {
   customers: Customer[];
   allOrders: Order[];
 
-  constructor(private databaseService: DatabaseService, private indexedDatabaseService: IndexedDatabaseService) {
-    this.registerDataEvents();
-  }
+  constructor(
+    private customerService: CustomerService,
+    private orderService: OrderService,
+    private indexedDatabaseService: IndexedDatabaseService,
+    private connectionService: ConnectionService
+  ) {
+    indexedDatabaseService.localCustomerDataLoaded.subscribe((localCustomerData) => {
+      if (this.isLocalDataLoaded) {
+        return;
+      }
 
-  async ngOnInit() {
-    this.loading = true;
+      this.allCustomers = localCustomerData;
 
-    this.databaseService.requestCustomersFromDatabase();
-    this.databaseService.requestOrdersFromDatabase();
-  }
-
-  registerDataEvents() {
-    this.databaseService.localCustomersDataLoaded.subscribe((localCustomersData) => {
-      this.fillCustomersData(localCustomersData);
+      if (this.allCustomers?.length > 0 && this.allOrders?.length > 0) {
+        this.isLocalDataLoaded = true;
+        this.displayCustomers();
+      }
     });
-    this.indexedDatabaseService.localCustomersDataLoaded.subscribe((localCustomersData) => {
-      this.fillCustomersData(localCustomersData);
+    indexedDatabaseService.localOrderDataLoaded.subscribe((localOrderData) => {
+      if (this.isLocalDataLoaded) {
+        return;
+      }
+
+      this.allOrders = localOrderData;
+
+      if (this.allCustomers?.length > 0 && this.allOrders?.length > 0) {
+        this.isLocalDataLoaded = true;
+        this.displayCustomers();
+      }
     });
-    this.databaseService.localOrdersDataLoaded.subscribe((localOrdersData) => {
-      this.fillOrderData(localOrdersData);
-    });
-    this.indexedDatabaseService.localOrdersDataLoaded.subscribe((localOrdersData) => {
-      this.fillOrderData(localOrdersData);
-    });
-  }
-
-  fillCustomersData(localCustomersData) {
-    if (this.isLocalDataLoaded) {
-      return;
-    }
-
-    this.allCustomers = localCustomersData;
-
-    if (this.allCustomers?.length > 0 && this.allOrders?.length > 0) {
-      this.isLocalDataLoaded = true;
-      this.displayCustomers();
-    }
-  }
-
-  fillOrderData(localOrdersData) {
-    if (this.isLocalDataLoaded) {
-      return;
-    }
-
-    this.allOrders = localOrdersData;
-
-    if (this.allCustomers?.length > 0 && this.allOrders?.length > 0) {
-      this.isLocalDataLoaded = true;
-      this.displayCustomers();
-    }
-  }
-
-  displayCustomers() {
-    for (let customer of this.allCustomers) {
-      let customerAsCustomer = customer as Customer;
-      let ordersOfCustomer = this.allOrders.filter((x) => x.customerId == customerAsCustomer.id);
-      customer.numberOfOrders = ordersOfCustomer.length;
-    }
-
-    this.customers = this.allCustomers.sort((customer1, customer2) =>
-      customer1.lastName > customer2.lastName ? 1 : -1
-    );
-    this.loading = false;
   }
 
   filter(filterString: string, filterSelection: string) {
@@ -127,5 +93,39 @@ export class CustomerListComponent implements OnInit {
     });
 
     this.customers.sort((customer1, customer2) => (customer1.lastName > customer2.lastName ? 1 : -1));
+  }
+
+  displayCustomers() {
+    for (let customer of this.allCustomers) {
+      let customerAsCustomer = customer as Customer;
+      let ordersOfCustomer = this.allOrders.filter((x) => x.customerId == customerAsCustomer.id);
+      customer.numberOfOrders = ordersOfCustomer.length;
+    }
+
+    this.customers = this.allCustomers.sort((customer1, customer2) =>
+      customer1.lastName > customer2.lastName ? 1 : -1
+    );
+    this.loading = false;
+  }
+
+  async ngOnInit() {
+    this.loading = true;
+
+    let connectionToServer = await this.connectionService.checkConnection();
+
+    if (connectionToServer) {
+      this.customers = await this.customerService.getAllCustomers();
+      this.allCustomers = this.customers;
+      this.indexedDatabaseService.addCustomersToDatabase(this.customers);
+
+      let orders = await this.orderService.getAllOrders();
+      this.allOrders = orders;
+      this.indexedDatabaseService.addOrdersToDatabase(orders);
+
+      this.displayCustomers();
+    } else {
+      this.indexedDatabaseService.getCustomersFromDatabase();
+      this.indexedDatabaseService.getOrdersFromDatabase();
+    }
   }
 }
