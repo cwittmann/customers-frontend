@@ -19,6 +19,13 @@
     </div>
     <div class="col d-none d-sm-block order-col">
       <div>
+        <p [class]="orderStatusTypes[order.status]">
+          <img class="icon" src="../../../assets/icons/status.png" />{{ orderStatusTypes[order.status] }}
+        </p>
+      </div>
+    </div>
+    <div class="col d-none d-sm-block order-col">
+      <div>
         <img class="icon" src="../../../assets/icons/order.png" />{{ order.amount }} items ordered on
         {{ order.date | date: 'longDate' }}
       </div>

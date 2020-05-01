@@ -5,6 +5,7 @@ import { ProductService } from 'src/app/shared/services/product/product.service'
 import { Product } from 'src/app/shared/model/product';
 import { CustomerService } from 'src/app/shared/services/customer/customer.service';
 import { Customer } from 'src/app/shared/model/customer';
+import { OrderStatus } from 'src/app/shared/enum/order-status';
 
 @Component({
   selector: 'app-order-list',
@@ -16,6 +17,8 @@ export class OrderListComponent implements OnInit {
 
   orders: Order[];
   allOrders: Order[];
+  orderStatusTypes = OrderStatus;
+  orderStatusTypeOptions = [];
 
   constructor(
     private orderService: OrderService,
@@ -42,6 +45,10 @@ export class OrderListComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.orderStatusTypeOptions = Object.keys(this.orderStatusTypes)
+      .map((key) => this.orderStatusTypes[key])
+      .filter((value) => typeof value !== 'string') as string[];
+
     this.loading = true;
 
     let orders = await this.orderService.getAllOrders();

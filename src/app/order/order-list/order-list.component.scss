@@ -105,3 +105,23 @@ button {
   border-radius: 100%;
   z-index: 100;
 }
+
+.Processed {
+  padding: 0 0 1vw 0;
+  border-bottom: 0.2vw solid salmon;
+}
+
+.Initialized {
+  padding: 0 0 1vw 0;
+  border-bottom: 0.2vw solid goldenrod;
+}
+
+.Sent {
+  padding: 0 0 1vw 0;
+  border-bottom: 0.2vw solid lightgreen;
+}
+
+.Archived {
+  padding: 0 0 1vw 0;
+  border-bottom: 0.2vw solid lightskyblue;
+}
