@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['customer']);
       })
       .catch((error) => {
-        this.errorMessage = "Username and password don't match.";
+        this.errorMessage = "User name and password don't match.";
       });
   }
 }
