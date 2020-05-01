@@ -9,7 +9,7 @@ import { Form } from '@angular/forms';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  userName: String;
+  username: String;
   userPassword: String;
   errorMessage: String;
 
@@ -19,13 +19,13 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.authService
-      .validate(this.userName, this.userPassword)
+      .validate(this.username, this.userPassword)
       .then((response) => {
         this.authService.setUserInfo({ user: response['user'] });
         this.router.navigate(['customer']);
       })
       .catch((error) => {
-        this.errorMessage = "Username and password don't match.";
+        this.errorMessage = "username and password don't match.";
       });
   }
 }

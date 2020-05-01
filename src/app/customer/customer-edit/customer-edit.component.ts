@@ -54,13 +54,13 @@ export class CustomerEditComponent implements OnInit {
       this.customer.id = this.id;
 
       this.customerService.insertCustomer(this.customer);
-      this.snackBar.open('Customer ' + this.customer.firstName + ' ' + this.customer.lastName + ' added', null, {
+      this.snackBar.open('Customer ' + this.customer.firstname + ' ' + this.customer.lastname + ' added', null, {
         duration: 5000,
       });
       this.router.navigate(['/customer/list']);
     } else {
       this.customerService.updateCustomer(this.customer);
-      this.snackBar.open('Customer ' + this.customer.firstName + ' ' + this.customer.lastName + ' updated', null, {
+      this.snackBar.open('Customer ' + this.customer.firstname + ' ' + this.customer.lastname + ' updated', null, {
         duration: 5000,
       });
       this.router.navigate(['/customer/details', this.customer.id]);
@@ -73,19 +73,19 @@ export class CustomerEditComponent implements OnInit {
 
     this.form = new FormGroup({
       id: new FormControl(''),
-      firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
-      lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      firstname: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      lastname: new FormControl('', [Validators.required, Validators.minLength(2)]),
       title: new FormControl('', [Validators.required]),
       gender: new FormControl('', [Validators.required]),
       job: new FormControl(''),
-      birthDate: new FormControl('', [Validators.required]),
-      streetAddress: new FormControl('', [Validators.required, Validators.minLength(4)]),
-      postalCode: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      birthdate: new FormControl('', [Validators.required]),
+      streetaddress: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      postalcode: new FormControl('', [Validators.required, Validators.minLength(4)]),
       city: new FormControl('', [Validators.required, Validators.minLength(2)]),
       country: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]),
       currency: new FormControl('', [Validators.required, Validators.minLength(2)]),
       phone: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      eMail: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      email: new FormControl('', [Validators.required, Validators.minLength(6)]),
     });
 
     this.id = this.activatedRoute.snapshot.params.id;

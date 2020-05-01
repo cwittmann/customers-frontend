@@ -1,7 +1,7 @@
 export class Order {
   id: number;
-  customerId: number;
-  productId: number;
+  customerid: number;
+  productid: number;
   date: Date;
   status: number;
   amount: number;
@@ -14,10 +14,10 @@ export class Order {
 
   customerName: string;
 
-  constructor(id, customerId, productId, date, status, amount, timestamp) {
+  constructor(id, customerid, productid, date, status, amount, timestamp) {
     this.id = id;
-    this.customerId = customerId;
-    this.productId = productId;
+    this.customerid = customerid;
+    this.productid = productid;
     this.date = date;
     this.status = status;
     this.amount = amount;

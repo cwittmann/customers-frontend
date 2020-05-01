@@ -11,7 +11,7 @@
       <option value="gender">Gender</option>
       <option value="job">Job</option>
       <option value="street">Street</option>
-      <option value="postalCode">Postal Code</option>
+      <option value="postalcode">Postal Code</option>
       <option value="city">City</option>
       <option value="country">Country</option>
     </select>
@@ -21,17 +21,17 @@
   <div class="row customer-row" *ngFor="let customer of customers" [routerLink]="['/customer/details', customer.id]">
     <div class="col customer-name-col">
       <p class="title">{{ customer.title }}</p>
-      <h2>{{ customer.lastName }}, {{ customer.firstName }}</h2>
-      <p><img class="icon" src="../../../assets/icons/birth.png" />{{ customer.birthDate | date: 'longDate' }}</p>
+      <h2>{{ customer.lastname }}, {{ customer.firstname }}</h2>
+      <p><img class="icon" src="../../../assets/icons/birth.png" />{{ customer.birthdate | date: 'longDate' }}</p>
     </div>
     <div class="col d-none d-sm-block customer-data-col">
       <p>
-        <img class="icon" src="../../../assets/icons/map.png" />{{ customer.streetAddress }}, {{ customer.postalCode }}
+        <img class="icon" src="../../../assets/icons/map.png" />{{ customer.streetaddress }}, {{ customer.postalcode }}
         {{ customer.city }}
         <span [ngClass]="'flag-icon flag-icon-' + customer.country | lowercase"></span>
       </p>
       <p><img class="icon" src="../../../assets/icons/phone.png" />{{ customer.phone }}</p>
-      <p><img class="icon" src="../../../assets/icons/mail.png" />{{ customer.eMail }}</p>
+      <p><img class="icon" src="../../../assets/icons/mail.png" />{{ customer.email }}</p>
     </div>
     <div class="col d-none d-lg-block customer-col">
       <p><img class="icon" src="../../../assets/icons/order.png" />{{ customer.numberOfOrders }} orders</p>

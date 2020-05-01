@@ -57,7 +57,7 @@ export class AppComponent {
     let users = await this.userService.getUser(userId);
     let user = users[0] as User;
 
-    dialogConfig.data = { title: user.userName, object: user };
+    dialogConfig.data = { title: user.username, object: user };
 
     this.dialog.open(ModalDialogComponent, dialogConfig);
   }

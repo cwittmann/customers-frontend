@@ -2,53 +2,53 @@ import { Order } from './order';
 
 export class Customer {
   id: number;
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  lastname: string;
   title: string;
   gender: string;
   job: string;
-  birthDate: Date;
-  streetAddress: string;
-  postalCode: string;
+  birthdate: Date;
+  streetaddress: string;
+  postalcode: string;
   city: string;
   country: string;
   currency: string;
   phone: string;
-  eMail: string;
+  email: string;
 
-  birthDateString: string;
+  birthdateString: string;
   orders: Order[];
   numberOfOrders: number;
 
   constructor(
     id,
-    firstName,
-    lastName,
+    firstname,
+    lastname,
     title,
     gender,
     job,
-    birthDate,
-    streetAddress,
-    postalCode,
+    birthdate,
+    streetaddress,
+    postalcode,
     city,
     country,
     currency,
     phone,
-    eMail
+    email
   ) {
     this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
+    this.firstname = firstname;
+    this.lastname = lastname;
     this.title = title;
     this.gender = gender;
     this.job = job;
-    this.birthDate = birthDate;
-    this.streetAddress = streetAddress;
-    this.postalCode = postalCode;
+    this.birthdate = birthdate;
+    this.streetaddress = streetaddress;
+    this.postalcode = postalcode;
     this.city = city;
     this.country = country;
     this.currency = currency;
     this.phone = phone;
-    this.eMail = eMail;
+    this.email = email;
   }
 }

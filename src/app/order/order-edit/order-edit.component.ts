@@ -81,8 +81,8 @@ export class OrderEditComponent implements OnInit {
 
     this.form = new FormGroup({
       id: new FormControl(''),
-      customerId: new FormControl('', [Validators.required, Validators.minLength(36), Validators.maxLength(36)]),
-      productId: new FormControl('', [Validators.required, Validators.minLength(36), Validators.maxLength(36)]),
+      customerid: new FormControl('', [Validators.required, Validators.minLength(36), Validators.maxLength(36)]),
+      productid: new FormControl('', [Validators.required, Validators.minLength(36), Validators.maxLength(36)]),
       date: new FormControl('', [Validators.required]),
       status: new FormControl('', [Validators.required]),
       amount: new FormControl('', [Validators.required, Validators.min(1)]),
@@ -92,7 +92,7 @@ export class OrderEditComponent implements OnInit {
     let allCustomers = await this.customerService.getAllCustomers();
     this.allCustomers = allCustomers;
     this.allCustomers = this.allCustomers.sort((customer1, customer2) =>
-      customer1.lastName > customer2.lastName ? 1 : -1
+      customer1.lastname > customer2.lastname ? 1 : -1
     );
 
     let allProductsPromise = await this.productService.getAllProducts();

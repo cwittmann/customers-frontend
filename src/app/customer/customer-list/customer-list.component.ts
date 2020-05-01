@@ -32,7 +32,7 @@ export class CustomerListComponent implements OnInit {
 
       switch (filterSelection) {
         case 'name':
-          filterValue = elem.firstName + ' ' + elem.lastName;
+          filterValue = elem.firstname + ' ' + elem.lastname;
           break;
         case 'gender':
           if (elem.gender.toUpperCase() === 'MALE') {
@@ -49,10 +49,10 @@ export class CustomerListComponent implements OnInit {
           filterValue = elem.job;
           break;
         case 'street':
-          filterValue = elem.streetAddress;
+          filterValue = elem.streetaddress;
           break;
-        case 'postalCode':
-          filterValue = elem.postalCode ? elem.postalCode : '00000';
+        case 'postalcode':
+          filterValue = elem.postalcode ? elem.postalcode : '00000';
           break;
         case 'city':
           filterValue = elem.city;
@@ -61,13 +61,13 @@ export class CustomerListComponent implements OnInit {
           filterValue = elem.country;
           break;
         default:
-          filterValue = elem.firstName + ' ' + elem.lastName;
+          filterValue = elem.firstname + ' ' + elem.lastname;
       }
 
       return filterValue.toUpperCase().includes(filterString.toUpperCase());
     });
 
-    this.customers.sort((customer1, customer2) => (customer1.lastName > customer2.lastName ? 1 : -1));
+    this.customers.sort((customer1, customer2) => (customer1.lastname > customer2.lastname ? 1 : -1));
   }
   async ngOnInit() {
     this.loading = true;
@@ -76,10 +76,13 @@ export class CustomerListComponent implements OnInit {
 
     if (connectionToServer) {
       this.allCustomers = await this.customerService.getAllCustomers();
+      this.allCustomers = this.allCustomers;
+
       this.indexedDatabaseService.addCustomersToDatabase(this.allCustomers);
 
       let orders = await this.orderService.getAllOrders();
       this.allOrders = orders;
+
       this.indexedDatabaseService.addOrdersToDatabase(orders);
 
       this.displayCustomers();
@@ -89,12 +92,12 @@ export class CustomerListComponent implements OnInit {
   displayCustomers() {
     for (let customer of this.allCustomers) {
       let customerAsCustomer = customer as Customer;
-      let ordersOfCustomer = this.allOrders.filter((x) => x.customerId == customerAsCustomer.id);
+      let ordersOfCustomer = this.allOrders.filter((x) => x.customerid == customerAsCustomer.id);
       customer.numberOfOrders = ordersOfCustomer.length;
     }
 
     this.customers = this.allCustomers.sort((customer1, customer2) =>
-      customer1.lastName > customer2.lastName ? 1 : -1
+      customer1.lastname > customer2.lastname ? 1 : -1
     );
     this.loading = false;
   }

@@ -7,7 +7,7 @@
       <div class="detailItem">
         <img class="icon" src="../../../assets/icons/date.png" /> {{ order.date | date: 'longDate' }}
       </div>
-      <div class="detailItem orderLink" [routerLink]="['/customer/details', order.customerId]">
+      <div class="detailItem orderLink" [routerLink]="['/customer/details', order.customerid]">
         <img class="icon" src="../../../assets/icons/user.png" /> {{ order.customerName }}
       </div>
       <div class="detailItem">

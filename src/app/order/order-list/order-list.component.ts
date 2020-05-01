@@ -56,15 +56,15 @@ export class OrderListComponent implements OnInit {
     this.allOrders = this.allOrders.slice(0, 100);
 
     for (let order of this.allOrders) {
-      let products = await this.productService.getProduct(order.productId.toString());
+      let products = await this.productService.getProduct(order.productid.toString());
       let product = products[0];
       order.name = product.name;
       order.manufacturer = product.manufacturer;
       order.price = product.price;
 
-      let customers = await this.customerService.getCustomer(order.customerId.toString());
+      let customers = await this.customerService.getCustomer(order.customerid.toString());
       let customer = customers[0];
-      order.customerName = customer.firstName + ' ' + customer.lastName;
+      order.customerName = customer.firstname + ' ' + customer.lastname;
     }
 
     this.allOrders.sort((order1, order2) => (order1.name > order2.name ? 1 : -1));

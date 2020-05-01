@@ -1,21 +1,21 @@
 <div class="container-fluid">
-  <h1>{{ customer.title }} {{ customer.firstName }} {{ customer.lastName }}</h1>
+  <h1>{{ customer.title }} {{ customer.firstname }} {{ customer.lastname }}</h1>
 
   <div class="row customer">
     <div class="col data-column">
       <h2>User Data</h2>
       <div class="detailItem">
-        <img class="icon" src="../../../assets/icons/birth.png" />{{ customer.birthDate | date: 'longDate' }}
+        <img class="icon" src="../../../assets/icons/birth.png" />{{ customer.birthdate | date: 'longDate' }}
       </div>
       <div class="detailItem"><img class="icon" src="../../../assets/icons/gender.png" />{{ customer.gender }}</div>
       <div class="detailItem"><img class="icon" src="../../../assets/icons/job.png" />{{ customer.job }}</div>
       <div class="detailItem">
-        <img class="icon" src="../../../assets/icons/map.png" />{{ customer.streetAddress }}, {{ customer.postalCode }}
+        <img class="icon" src="../../../assets/icons/map.png" />{{ customer.streetaddress }}, {{ customer.postalcode }}
         {{ customer.city }} ({{ customer.country }})
       </div>
       <div class="detailItem"><img class="icon" src="../../../assets/icons/currency.png" />{{ customer.currency }}</div>
       <div class="detailItem"><img class="icon" src="../../../assets/icons/phone.png" />{{ customer.phone }}</div>
-      <div class="detailItem"><img class="icon" src="../../../assets/icons/mail.png" />{{ customer.eMail }}</div>
+      <div class="detailItem"><img class="icon" src="../../../assets/icons/mail.png" />{{ customer.email }}</div>
     </div>
     <div class="w-100 d-block d-md-none"></div>
     <div class="col data-column">

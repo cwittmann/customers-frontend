@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <h1>Editing: {{ customer.firstName }} {{ customer.lastName }}</h1>
+  <h1>Editing: {{ customer.firstname }} {{ customer.lastname }}</h1>
 
   <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="row">
@@ -24,36 +24,36 @@
       <div class="w-100 d-block d-md-none"></div>
 
       <div class="form-group">
-        <label for="firstName">First name</label>
+        <label for="firstname">First name</label>
         <input
-          formControlName="firstName"
-          id="firstName"
+          formControlName="firstname"
+          id="firstname"
           type="text"
           class="form-control"
-          [ngModel]="customer.firstName"
+          [ngModel]="customer.firstname"
         />
 
-        <div *ngIf="formControls.firstName.touched && formControls.firstName.invalid" class="alert alert-danger">
-          <div *ngIf="formControls.firstName.errors.required">First name is required.</div>
-          <div *ngIf="formControls.firstName.errors.minlength">First name should be at least 2 characters long.</div>
+        <div *ngIf="formControls.firstname.touched && formControls.firstname.invalid" class="alert alert-danger">
+          <div *ngIf="formControls.firstname.errors.required">First name is required.</div>
+          <div *ngIf="formControls.firstname.errors.minlength">First name should be at least 2 characters long.</div>
         </div>
       </div>
 
       <div class="w-100 d-block d-md-none"></div>
 
       <div class="form-group">
-        <label for="lastName">Last name</label>
+        <label for="lastname">Last name</label>
         <input
-          formControlName="lastName"
-          id="lastName"
+          formControlName="lastname"
+          id="lastname"
           type="text"
           class="form-control"
-          [ngModel]="customer.lastName"
+          [ngModel]="customer.lastname"
         />
 
-        <div *ngIf="formControls.lastName.touched && formControls.lastName.invalid" class="alert alert-danger">
-          <div *ngIf="formControls.lastName.errors.required">Last name is required.</div>
-          <div *ngIf="formControls.lastName.errors.minlength">Last name should be at least 2 characters long.</div>
+        <div *ngIf="formControls.lastname.touched && formControls.lastname.invalid" class="alert alert-danger">
+          <div *ngIf="formControls.lastname.errors.required">Last name is required.</div>
+          <div *ngIf="formControls.lastname.errors.minlength">Last name should be at least 2 characters long.</div>
         </div>
       </div>
     </div>
@@ -80,38 +80,38 @@
       <div class="w-100 d-block d-md-none"></div>
 
       <div class="form-group">
-        <label for="birthDate">Birth date</label>
+        <label for="birthdate">Birth date</label>
         <input
-          formControlName="birthDate"
-          id="birthDate"
+          formControlName="birthdate"
+          id="birthdate"
           type="date"
           class="form-control"
-          [ngModel]="customer.birthDate | date: 'yyyy-MM-dd'"
+          [ngModel]="customer.birthdate | date: 'yyyy-MM-dd'"
         />
 
-        <div *ngIf="formControls.birthDate.touched && formControls.birthDate.invalid" class="alert alert-danger">
-          <div *ngIf="formControls.birthDate.errors.required">Birth date is required.</div>
+        <div *ngIf="formControls.birthdate.touched && formControls.birthdate.invalid" class="alert alert-danger">
+          <div *ngIf="formControls.birthdate.errors.required">Birth date is required.</div>
         </div>
       </div>
     </div>
 
     <div class="row">
       <div class="form-group">
-        <label for="streetAddress">Street address</label>
+        <label for="streetaddress">Street address</label>
         <input
-          formControlName="streetAddress"
-          id="streetAddress"
+          formControlName="streetaddress"
+          id="streetaddress"
           type="text"
           class="form-control"
-          [ngModel]="customer.streetAddress"
+          [ngModel]="customer.streetaddress"
         />
 
         <div
-          *ngIf="formControls.streetAddress.touched && formControls.streetAddress.invalid"
+          *ngIf="formControls.streetaddress.touched && formControls.streetaddress.invalid"
           class="alert alert-danger"
         >
-          <div *ngIf="formControls.streetAddress.errors.required">Street address is required.</div>
-          <div *ngIf="formControls.streetAddress.errors.minlength">
+          <div *ngIf="formControls.streetaddress.errors.required">Street address is required.</div>
+          <div *ngIf="formControls.streetaddress.errors.minlength">
             Street address should be at least 4 characters long.
           </div>
         </div>
@@ -120,18 +120,18 @@
       <div class="w-100 d-block d-md-none"></div>
 
       <div class="form-group">
-        <label for="postalCode">Postal code</label>
+        <label for="postalcode">Postal code</label>
         <input
-          formControlName="postalCode"
-          id="postalCode"
+          formControlName="postalcode"
+          id="postalcode"
           type="text"
           class="form-control"
-          [ngModel]="customer.postalCode"
+          [ngModel]="customer.postalcode"
         />
 
-        <div *ngIf="formControls.postalCode.touched && formControls.postalCode.invalid" class="alert alert-danger">
-          <div *ngIf="formControls.postalCode.errors.required">Postal code is required.</div>
-          <div *ngIf="formControls.postalCode.errors.minlength">
+        <div *ngIf="formControls.postalcode.touched && formControls.postalcode.invalid" class="alert alert-danger">
+          <div *ngIf="formControls.postalcode.errors.required">Postal code is required.</div>
+          <div *ngIf="formControls.postalcode.errors.minlength">
             Postal code should be at least 4 characters long.
           </div>
         </div>
@@ -202,12 +202,12 @@
       <div class="w-100 d-block d-md-none"></div>
 
       <div class="form-group">
-        <label for="eMail">eMail</label>
-        <input formControlName="eMail" id="eMail" type="text" class="form-control" [ngModel]="customer.eMail" />
+        <label for="email">email</label>
+        <input formControlName="email" id="email" type="text" class="form-control" [ngModel]="customer.email" />
 
-        <div *ngIf="formControls.eMail.touched && formControls.eMail.invalid" class="alert alert-danger">
-          <div *ngIf="formControls.eMail.errors.required">E-Mail is required.</div>
-          <div *ngIf="formControls.eMail.errors.minlength">
+        <div *ngIf="formControls.email.touched && formControls.email.invalid" class="alert alert-danger">
+          <div *ngIf="formControls.email.errors.required">E-Mail is required.</div>
+          <div *ngIf="formControls.email.errors.minlength">
             E-Mail should be at least 6 characters long.
           </div>
         </div>

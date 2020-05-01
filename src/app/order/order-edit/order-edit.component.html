@@ -18,15 +18,15 @@
       </div>
 
       <div class="form-group">
-        <label for="customerId">Customer</label>
-        <select formControlName="customerId" id="customerId" class="form-control" [ngModel]="order.customerId">
+        <label for="customerid">Customer</label>
+        <select formControlName="customerid" id="customerid" class="form-control" [ngModel]="order.customerid">
           <option *ngFor="let customer of allCustomers" [value]="customer.id"
-            >{{ customer.lastName }}, {{ customer.firstName }}</option
+            >{{ customer.lastname }}, {{ customer.firstname }}</option
           >
         </select>
 
-        <div *ngIf="formControls.customerId.touched && formControls.customerId.invalid" class="alert alert-danger">
-          <div *ngIf="formControls.customerId.errors.required">Customer is required.</div>
+        <div *ngIf="formControls.customerid.touched && formControls.customerid.invalid" class="alert alert-danger">
+          <div *ngIf="formControls.customerid.errors.required">Customer is required.</div>
         </div>
       </div>
 
@@ -49,13 +49,13 @@
     <div class="tab">
       <h2>Product data</h2>
       <div class="form-group">
-        <label for="productId">Product</label>
-        <select formControlName="productId" id="productId" class="form-control" [ngModel]="order.productId">
+        <label for="productid">Product</label>
+        <select formControlName="productid" id="productid" class="form-control" [ngModel]="order.productid">
           <option *ngFor="let product of allProducts" [value]="product.id">{{ product.name }}</option>
         </select>
 
-        <div *ngIf="formControls.productId.touched && formControls.productId.invalid" class="alert alert-danger">
-          <div *ngIf="formControls.productId.errors.required">Product is required.</div>
+        <div *ngIf="formControls.productid.touched && formControls.productid.invalid" class="alert alert-danger">
+          <div *ngIf="formControls.productid.errors.required">Product is required.</div>
         </div>
       </div>
 

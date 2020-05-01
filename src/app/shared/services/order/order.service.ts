@@ -13,13 +13,13 @@ export class OrderService {
     return await this.http.get<Order[]>('http://localhost:8000/api/orders').toPromise();
   }
 
-  async getAllOrdersOfCustomer(customerId: string) {
+  async getAllOrdersOfCustomer(customerid: string) {
     let ordersOfCustomer = await this.http
-      .get<Order[]>('http://localhost:8000/api/ordersOfCustomer/' + customerId)
+      .get<Order[]>('http://localhost:8000/api/ordersOfCustomer/' + customerid)
       .toPromise();
 
     for (let order of ordersOfCustomer) {
-      let products = await this.productService.getProduct(order.productId.toString());
+      let products = await this.productService.getProduct(order.productid.toString());
       let product = products[0];
 
       order.name = product.name;
