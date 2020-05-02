@@ -9,6 +9,6 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   async getUser(id: string): Promise<User[]> {
-    return this.http.get<User[]>('http://localhost:8000/api/users/' + id).toPromise();
+    return this.http.get<User[]>('https://customers-backend.herokuapp.com/api/users/' + id).toPromise();
   }
 }

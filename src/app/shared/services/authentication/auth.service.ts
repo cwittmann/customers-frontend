@@ -41,11 +41,11 @@ export class AuthService {
 
   public validate(email, password) {
     return this.http
-      .post('http://localhost:8000/api/authenticate', { username: email, password: password })
+      .post('https://customers-backend.herokuapp.com/api/authenticate', { username: email, password: password })
       .toPromise();
   }
 
   public register(user) {
-    return this.http.post('http://localhost:8000/api/register', user).toPromise();
+    return this.http.post('https://customers-backend.herokuapp.com/api/register', user).toPromise();
   }
 }

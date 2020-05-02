@@ -10,12 +10,12 @@ export class OrderService {
   constructor(private http: HttpClient, private productService: ProductService) {}
 
   async getAllOrders(): Promise<Order[]> {
-    return await this.http.get<Order[]>('http://localhost:8000/api/orders').toPromise();
+    return await this.http.get<Order[]>('https://customers-backend.herokuapp.com/api/orders').toPromise();
   }
 
   async getAllOrdersOfCustomer(customerid: string) {
     let ordersOfCustomer = await this.http
-      .get<Order[]>('http://localhost:8000/api/ordersOfCustomer/' + customerid)
+      .get<Order[]>('https://customers-backend.herokuapp.com/api/ordersOfCustomer/' + customerid)
       .toPromise();
 
     for (let order of ordersOfCustomer) {
@@ -31,18 +31,18 @@ export class OrderService {
   }
 
   async getOrder(id: string): Promise<Order[]> {
-    return await this.http.get<Order[]>('http://localhost:8000/api/orders/' + id).toPromise();
+    return await this.http.get<Order[]>('https://customers-backend.herokuapp.com/api/orders/' + id).toPromise();
   }
 
   async insertOrder(order: Order) {
-    return await this.http.post('http://localhost:8000/api/orders/', order).toPromise();
+    return await this.http.post('https://customers-backend.herokuapp.com/api/orders/', order).toPromise();
   }
 
   async updateOrder(order: Order) {
-    return this.http.put('http://localhost:8000/api/orders/' + order.id, order).toPromise();
+    return this.http.put('https://customers-backend.herokuapp.com/api/orders/' + order.id, order).toPromise();
   }
 
   async deleteOrder(id: string) {
-    return this.http.delete('http://localhost:8000/api/orders/' + id).toPromise();
+    return this.http.delete('https://customers-backend.herokuapp.com/api/orders/' + id).toPromise();
   }
 }

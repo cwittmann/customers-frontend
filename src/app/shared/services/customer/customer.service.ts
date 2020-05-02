@@ -9,22 +9,24 @@ export class CustomerService {
   constructor(private http: HttpClient) {}
 
   async getAllCustomers(): Promise<Customer[]> {
-    return await this.http.get<Customer[]>('http://localhost:8000/api/customers').toPromise();
+    return await this.http.get<Customer[]>('https://customers-backend.herokuapp.com/api/customers').toPromise();
   }
 
   async getCustomer(id: string): Promise<Customer[]> {
-    return await this.http.get<Customer[]>('http://localhost:8000/api/customers/' + id).toPromise();
+    return await this.http.get<Customer[]>('https://customers-backend.herokuapp.com/api/customers/' + id).toPromise();
   }
 
   async insertCustomer(Customer: Customer) {
-    return await this.http.post('http://localhost:8000/api/customers/', Customer).toPromise();
+    return await this.http.post('https://customers-backend.herokuapp.com/api/customers/', Customer).toPromise();
   }
 
   async updateCustomer(Customer: Customer) {
-    return await this.http.put('http://localhost:8000/api/customers/' + Customer.id, Customer).toPromise();
+    return await this.http
+      .put('https://customers-backend.herokuapp.com/api/customers/' + Customer.id, Customer)
+      .toPromise();
   }
 
   async deleteCustomer(id: string) {
-    return await this.http.delete('http://localhost:8000/api/customers/' + id).toPromise();
+    return await this.http.delete('https://customers-backend.herokuapp.com/api/customers/' + id).toPromise();
   }
 }

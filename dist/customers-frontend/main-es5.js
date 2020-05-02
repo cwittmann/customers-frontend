@@ -5691,7 +5691,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "validate",
         value: function validate(email, password) {
-          return this.http.post('http://localhost:8000/api/authenticate', {
+          return this.http.post('https://customers-backend.herokuapp.com/api/authenticate', {
             username: email,
             password: password
           }).toPromise();
@@ -5699,7 +5699,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "register",
         value: function register(user) {
-          return this.http.post('http://localhost:8000/api/register', user).toPromise();
+          return this.http.post('https://customers-backend.herokuapp.com/api/register', user).toPromise();
         }
       }]);
 
@@ -5790,7 +5790,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 switch (_context8.prev = _context8.next) {
                   case 0:
                     _context8.next = 2;
-                    return this.http.get('http://localhost:8000/api/connect').toPromise().then(function () {
+                    return this.http.get('https://customers-backend.herokuapp.com/api/connect').toPromise().then(function () {
                       checkConnectionResult = true;
                     })["catch"](function (error) {
                       checkConnectionResult = false;
@@ -5932,7 +5932,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 switch (_context10.prev = _context10.next) {
                   case 0:
                     _context10.next = 2;
-                    return this.http.get('http://localhost:8000/api/customers').toPromise();
+                    return this.http.get('https://customers-backend.herokuapp.com/api/customers').toPromise();
 
                   case 2:
                     return _context10.abrupt("return", _context10.sent);
@@ -5954,7 +5954,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 switch (_context11.prev = _context11.next) {
                   case 0:
                     _context11.next = 2;
-                    return this.http.get('http://localhost:8000/api/customers/' + id).toPromise();
+                    return this.http.get('https://customers-backend.herokuapp.com/api/customers/' + id).toPromise();
 
                   case 2:
                     return _context11.abrupt("return", _context11.sent);
@@ -5976,7 +5976,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 switch (_context12.prev = _context12.next) {
                   case 0:
                     _context12.next = 2;
-                    return this.http.post('http://localhost:8000/api/customers/', Customer).toPromise();
+                    return this.http.post('https://customers-backend.herokuapp.com/api/customers/', Customer).toPromise();
 
                   case 2:
                     return _context12.abrupt("return", _context12.sent);
@@ -5998,7 +5998,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 switch (_context13.prev = _context13.next) {
                   case 0:
                     _context13.next = 2;
-                    return this.http.put('http://localhost:8000/api/customers/' + Customer.id, Customer).toPromise();
+                    return this.http.put('https://customers-backend.herokuapp.com/api/customers/' + Customer.id, Customer).toPromise();
 
                   case 2:
                     return _context13.abrupt("return", _context13.sent);
@@ -6020,7 +6020,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 switch (_context14.prev = _context14.next) {
                   case 0:
                     _context14.next = 2;
-                    return this.http["delete"]('http://localhost:8000/api/customers/' + id).toPromise();
+                    return this.http["delete"]('https://customers-backend.herokuapp.com/api/customers/' + id).toPromise();
 
                   case 2:
                     return _context14.abrupt("return", _context14.sent);
@@ -6256,7 +6256,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 switch (_context15.prev = _context15.next) {
                   case 0:
                     _context15.next = 2;
-                    return this.http.get('http://localhost:8000/api/orders').toPromise();
+                    return this.http.get('https://customers-backend.herokuapp.com/api/orders').toPromise();
 
                   case 2:
                     return _context15.abrupt("return", _context15.sent);
@@ -6280,7 +6280,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 switch (_context16.prev = _context16.next) {
                   case 0:
                     _context16.next = 2;
-                    return this.http.get('http://localhost:8000/api/ordersOfCustomer/' + customerid).toPromise();
+                    return this.http.get('https://customers-backend.herokuapp.com/api/ordersOfCustomer/' + customerid).toPromise();
 
                   case 2:
                     ordersOfCustomer = _context16.sent;
@@ -6347,7 +6347,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 switch (_context17.prev = _context17.next) {
                   case 0:
                     _context17.next = 2;
-                    return this.http.get('http://localhost:8000/api/orders/' + id).toPromise();
+                    return this.http.get('https://customers-backend.herokuapp.com/api/orders/' + id).toPromise();
 
                   case 2:
                     return _context17.abrupt("return", _context17.sent);
@@ -6369,7 +6369,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 switch (_context18.prev = _context18.next) {
                   case 0:
                     _context18.next = 2;
-                    return this.http.post('http://localhost:8000/api/orders/', order).toPromise();
+                    return this.http.post('https://customers-backend.herokuapp.com/api/orders/', order).toPromise();
 
                   case 2:
                     return _context18.abrupt("return", _context18.sent);
@@ -6390,7 +6390,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               while (1) {
                 switch (_context19.prev = _context19.next) {
                   case 0:
-                    return _context19.abrupt("return", this.http.put('http://localhost:8000/api/orders/' + order.id, order).toPromise());
+                    return _context19.abrupt("return", this.http.put('https://customers-backend.herokuapp.com/api/orders/' + order.id, order).toPromise());
 
                   case 1:
                   case "end":
@@ -6408,7 +6408,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               while (1) {
                 switch (_context20.prev = _context20.next) {
                   case 0:
-                    return _context20.abrupt("return", this.http["delete"]('http://localhost:8000/api/orders/' + id).toPromise());
+                    return _context20.abrupt("return", this.http["delete"]('https://customers-backend.herokuapp.com/api/orders/' + id).toPromise());
 
                   case 1:
                   case "end":
@@ -6505,7 +6505,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               while (1) {
                 switch (_context21.prev = _context21.next) {
                   case 0:
-                    return _context21.abrupt("return", this.http.get('http://localhost:8000/api/products').toPromise());
+                    return _context21.abrupt("return", this.http.get('https://customers-backend.herokuapp.com/api/products').toPromise());
 
                   case 1:
                   case "end":
@@ -6523,7 +6523,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               while (1) {
                 switch (_context22.prev = _context22.next) {
                   case 0:
-                    return _context22.abrupt("return", this.http.get('http://localhost:8000/api/products/' + id).toPromise());
+                    return _context22.abrupt("return", this.http.get('https://customers-backend.herokuapp.com/api/products/' + id).toPromise());
 
                   case 1:
                   case "end":
@@ -6618,7 +6618,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               while (1) {
                 switch (_context23.prev = _context23.next) {
                   case 0:
-                    return _context23.abrupt("return", this.http.get('http://localhost:8000/api/users/' + id).toPromise());
+                    return _context23.abrupt("return", this.http.get('https://customers-backend.herokuapp.com/api/users/' + id).toPromise());
 
                   case 1:
                   case "end":

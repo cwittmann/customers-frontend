@@ -2766,11 +2766,11 @@ class AuthService {
     }
     validate(email, password) {
         return this.http
-            .post('http://localhost:8000/api/authenticate', { username: email, password: password })
+            .post('https://customers-backend.herokuapp.com/api/authenticate', { username: email, password: password })
             .toPromise();
     }
     register(user) {
-        return this.http.post('http://localhost:8000/api/register', user).toPromise();
+        return this.http.post('https://customers-backend.herokuapp.com/api/register', user).toPromise();
     }
 }
 AuthService.ɵfac = function AuthService_Factory(t) { return new (t || AuthService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
@@ -2812,7 +2812,7 @@ class ConnectionService {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             let checkConnectionResult;
             yield this.http
-                .get('http://localhost:8000/api/connect')
+                .get('https://customers-backend.herokuapp.com/api/connect')
                 .toPromise()
                 .then(() => {
                 checkConnectionResult = true;
@@ -2872,27 +2872,29 @@ class CustomerService {
     }
     getAllCustomers() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            return yield this.http.get('http://localhost:8000/api/customers').toPromise();
+            return yield this.http.get('https://customers-backend.herokuapp.com/api/customers').toPromise();
         });
     }
     getCustomer(id) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            return yield this.http.get('http://localhost:8000/api/customers/' + id).toPromise();
+            return yield this.http.get('https://customers-backend.herokuapp.com/api/customers/' + id).toPromise();
         });
     }
     insertCustomer(Customer) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            return yield this.http.post('http://localhost:8000/api/customers/', Customer).toPromise();
+            return yield this.http.post('https://customers-backend.herokuapp.com/api/customers/', Customer).toPromise();
         });
     }
     updateCustomer(Customer) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            return yield this.http.put('http://localhost:8000/api/customers/' + Customer.id, Customer).toPromise();
+            return yield this.http
+                .put('https://customers-backend.herokuapp.com/api/customers/' + Customer.id, Customer)
+                .toPromise();
         });
     }
     deleteCustomer(id) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            return yield this.http.delete('http://localhost:8000/api/customers/' + id).toPromise();
+            return yield this.http.delete('https://customers-backend.herokuapp.com/api/customers/' + id).toPromise();
         });
     }
 }
@@ -3002,13 +3004,13 @@ class OrderService {
     }
     getAllOrders() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            return yield this.http.get('http://localhost:8000/api/orders').toPromise();
+            return yield this.http.get('https://customers-backend.herokuapp.com/api/orders').toPromise();
         });
     }
     getAllOrdersOfCustomer(customerid) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             let ordersOfCustomer = yield this.http
-                .get('http://localhost:8000/api/ordersOfCustomer/' + customerid)
+                .get('https://customers-backend.herokuapp.com/api/ordersOfCustomer/' + customerid)
                 .toPromise();
             for (let order of ordersOfCustomer) {
                 let products = yield this.productService.getProduct(order.productid.toString());
@@ -3022,22 +3024,22 @@ class OrderService {
     }
     getOrder(id) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            return yield this.http.get('http://localhost:8000/api/orders/' + id).toPromise();
+            return yield this.http.get('https://customers-backend.herokuapp.com/api/orders/' + id).toPromise();
         });
     }
     insertOrder(order) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            return yield this.http.post('http://localhost:8000/api/orders/', order).toPromise();
+            return yield this.http.post('https://customers-backend.herokuapp.com/api/orders/', order).toPromise();
         });
     }
     updateOrder(order) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            return this.http.put('http://localhost:8000/api/orders/' + order.id, order).toPromise();
+            return this.http.put('https://customers-backend.herokuapp.com/api/orders/' + order.id, order).toPromise();
         });
     }
     deleteOrder(id) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            return this.http.delete('http://localhost:8000/api/orders/' + id).toPromise();
+            return this.http.delete('https://customers-backend.herokuapp.com/api/orders/' + id).toPromise();
         });
     }
 }
@@ -3076,12 +3078,12 @@ class ProductService {
     }
     getAllProducts() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            return this.http.get('http://localhost:8000/api/products').toPromise();
+            return this.http.get('https://customers-backend.herokuapp.com/api/products').toPromise();
         });
     }
     getProduct(id) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            return this.http.get('http://localhost:8000/api/products/' + id).toPromise();
+            return this.http.get('https://customers-backend.herokuapp.com/api/products/' + id).toPromise();
         });
     }
 }
@@ -3120,7 +3122,7 @@ class UserService {
     }
     getUser(id) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            return this.http.get('http://localhost:8000/api/users/' + id).toPromise();
+            return this.http.get('https://customers-backend.herokuapp.com/api/users/' + id).toPromise();
         });
     }
 }

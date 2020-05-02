@@ -17,7 +17,7 @@ export class ConnectionService {
     let checkConnectionResult;
 
     await this.http
-      .get('http://localhost:8000/api/connect')
+      .get('https://customers-backend.herokuapp.com/api/connect')
       .toPromise()
       .then(() => {
         checkConnectionResult = true;
